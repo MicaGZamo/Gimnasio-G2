@@ -9,22 +9,25 @@ public class Entrenador {
     private String apellidoE;
     private String especialidad;
     private String disponibilidad;
+    private boolean estado;
 
-    public Entrenador(int idEntrenador, String dniEntrenador, String nombreE, String apellidoE, String especialidad, String disponibilidad) {
+    public Entrenador(int idEntrenador, String dniEntrenador, String nombreE, String apellidoE, String especialidad, String disponibilidad, boolean estado) {
         this.idEntrenador = idEntrenador;
         this.dniEntrenador = dniEntrenador;
         this.nombreE = nombreE;
         this.apellidoE = apellidoE;
         this.especialidad = especialidad;
         this.disponibilidad = disponibilidad;
+        this.estado= estado;
     }
 
-    public Entrenador(String dniEntrenador, String nombreE, String apellidoE, String especialidad, String disponibilidad) {
+    public Entrenador(String dniEntrenador, String nombreE, String apellidoE, String especialidad, String disponibilidad, boolean estado) {
         this.dniEntrenador = dniEntrenador;
         this.nombreE = nombreE;
         this.apellidoE = apellidoE;
         this.especialidad = especialidad;
         this.disponibilidad = disponibilidad;
+        this.estado= estado;
     }
 
     public Entrenador() {
@@ -78,9 +81,17 @@ public class Entrenador {
         this.disponibilidad = disponibilidad;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "Entrenador{" + "idEntrenador=" + idEntrenador + ", dniEntrenador=" + dniEntrenador + ", nombreE=" + nombreE + ", apellidoE=" + apellidoE + ", especialidad=" + especialidad + ", disponibilidad=" + disponibilidad + '}';
+        return "Entrenador{" + "idEntrenador=" + idEntrenador + ", dniEntrenador=" + dniEntrenador + ", nombreE=" + nombreE + ", apellidoE=" + apellidoE + ", especialidad=" + especialidad + ", disponibilidad=" + disponibilidad + ", estado="+estado+ '}';
     }
     
     

@@ -11,24 +11,30 @@ public class Membresia {
     private int cantPases;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
+    private double precioMembresia;
+    private boolean estado;
 
-    public Membresia(int idMembresia, int idSocio, String tipoMembresia, int cantPases, LocalDate fechaInicio, LocalDate fechaFin) {
+    public Membresia(int idMembresia, int idSocio, String tipoMembresia, int cantPases, LocalDate fechaInicio, LocalDate fechaFin, double precioMembresia, boolean estado) {
         this.idMembresia = idMembresia;
         this.idSocio = idSocio;
         this.tipoMembresia = tipoMembresia;
         this.cantPases = cantPases;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.precioMembresia = precioMembresia;
+        this.estado = estado;
     }
 
-    public Membresia(int idSocio, String tipoMembresia, int cantPases, LocalDate fechaInicio, LocalDate fechaFin) {
+    public Membresia(int idSocio, String tipoMembresia, int cantPases, LocalDate fechaInicio, LocalDate fechaFin, double precioMembresia, boolean estado) {
         this.idSocio = idSocio;
         this.tipoMembresia = tipoMembresia;
         this.cantPases = cantPases;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.precioMembresia = precioMembresia;
+        this.estado = estado;
     }
-
+    
     public Membresia() {
     }
 
@@ -80,9 +86,26 @@ public class Membresia {
         this.fechaFin = fechaFin;
     }
 
+    public double getPrecioMembresia() {
+        return precioMembresia;
+    }
+
+    public void setPrecioMembresia(double precioMembresia) {
+        this.precioMembresia = precioMembresia;
+    }
+
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
+    
     @Override
     public String toString() {
-        return "Membresia{" + "idMembresia=" + idMembresia + ", idSocio=" + idSocio + ", tipoMembresia=" + tipoMembresia + ", cantPases=" + cantPases + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + '}';
+        return "Membresia{" + "idMembresia=" + idMembresia + ", idSocio=" + idSocio + ", tipoMembresia=" + tipoMembresia + ", cantPases=" + cantPases + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", precioMembresia=" + precioMembresia+", estado" + estado+'}';
     }
     
     
