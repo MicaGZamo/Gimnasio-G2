@@ -13,12 +13,15 @@ public class Asistencia {
     public Asistencia() {
     }
 
+<<<<<<< Updated upstream
     public Asistencia(int idSocio, int idClase, LocalDate fechaAsistencia) {
         this.idSocio = idSocio;
         this.idClase = idClase;
         this.fechaAsistencia = fechaAsistencia;
     }
 
+=======
+>>>>>>> Stashed changes
     public Asistencia(int idAsistencia, int idSocio, int idClase, LocalDate fechaAsistencia) {
         this.idAsistencia = idAsistencia;
         this.idSocio = idSocio;
@@ -58,10 +61,21 @@ public class Asistencia {
         this.fechaAsistencia = fechaAsistencia;
     }
 
+<<<<<<< Updated upstream
    
     @Override
     public String toString() {
         return "Asistencia{" + ", idSocio=" + idSocio + ", idClase=" + idClase + ", idAsistencia=" + idAsistencia + ", fechaAsistencia=" + '}';
     }
 
+=======
+    @Override
+    public String toString() {
+        return "Asistencia{" + "idAsistencia=" + idAsistencia + ", idSocio=" + idSocio + ", idClase=" + idClase + ", fechaAsistencia=" + fechaAsistencia + '}';
+    }
+
+    
+    
+>>>>>>> Stashed changes
 }
+
