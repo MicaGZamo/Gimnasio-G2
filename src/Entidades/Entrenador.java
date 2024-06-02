@@ -8,7 +8,7 @@ public class Entrenador {
     private String nombreE;
     private String apellidoE;
     private String especialidad;
-    private String disponibilidad;
+    private String disponibilidad;///////
     private boolean estado;
 
     public Entrenador(int idEntrenador, String dniEntrenador, String nombreE, String apellidoE, String especialidad, String disponibilidad, boolean estado) {

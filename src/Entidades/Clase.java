@@ -10,7 +10,7 @@ public class Clase {
     private int idClase ;
     private String nombre;
     private int idEntrenador;
-    private Date fecha;
+    private Date fecha;////
     private LocalTime hora; 
     private int capacidad;
     private boolean estado;

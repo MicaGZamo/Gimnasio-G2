@@ -7,10 +7,10 @@ public class Membresia {
     
     private int idMembresia;
     private int idSocio;
-    private String tipoMembresia;
+    private String tipoMembresia;////
     private int cantPases;
     private LocalDate fechaInicio;
-    private LocalDate fechaFin;
+    private LocalDate fechaFin; // 30 días a partir de la fecha de inicio
     private double precioMembresia;
     private boolean estado;
 
