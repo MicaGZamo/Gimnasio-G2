@@ -6,8 +6,8 @@ public class Socio {
     
     private int idSocio;
     private String dniSocio;
-    private String nombre;
-    private String apellido;
+    private String nombreS;
+    private String apellidoS;
     private int edad;
     private String correo;
     private String telefono;
@@ -16,8 +16,8 @@ public class Socio {
     public Socio(int idSocio, String dniSocio, String nombre, String apellido, int edad, String correo, String telefono, boolean estado) {
         this.idSocio = idSocio;
         this.dniSocio = dniSocio;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombreS = nombre;
+        this.apellidoS = apellido;
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
@@ -26,8 +26,8 @@ public class Socio {
 
     public Socio(String dniSocio, String nombre, String apellido, int edad, String correo, String telefono, boolean estado) {
         this.dniSocio = dniSocio;
-        this.nombre = nombre;
-        this.apellido = apellido;
+        this.nombreS = nombre;
+        this.apellidoS = apellido;
         this.edad = edad;
         this.correo = correo;
         this.telefono = telefono;
@@ -54,19 +54,19 @@ public class Socio {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombreS;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombreS = nombre;
     }
 
     public String getApellido() {
-        return apellido;
+        return apellidoS;
     }
 
     public void setApellido(String apellido) {
-        this.apellido = apellido;
+        this.apellidoS = apellido;
     }
 
     public int getEdad() {
@@ -103,7 +103,7 @@ public class Socio {
 
     @Override
     public String toString() {
-        return "Socio{" + "idSocio=" + idSocio + ", dniSocio=" + dniSocio + ", nombre=" + nombre + ", apellido=" + apellido + ", edad=" + edad + ", correo=" + correo + ", telefono=" + telefono + ", estado"+estado+ '}';
+        return "Socio{" + "idSocio=" + idSocio + ", dniSocio=" + dniSocio + ", nombre=" + nombreS + ", apellido=" + apellidoS + ", edad=" + edad + ", correo=" + correo + ", telefono=" + telefono + ", estado"+estado+ '}';
     }
     
     
