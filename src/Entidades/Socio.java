@@ -24,6 +24,7 @@ public class Socio {
         this.estado= estado;
     }
 
+    // Constructor sin ID-SOCIO
     public Socio(String dniSocio, String nombre, String apellido, int edad, String correo, String telefono, boolean estado) {
         this.dniSocio = dniSocio;
         this.nombreS = nombre;

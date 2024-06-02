@@ -2,7 +2,7 @@
 package Entidades;
 
 import java.time.LocalTime;
-import java.util.Date;
+
 
 
 public class Clase {
@@ -17,7 +17,8 @@ public class Clase {
     public Clase() {
     }
 
-    public Clase(String nombre, int idEntrenador, LocalTime horario, int capacidad, boolean estado) {
+    public Clase(int idClase, String nombre, int idEntrenador, LocalTime horario, int capacidad, boolean estado) {
+        this.idClase = idClase;
         this.nombre = nombre;
         this.idEntrenador = idEntrenador;
         this.horario = horario;
@@ -25,6 +26,7 @@ public class Clase {
         this.estado = estado;
     }
 
+   
     public int getIdClase() {
         return idClase;
     }

@@ -1,7 +1,7 @@
 package Entidades;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
+
 
 public class Asistencia {
 
@@ -11,12 +11,6 @@ public class Asistencia {
     private LocalDate fechaAsistencia;
 
     public Asistencia() {
-    }
-
-    public Asistencia(int idSocio, int idClase, LocalDate fechaAsistencia) {
-        this.idSocio = idSocio;
-        this.idClase = idClase;
-        this.fechaAsistencia = fechaAsistencia;
     }
 
     public Asistencia(int idAsistencia, int idSocio, int idClase, LocalDate fechaAsistencia) {
@@ -58,10 +52,10 @@ public class Asistencia {
         this.fechaAsistencia = fechaAsistencia;
     }
 
-   
     @Override
     public String toString() {
-        return "Asistencia{" + ", idSocio=" + idSocio + ", idClase=" + idClase + ", idAsistencia=" + idAsistencia + ", fechaAsistencia=" + '}';
+        return "Asistencia{" + "idAsistencia=" + idAsistencia + ", idSocio=" + idSocio + ", idClase=" + idClase + ", fechaAsistencia=" + fechaAsistencia + '}';
     }
+
 
 }
