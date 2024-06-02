@@ -10,19 +10,17 @@ public class Clase {
     private int idClase ;
     private String nombre;
     private int idEntrenador;
-    private Date fecha;////
-    private LocalTime hora; 
+    private LocalTime horario; 
     private int capacidad;
     private boolean estado;
 
     public Clase() {
     }
 
-    public Clase(String nombre, int idEntrenador, Date fecha, LocalTime hora, int capacidad, boolean estado) {
+    public Clase(String nombre, int idEntrenador, LocalTime horario, int capacidad, boolean estado) {
         this.nombre = nombre;
         this.idEntrenador = idEntrenador;
-        this.fecha = fecha;
-        this.hora = hora;
+        this.horario = horario;
         this.capacidad = capacidad;
         this.estado = estado;
     }
@@ -51,20 +49,13 @@ public class Clase {
         this.idEntrenador = idEntrenador;
     }
 
-    public Date getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
 
     public LocalTime getHora() {
-        return hora;
+        return horario;
     }
 
     public void setHora(LocalTime hora) {
-        this.hora = hora;
+        this.horario = hora;
     }
 
     public int getCapacidad() {
@@ -83,20 +74,11 @@ public class Clase {
         this.estado = estado;
     }
 
-    public Clase(int idClase, String nombre, int idEntrenador, Date fecha, LocalTime hora, int capacidad, boolean estado) {
-        this.idClase = idClase;
-        this.nombre = nombre;
-        this.idEntrenador = idEntrenador;
-        this.fecha = fecha;
-        this.hora = hora;
-        this.capacidad = capacidad;
-        this.estado = estado;
-    }
 
    
     @Override
     public String toString() {
-        return "Clase{" + "idClase=" + idClase + ", nombre=" + nombre + ", idEntrenador=" + idEntrenador + ", fecha=" + fecha + ", hora=" + hora + ", capacidad=" + capacidad+ ", estado=" + estado+'}';
+        return "Clase{" + "idClase=" + idClase + ", nombre=" + nombre + ", idEntrenador=" + idEntrenador + ", hora=" + horario + ", capacidad=" + capacidad+ ", estado=" + estado+'}';
     }
     
     
