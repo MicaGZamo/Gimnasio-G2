@@ -26,6 +26,14 @@ public class Clase {
         this.estado = estado;
     }
 
+     public Clase(String nombre, int idEntrenador, LocalTime horario, int capacidad, boolean estado) {
+     
+        this.nombre = nombre;
+        this.idEntrenador = idEntrenador;
+        this.horario = horario;
+        this.capacidad = capacidad;
+        this.estado = estado;
+    }
    
     public int getIdClase() {
         return idClase;
@@ -51,14 +59,14 @@ public class Clase {
         this.idEntrenador = idEntrenador;
     }
 
-
-    public LocalTime getHora() {
+    public LocalTime getHorario() {
         return horario;
     }
 
-    public void setHora(LocalTime hora) {
-        this.horario = hora;
+    public void setHorario(LocalTime horario) {
+        this.horario = horario;
     }
+
 
     public int getCapacidad() {
         return capacidad;
