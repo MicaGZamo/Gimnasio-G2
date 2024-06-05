@@ -3,24 +3,33 @@ package Entidades;
 public class Entrenador {
 
     private int idEntrenador;
-    private String dniEntrenador;
+    private String dniE;
     private String nombreE;
     private String apellidoE;
     private String especialidad;
     private boolean estado;
 
-    public Entrenador(int idEntrenador, String dniEntrenador, String nombreE, String apellidoE, String especialidad, boolean estado) {
+    public Entrenador(int idEntrenador, String dniE, String nombreE, String apellidoE, String especialidad, boolean estado) {
         this.idEntrenador = idEntrenador;
-        this.dniEntrenador = dniEntrenador;
+        this.dniE = dniE;
         this.nombreE = nombreE;
         this.apellidoE = apellidoE;
         this.especialidad = especialidad;
-
         this.estado = estado;
     }
 
     public Entrenador() {
     }
+
+    public Entrenador(String dniE, String nombreE, String apellidoE, String especialidad, boolean estado) {
+        this.dniE = dniE;
+        this.nombreE = nombreE;
+        this.apellidoE = apellidoE;
+        this.especialidad = especialidad;
+        this.estado = estado;
+    }
+    
+    
 
     public int getIdEntrenador() {
         return idEntrenador;
@@ -30,13 +39,15 @@ public class Entrenador {
         this.idEntrenador = idEntrenador;
     }
 
-    public String getDniEntrenador() {
-        return dniEntrenador;
+    public String getDniE() {
+        return dniE;
     }
 
-    public void setDniEntrenador(String dniEntrenador) {
-        this.dniEntrenador = dniEntrenador;
+    public void setDniE(String dniE) {
+        this.dniE = dniE;
     }
+
+
 
     public String getNombreE() {
         return nombreE;
@@ -72,7 +83,7 @@ public class Entrenador {
 
     @Override
     public String toString() {
-        return "Entrenador{" + "idEntrenador=" + idEntrenador + ", dniEntrenador=" + dniEntrenador + ", nombreE=" + nombreE + ", apellidoE=" + apellidoE + ", especialidad=" + especialidad + ", estado=" + estado + '}';
+        return "Entrenador{" + "idEntrenador=" + idEntrenador + ", dniEntrenador=" + dniE + ", nombreE=" + nombreE + ", apellidoE=" + apellidoE + ", especialidad=" + especialidad + ", estado=" + estado + '}';
     }
 
 }
