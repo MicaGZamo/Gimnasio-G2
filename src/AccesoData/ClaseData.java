@@ -78,6 +78,34 @@ public class ClaseData {
         }
         return clase;
     }
+    
+     public Clase buscarClase(String nombre) {
+        Clase clase = null;
+        String sql = "SELECT `id-clase`, `nombre`, `id-entrenador`, `horario`, `capacidad`, `estado-clase` FROM `clases` WHERE nombre=?";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+
+                clase = new Clase();
+                clase.setIdClase(rs.getInt("id-clase"));
+                clase.setNombre(rs.getString("nombre"));
+                clase.setIdEntrenador(rs.getInt("id-entrenador"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado-clase"));
+
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clase");
+            System.out.println("error" + e);
+            e.printStackTrace();
+        }
+        return clase;
+    }
 
     public void modificarClase(Clase clase) {
         String sql = "UPDATE `clases` SET nombre=?, `id-entrenador`=?, horario=?, capacidad=?, `estado-clase`=? WHERE `id-clase`=? ";
