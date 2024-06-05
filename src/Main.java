@@ -13,7 +13,19 @@ public class Main {
     public static void main(String[] args) {
 
         Connection con = Conexion.getConexion();
-
+        //creacion de entrenadores
+        Entrenador e1= new Entrenador("11111111","Pedro","Funes","Crossfit",true);
+        Entrenador e2= new Entrenador("22222222","Lucas","Pereyra","Funcional",true);
+        Entrenador e3= new Entrenador("33333333","Rocio","Cussotto","Zumba",true);
+        Entrenador e4= new Entrenador("44444444","Antonio","Villegas","Yoga",false);
+        //Agregar los entrenadores a EntrenadoraData
+        EntrenadorData ed = new EntrenadorData();
+//        ed.guardarEntrenador(e1);
+//        ed.guardarEntrenador(e2);
+//        ed.guardarEntrenador(e3);
+//        ed.guardarEntrenador(e4);
+          //busqueda de entrenador por DNI
+        System.out.println(ed.buscarEntrenadorPorDni("22222222"));
 
         //Creacion Clase
         // LocalTime horario = LocalTime.of(14, 30);

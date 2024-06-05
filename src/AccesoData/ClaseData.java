@@ -79,7 +79,7 @@ public class ClaseData {
         return clase;
     }
     
-     public Clase buscarClase(String nombre) {
+     public Clase buscarClaseHorario(String nombre) {
         Clase clase = null;
         String sql = "SELECT `id-clase`, `nombre`, `id-entrenador`, `horario`, `capacidad`, `estado-clase` FROM `clases` WHERE nombre=?";
         PreparedStatement ps = null;
