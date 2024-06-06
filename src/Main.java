@@ -99,17 +99,19 @@ public class Main {
 ////        Socio socio2 = new Socio("00112233", "Soledad", "Arias", 30, "soledad@gmail.com", "154789", true);
 //        Socio socio3 = new Socio("55667799", "Mariano", "Rojas", 45, "Mariano_boquita@gmail.com", "151478", true);
 //        Socio socio4 = new Socio("77889944", "Jazmin", "Torres", 25, "jzmincita99@gmail.com", "152012", true);
-//        SocioData sd = new SocioData();
+//        Socio socio5 = new Socio("55002211", "Jazmin", "Garcia", 29, "jzmi15@gmail.com", "153265", true);
+        SocioData sd = new SocioData();
 ////        sd.guardarSocio(socio1);
 ////        sd.guardarSocio(socio2);
 //        sd.guardarSocio(socio3);
 //        sd.guardarSocio(socio4);
+//        sd.guardarSocio(socio5);
 //
-//        List<Socio> listadoSociosNombre = sd.buscarSocioNombre("Mariano");
-//        System.out.println("--- SOCIO/S POR NOMBRE ---");
-//        for (Socio socio : listadoSociosNombre) {
-//            System.out.println(socio);
-//        }
+        List<Socio> listadoSociosNombre = sd.buscarSocioNombre("Jazmin");
+        System.out.println("--- SOCIO/S POR NOMBRE ---");
+        for (Socio socio : listadoSociosNombre) {
+            System.out.println(socio);
+        }
 //        System.out.println(sd.buscarSocioId(2));
 //        System.out.println(sd.buscarSocioDni("33221100"));
         // sd.darDeBajaSocio(1);
