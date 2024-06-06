@@ -8,12 +8,12 @@ package Vistas;
  *
  * @author gomez
  */
-public class formEntrenador extends javax.swing.JInternalFrame {
+public class nuevaClase extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form formEntrenador
+     * Creates new form formClase
      */
-    public formEntrenador() {
+    public nuevaClase() {
         initComponents();
     }
 

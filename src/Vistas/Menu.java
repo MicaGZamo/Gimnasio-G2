@@ -32,19 +32,15 @@ public class Menu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
@@ -74,16 +70,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
-        jMenuItem3.setText("Listado");
+        jMenuItem3.setText("Lista");
         jMenu1.add(jMenuItem3);
-
-        jMenuItem4.setText("Buscar");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu1.add(jMenuItem4);
 
         jMenuBar1.add(jMenu1);
 
@@ -92,11 +80,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem5.setText("Nuevo");
         jMenu2.add(jMenuItem5);
 
-        jMenuItem6.setText("Listado");
+        jMenuItem6.setText("Lista");
         jMenu2.add(jMenuItem6);
-
-        jMenuItem7.setText("Buscar");
-        jMenu2.add(jMenuItem7);
 
         jMenuBar1.add(jMenu2);
 
@@ -105,11 +90,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem8.setText("Nueva");
         jMenu3.add(jMenuItem8);
 
-        jMenuItem9.setText("Listado");
+        jMenuItem9.setText("Lista");
         jMenu3.add(jMenuItem9);
-
-        jMenuItem10.setText("Buscar");
-        jMenu3.add(jMenuItem10);
 
         jMenuBar1.add(jMenu3);
 
@@ -118,11 +100,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem11.setText("Nueva");
         jMenu4.add(jMenuItem11);
 
-        jMenuItem12.setText("Listado");
+        jMenuItem12.setText("Lista");
         jMenu4.add(jMenuItem12);
-
-        jMenuItem13.setText("Buscar");
-        jMenu4.add(jMenuItem13);
 
         jMenuBar1.add(jMenu4);
 
@@ -157,10 +136,6 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,17 +182,13 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     // End of variables declaration//GEN-END:variables
