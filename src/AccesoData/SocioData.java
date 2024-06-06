@@ -43,9 +43,9 @@ public class SocioData {
         }
     }
 
-    public Socio buscarSocioNombre(String nombre) {
+    public List <Socio> buscarSocioNombre(String nombre) {
         Socio socio = null;
-
+        List <Socio> listaSocioNombre = new ArrayList<>();
         String sql = "SELECT `id-socio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono`, `estado-so` FROM `socios` WHERE nombre=?";
         PreparedStatement ps = null;
 
@@ -54,7 +54,7 @@ public class SocioData {
             ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
+            while (rs.next()) {
                 socio = new Socio();
                 socio.setIdSocio(rs.getInt("id-socio"));
                 socio.setDniSocio(rs.getString("dni"));
@@ -64,6 +64,7 @@ public class SocioData {
                 socio.setCorreo(rs.getString("correo"));
                 socio.setTelefono(rs.getString("telefono"));
                 socio.setEstado(rs.getBoolean("estado-so"));
+                listaSocioNombre.add(socio);
             }
             ps.close();
 
@@ -72,7 +73,7 @@ public class SocioData {
             System.out.println("error" + e);
             e.printStackTrace();
         }
-        return socio;
+        return listaSocioNombre;
     }
 
     public Socio buscarSocioDni(String dni) {

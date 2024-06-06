@@ -31,20 +31,15 @@ public class Main {
 //        System.out.println("busqueda de entrenador por DNI");
 //        System.out.println(ed.buscarPorDni("22222222"));
 //        System.out.println(ed.buscarPorDni("44444444")); // estado false
-
 //        System.out.println("Busqueda de entrenador por nombre y apellido");
 //        System.out.println(ed.buscarPorNombreYApellido("Pedro", "Funes"));
 //        System.out.println(ed.buscarPorNombreYApellido("antonio", "vIllegAs")); //no importa mayúsculas de la minúsculas
-
 //        System.out.println("Busqueda de entrenador por especialidad");
 //        System.out.println(ed.listarPorEspecialidad("crossfit"));
-
 //        System.out.println("Busqueda de entrenador por nombre");
 //        System.out.println(ed.listarPorNombre("raul"));
-          
 //        System.out.println("Busqueda de entrenador por apellido");
 //        System.out.println(ed.listarPorApellido("villegas"));
-
 //        System.out.println("Listado Entrenadores activos:");
 //        List<Entrenador> listadoA = ed.listarEntrenadores();
 //        for (Entrenador entrenador : listadoA) {
@@ -101,21 +96,23 @@ public class Main {
 //
 // ---------------------------- Socio ----------------------------
 //        Socio socio1 = new Socio("33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
-//        Socio socio2 = new Socio("00112233", "Soledad", "Arias", 30, "soledad@gmail.com", "154789", true);
+////        Socio socio2 = new Socio("00112233", "Soledad", "Arias", 30, "soledad@gmail.com", "154789", true);
 //        Socio socio3 = new Socio("55667799", "Mariano", "Rojas", 45, "Mariano_boquita@gmail.com", "151478", true);
 //        Socio socio4 = new Socio("77889944", "Jazmin", "Torres", 25, "jzmincita99@gmail.com", "152012", true);
 //        SocioData sd = new SocioData();
-//        sd.guardarSocio(socio1);
-//        sd.guardarSocio(socio2);
+////        sd.guardarSocio(socio1);
+////        sd.guardarSocio(socio2);
 //        sd.guardarSocio(socio3);
 //        sd.guardarSocio(socio4);
-
-//        System.out.println(sd.buscarSocioNombre("Soledad"));
+//
+//        List<Socio> listadoSociosNombre = sd.buscarSocioNombre("Mariano");
+//        System.out.println("--- SOCIO/S POR NOMBRE ---");
+//        for (Socio socio : listadoSociosNombre) {
+//            System.out.println(socio);
+//        }
 //        System.out.println(sd.buscarSocioId(2));
 //        System.out.println(sd.buscarSocioDni("33221100"));
-        
-       // sd.darDeBajaSocio(1);
-       
+        // sd.darDeBajaSocio(1);
 //        List<Socio> listadoSocios = sd.listarTodosSocios();
 //         System.out.println("--- LISTADO DE TODOS LOS SOCIOS ---");
 //        for (Socio socio : listadoSocios) {
