@@ -16,7 +16,7 @@ public class SocioData {
 
     public void guardarSocio(Socio socio) {
 
-        String sql = "INSERT INTO `socios`( `dni`,`nombre`, `apellido`, `edad`, `crreo`,`telefono`,`dni`,`estado-so`) VALUES (?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO `socios`( `dni`,`nombre`,`apellido`, `edad`,`correo`,`telefono`,`estado-so`) VALUES (?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -27,7 +27,7 @@ public class SocioData {
             ps.setString(5, socio.getCorreo());
             ps.setString(6, socio.getTelefono());
             ps.setBoolean(7, socio.isEstado());
-
+            ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
             if (rs.next()) {
@@ -37,13 +37,13 @@ public class SocioData {
             ps.close();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clase ");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Socio ");
             System.out.println("error " + ex.getMessage());
             ex.printStackTrace();
         }
     }
 
-    public Socio buscarSocio(String nombre) {
+    public Socio buscarSocioNombre(String nombre) {
         Socio socio = null;
 
         String sql = "SELECT `id-socio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono`, `estado-so` FROM `socios` WHERE nombre=?";
@@ -56,19 +56,19 @@ public class SocioData {
 
             if (rs.next()) {
                 socio = new Socio();
-                socio.setIdSocio(rs.getInt("id-clase"));
+                socio.setIdSocio(rs.getInt("id-socio"));
                 socio.setDniSocio(rs.getString("dni"));
                 socio.setNombre(rs.getString("nombre"));
                 socio.setApellido(rs.getString("apellido"));
                 socio.setEdad(rs.getInt("edad"));
                 socio.setCorreo(rs.getString("correo"));
                 socio.setTelefono(rs.getString("telefono"));
-                socio.setEstado(rs.getBoolean("estado"));
+                socio.setEstado(rs.getBoolean("estado-so"));
             }
             ps.close();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clase");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Socio");
             System.out.println("error" + e);
             e.printStackTrace();
         }
@@ -77,29 +77,29 @@ public class SocioData {
 
     public Socio buscarSocioDni(String dni) {
         Socio socio = null;
-        String sql = "SELECT `id-socio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono`, `estado-so` FROM `socios` WHERE dni=?";
+        String sql = "SELECT `id-socio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono`, `estado-so` FROM `socios` WHERE `dni`=?";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(2, dni);
+            ps.setString(1, dni);
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 socio = new Socio();
-                socio.setIdSocio(rs.getInt("id-clase"));
+                socio.setIdSocio(rs.getInt("id-socio"));
                 socio.setDniSocio(rs.getString("dni"));
                 socio.setNombre(rs.getString("nombre"));
                 socio.setApellido(rs.getString("apellido"));
                 socio.setEdad(rs.getInt("edad"));
                 socio.setCorreo(rs.getString("correo"));
                 socio.setTelefono(rs.getString("telefono"));
-                socio.setEstado(rs.getBoolean("estado"));
+                socio.setEstado(rs.getBoolean("estado-so"));
             }
             ps.close();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clase");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Socio");
             System.out.println("error" + e);
             e.printStackTrace();
         }
@@ -107,31 +107,31 @@ public class SocioData {
         return socio;
     }
 
-    public Socio buscarSocioId(String id) {
+    public Socio buscarSocioId(int id) {
         Socio socio = null;
-        String sql = "SELECT `id-socio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono`, `estado-so` FROM `socios` WHERE dni=?";
+        String sql = "SELECT `id-socio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono`, `estado-so` FROM `socios` WHERE 'id-socio'=?";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, id);
+            ps.setString(1, "id-socio");
             ResultSet rs = ps.executeQuery();
 
             if (rs.next()) {
                 socio = new Socio();
-                socio.setIdSocio(rs.getInt("id-clase"));
+                socio.setIdSocio(rs.getInt("id-socio"));
                 socio.setDniSocio(rs.getString("dni"));
                 socio.setNombre(rs.getString("nombre"));
                 socio.setApellido(rs.getString("apellido"));
                 socio.setEdad(rs.getInt("edad"));
                 socio.setCorreo(rs.getString("correo"));
                 socio.setTelefono(rs.getString("telefono"));
-                socio.setEstado(rs.getBoolean("estado"));
+                socio.setEstado(rs.getBoolean("estado-so"));
             }
             ps.close();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clase");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Socio");
             System.out.println("error" + e);
             e.printStackTrace();
         }
@@ -169,18 +169,18 @@ public class SocioData {
     }
 
     public void darDeBajaSocio(int id) {
-
-        try {
-            String sql = "UPDATE `socios` SET `estado-so`='?' WHERE 'id-socio'=?";
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id);
+ try {
+        String sql = "UPDATE `socios` SET `estado-so`=? WHERE `id-socio`=?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setBoolean(1, false); // cambiamos el estado a inactivo
+        ps.setInt(2, id); // indicamos por cual parametro buscar
 
             int fila = ps.executeUpdate();
 
             if (fila == 1) {
                 JOptionPane.showMessageDialog(null, "Se dio de baja al Socio con id: " + id);
             } else {
-                JOptionPane.showMessageDialog(null, "No se dio de baja la Clase con id: " + id);
+                JOptionPane.showMessageDialog(null, "Erro al dar de baja al Socio con id: " + id);
             }
             ps.close();
 
@@ -190,17 +190,16 @@ public class SocioData {
             e.printStackTrace();
         }
     }
-        
-    public List<Socio> listarTodosSocios (){
-       List <Socio> listaSocios = new ArrayList<>(); 
-       String sql = "SELECT * FROM 'socios'";
-       
+
+    public List<Socio> listarTodosSocios() {
+        List<Socio> listaSocios = new ArrayList<>();
+        String sql = "SELECT * FROM `socios`";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            
-            
-            while (rs.next()){
+
+            while (rs.next()) {
                 Socio socio = new Socio();
                 socio.setIdSocio(rs.getInt("id-socio"));
                 socio.setDniSocio(rs.getString("dni"));
@@ -209,29 +208,30 @@ public class SocioData {
                 socio.setEdad(rs.getInt("edad"));
                 socio.setCorreo(rs.getString("correo"));
                 socio.setTelefono(rs.getString("telefono"));
-                socio.setEstado(rs.getBoolean("estado"));
-            } 
+                socio.setEstado(rs.getBoolean("estado-so"));
+                 listaSocios.add(socio);
+            }
             rs.close();
-            
-         } catch (SQLException e) {
+
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la lista Socio ");
             System.out.println("error " + e.getMessage());
             e.printStackTrace();
         }
-             
-       return listaSocios;
+
+        return listaSocios;
     }
-    
-      public List<Socio> listarSociosActivos (){
-       List <Socio> listaSociosA = new ArrayList<>(); 
-       String sql = "SELECT * FROM 'socios' WHERE 'estado-so'=1";
-       
+
+    public List<Socio> listarSociosActivos() {
+        List<Socio> listaSociosA = new ArrayList<>();
+         String sql = "SELECT * FROM `socios` WHERE `estado-so`=1";
+
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            
-            
-            while (rs.next()){
+
+            while (rs.next()) {
                 Socio socio = new Socio();
                 socio.setIdSocio(rs.getInt("id-socio"));
                 socio.setDniSocio(rs.getString("dni"));
@@ -240,28 +240,29 @@ public class SocioData {
                 socio.setEdad(rs.getInt("edad"));
                 socio.setCorreo(rs.getString("correo"));
                 socio.setTelefono(rs.getString("telefono"));
-                socio.setEstado(rs.getBoolean("estado"));
-            } 
+                socio.setEstado(rs.getBoolean("estado-so"));
+                 listaSociosA.add(socio);
+            }
             rs.close();
-            
-         } catch (SQLException e) {
+
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la lista Socio ");
             System.out.println("error " + e.getMessage());
             e.printStackTrace();
         }
-             
-       return listaSociosA;
+
+        return listaSociosA;
     }
-        public List<Socio> listarSociosInactivos (){
-       List <Socio> listaSociosI = new ArrayList<>(); 
-       String sql = "SELECT * FROM 'socios' WHERE 'estado-so'=0";
-       
+
+    public List<Socio> listarSociosInactivos() {
+        List<Socio> listaSociosI = new ArrayList<>();
+        String sql = "SELECT * FROM `socios` WHERE `estado-so`=0"; 
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            
-            
-            while (rs.next()){
+
+            while (rs.next()) {
                 Socio socio = new Socio();
                 socio.setIdSocio(rs.getInt("id-socio"));
                 socio.setDniSocio(rs.getString("dni"));
@@ -270,16 +271,17 @@ public class SocioData {
                 socio.setEdad(rs.getInt("edad"));
                 socio.setCorreo(rs.getString("correo"));
                 socio.setTelefono(rs.getString("telefono"));
-                socio.setEstado(rs.getBoolean("estado"));
-            } 
+                socio.setEstado(rs.getBoolean("estado-so"));
+                 listaSociosI.add(socio);
+            }
             rs.close();
-            
-         } catch (SQLException e) {
+
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la lista Socio ");
             System.out.println("error " + e.getMessage());
             e.printStackTrace();
         }
-             
-       return listaSociosI;
-        }
+
+        return listaSociosI;
+    }
 }

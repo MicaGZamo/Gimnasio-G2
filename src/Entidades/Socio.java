@@ -104,7 +104,10 @@ public class Socio {
 
     @Override
     public String toString() {
-        return "Socio{" + "idSocio=" + idSocio + ", dniSocio=" + dniSocio + ", nombre=" + nombreS + ", apellido=" + apellidoS + ", edad=" + edad + ", correo=" + correo + ", telefono=" + telefono + ", estado"+estado+ '}';
+        String estadoStr = estado ? "Activo" : "Inactivo"; //expresion condicional ternaria
+        return "ID: " + idSocio + " - DNI: " + dniSocio + " - Nombre: " + nombreS + " - Apellido: " + apellidoS + " - Edad: " 
+                + edad + " - Correo: " + correo + " - Telefono: " + telefono + " - Estado: " + estadoStr ;
+
     }
     
     
