@@ -26,7 +26,7 @@ public class Main {
         //Clase clase4 = new Clase(8, "Yoga", 2, horario4, 10, true);
 
         //Agregar las clases a ClaseData
-        //ClaseData cd = new ClaseData();
+        ClaseData cd = new ClaseData();
         // cd.guardarClase(clase1);
         // cd.guardarClase(clase2);
         // cd.guardarClase(clase3);
@@ -34,6 +34,17 @@ public class Main {
         
          //Buscar Clase
         // System.out.println(cd.buscarClase("Zumba"));
+        
+        //Buscar por Horario
+        //System.out.println(cd.buscarClasePorHorario(horario3));
+       
+        //Buscar por entrenador
+        System.out.println(cd.buscarClasePorEntrenador("Santiago", "Flores"));
+         List<Clase> listaClase =cd.buscarClasePorEntrenador("Santiago", "Flores") ;
+      System.out.println("--- LISTADO CLASES ACTIVAS ---");
+        for (Clase clase : listaClase) {
+         System.out.println(clase);
+        }
         
         //Modificar clase
         // Clase clase5 = new Clase(1,"Zumba", 1, horario , 2, true);
