@@ -42,8 +42,8 @@ public class Main {
 //        Entrenador e5= new Entrenador(3,"33333333","Lorena","Quiroga","Zumba",true);
 //        ed.actualizarEntrenador(e5);
         
-        System.out.println("Dar de baja un alumno (update)");
-        ed.darBaja(1);
+//        System.out.println("Dar de baja un alumno (update)");
+//        ed.darBaja(1);
         
         
         //Creacion Clase
