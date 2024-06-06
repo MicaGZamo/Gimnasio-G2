@@ -83,7 +83,7 @@ public class Entrenador {
 
     @Override
     public String toString() {
-        return "Entrenador{" + "idEntrenador=" + idEntrenador + ", dniEntrenador=" + dniE + ", nombreE=" + nombreE + ", apellidoE=" + apellidoE + ", especialidad=" + especialidad + ", estado=" + estado + '}';
+        return "Entrenador{" + "id=" + idEntrenador + ", dni=" + dniE + ", nombre=" + nombreE + ", apellido=" + apellidoE + ", especialidad=" + especialidad + ", estado=" + estado + '}';
     }
 
 }
