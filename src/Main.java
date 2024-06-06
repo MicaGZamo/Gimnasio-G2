@@ -21,18 +21,30 @@ public class Main {
 //        Entrenador e2= new Entrenador("22222222","Lucas","Pereyra","Funcional",true);
 //        Entrenador e3= new Entrenador("33333333","Rocio","Cussotto","Zumba",true);
 //        Entrenador e4= new Entrenador("44444444","Antonio","Villegas","Yoga",false);
-////        Agregar los entrenadores a EntrenadoraData
-//        EntrenadorData ed = new EntrenadorData();
+//        Agregar los entrenadores a EntrenadoraData
+        EntrenadorData ed = new EntrenadorData();
 //        ed.guardarEntrenador(e1);
 //        ed.guardarEntrenador(e2);
 //        ed.guardarEntrenador(e3);
 //        ed.guardarEntrenador(e4);
+
 //        System.out.println("busqueda de entrenador por DNI");
 //        System.out.println(ed.buscarPorDni("22222222"));
 //        System.out.println(ed.buscarPorDni("44444444")); // estado false
+
 //        System.out.println("Busqueda de entrenador por nombre y apellido");
 //        System.out.println(ed.buscarPorNombreYApellido("Pedro", "Funes"));
 //        System.out.println(ed.buscarPorNombreYApellido("antonio", "vIllegAs")); //no importa mayúsculas de la minúsculas
+
+//        System.out.println("Busqueda de entrenador por especialidad");
+//        System.out.println(ed.listarPorEspecialidad("crossfit"));
+
+//        System.out.println("Busqueda de entrenador por nombre");
+//        System.out.println(ed.listarPorNombre("raul"));
+          
+//        System.out.println("Busqueda de entrenador por apellido");
+//        System.out.println(ed.listarPorApellido("villegas"));
+
 //        System.out.println("Listado Entrenadores activos:");
 //        List<Entrenador> listadoA = ed.listarEntrenadores();
 //        for (Entrenador entrenador : listadoA) {
