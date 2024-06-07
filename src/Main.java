@@ -2,12 +2,20 @@
 import AccesoData.ClaseData;
 import AccesoData.Conexion;
 import AccesoData.EntrenadorData;
+import AccesoData.MembresiaData;
 import AccesoData.SocioData;
 import Entidades.Clase;
 import Entidades.Entrenador;
+import Entidades.Membresia;
 import Entidades.Socio;
 import java.sql.Connection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -27,7 +35,6 @@ public class Main {
 //        ed.guardarEntrenador(e2);
 //        ed.guardarEntrenador(e3);
 //        ed.guardarEntrenador(e4);
-
 //        System.out.println("busqueda de entrenador por DNI");
 //        System.out.println(ed.buscarPorDni("22222222"));
 //        System.out.println(ed.buscarPorDni("44444444")); // estado false
@@ -85,13 +92,10 @@ public class Main {
 //        for (Clase claseE : listaClaseEntre) {
 //         System.out.println(claseE);
 //          }
-        
 //         //Modificar clase
 //         cd.modificarClase(clase5);
-       
 //         //Dar de baja 
 //         cd.darDeBajaClase(8);
-        
 //        //Listar Clase
 //        System.out.println(" ");
 //        List<Clase> listaClase = cd.listarTodasClases();
@@ -118,19 +122,19 @@ public class Main {
 ////        Socio socio2 = new Socio("00112233", "Soledad", "Arias", 30, "soledad@gmail.com", "154789", true);
 //        Socio socio3 = new Socio("55667799", "Mariano", "Rojas", 45, "Mariano_boquita@gmail.com", "151478", true);
 //        Socio socio4 = new Socio("77889944", "Jazmin", "Torres", 25, "jzmincita99@gmail.com", "152012", true);
-//        Socio socio5 = new Socio("55002211", "Jazmin", "Garcia", 29, "jzmi15@gmail.com", "153265", true);
+        Socio socio5 = new Socio("55002211", "Jazmin", "Garcia", 29, "jzmi15@gmail.com", "153265", true);
         SocioData sd = new SocioData();
-////        sd.guardarSocio(socio1);
-////        sd.guardarSocio(socio2);
+//        sd.guardarSocio(socio1);
+//        sd.guardarSocio(socio2);
 //        sd.guardarSocio(socio3);
 //        sd.guardarSocio(socio4);
-//        sd.guardarSocio(socio5);
+        sd.guardarSocio(socio5);
 //
-        List<Socio> listadoSociosNombre = sd.buscarSocioNombre("Jazmin");
-        System.out.println("--- SOCIO/S POR NOMBRE ---");
-        for (Socio socio : listadoSociosNombre) {
-            System.out.println(socio);
-        }
+//        List<Socio> listadoSociosNombre = sd.buscarSocioNombre("Jazmin");
+//        System.out.println("--- SOCIO/S POR NOMBRE ---");
+//        for (Socio socio : listadoSociosNombre) {
+//            System.out.println(socio);
+//        }
 //        System.out.println(sd.buscarSocioId(2));
 //        System.out.println(sd.buscarSocioDni("33221100"));
         // sd.darDeBajaSocio(1);
@@ -151,6 +155,31 @@ public class Main {
 //        for (Socio socio : listadoSociosInact) {
 //            System.out.println(socio);
 //        }
+// ---------------------------- Membresia ----------------------------
+        MembresiaData md = new MembresiaData();
+        
+              
+        // Formato de fecha
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try {
+            // Crear fecha de inicio
+            LocalDate fechaInicio = LocalDate.parse("2024-01-01", formatter);
+
+            // Sumar 30 días a la fecha de inicio para obtener la fecha de fin (sumando 30 dias)
+            LocalDate fechaFin = fechaInicio.plusDays(30);
+
+            // Crear instancia de Membresia
+            Membresia mem1 = new Membresia(socio5, 20, fechaInicio, fechaFin, 10000, true);
+
+            // Guardar membresía
+            md.guardarMembresia(mem1);
+        } catch (DateTimeParseException e) {
+            e.printStackTrace();
+        }
     }
+        
+
+    
 
 }

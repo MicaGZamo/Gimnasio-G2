@@ -1,6 +1,7 @@
 package Entidades;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Membresia {
 
@@ -12,7 +13,7 @@ public class Membresia {
     private double precioMembresia;
     private boolean estado;
 
-    public Membresia(int idMembresia, Socio socio, int cantPases, LocalDate fechaInicio, LocalDate fechaFin, double precioMembresia, boolean estado) {
+    public Membresia(Socio socio, int cantPases, LocalDate fechaInicio, LocalDate fechaFin, int precioMembresia, boolean estado) {
         this.idMembresia = idMembresia;
         this.socio = socio;
 
@@ -84,7 +85,8 @@ public class Membresia {
 
     @Override
     public String toString() {
-        return "Membresia{" + "idMembresia=" + idMembresia + ", Socio=" + socio + ", cantPases=" + cantPases + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", precioMembresia=" + precioMembresia + ", estado=" + estado + '}';
+        String estadoStr = estado ? "Activo" : "Inactivo";
+        return "Membresia{" + "idMembresia=" + idMembresia + ", Socio=" + socio + ", cantPases=" + cantPases + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", precioMembresia=" + precioMembresia + ", estado=" + estadoStr + '}';
     }
 
 }
