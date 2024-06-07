@@ -28,6 +28,9 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Recursos/nuevosocio.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Socios"/>
           </Properties>
           <SubComponents>
@@ -48,6 +51,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu2">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Recursos/entrenador.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Entrenadores"/>
           </Properties>
           <SubComponents>
@@ -71,6 +77,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu3">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Recursos/clases.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Clases"/>
           </Properties>
           <SubComponents>
@@ -105,6 +114,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu5">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Recursos/asistencia.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Asistencias"/>
           </Properties>
           <SubComponents>
@@ -117,6 +129,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmSalir">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/Recursos/salir(24px).png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
           <Events>
@@ -171,6 +186,7 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Lucida Sans Unicode" size="18" style="1"/>
         </Property>
+        <Property name="opaque" type="boolean" value="false"/>
       </Properties>
 
       <Layout>

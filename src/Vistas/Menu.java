@@ -48,6 +48,7 @@ public class Menu extends javax.swing.JFrame {
 
         jdpEscritorio.setBackground(new java.awt.Color(11, 9, 9));
         jdpEscritorio.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
+        jdpEscritorio.setOpaque(false);
 
         javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
         jdpEscritorio.setLayout(jdpEscritorioLayout);
@@ -64,6 +65,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.setMargin(new java.awt.Insets(4, 5, 4, 5));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(386, 30));
 
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/nuevosocio.png"))); // NOI18N
         jMenu1.setText("Socios");
 
         jMenuItem1.setText("Nuevo");
@@ -79,6 +81,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/entrenador.png"))); // NOI18N
         jMenu2.setText("Entrenadores");
 
         jmiNuevoEntrenador.setText("Nuevo");
@@ -99,6 +102,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu2);
 
+        jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/clases.png"))); // NOI18N
         jMenu3.setText("Clases");
 
         jMenuItem8.setText("Nueva");
@@ -119,6 +123,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/asistencia.png"))); // NOI18N
         jMenu5.setText("Asistencias");
 
         jMenuItem14.setText("jMenuItem14");
@@ -126,6 +131,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu5);
 
+        jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/salir(24px).png"))); // NOI18N
         jmSalir.setText("Salir");
         jmSalir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
