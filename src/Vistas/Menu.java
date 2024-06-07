@@ -113,6 +113,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu3);
 
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/membresias.png"))); // NOI18N
         jMenu4.setText("Membresias");
 
         jMenuItem11.setText("Nueva");
@@ -123,7 +124,7 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/asistencia.png"))); // NOI18N
+        jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-asistencia-25.png"))); // NOI18N
         jMenu5.setText("Asistencias");
 
         jMenuItem14.setText("jMenuItem14");
