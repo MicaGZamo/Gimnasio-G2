@@ -314,7 +314,56 @@ public class ClaseData {
         return listaClase;
     }
      
+     public List<LocalTime> listarHorariosClasesActivas() {
+        List<LocalTime> listaHorarios = new ArrayList<>();
+        String sql = "SELECT horario "
+                   + "FROM `clases` "
+                   + "WHERE `estado-clase`=1";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                listaHorarios.add(rs.getTime("horario").toLocalTime());
+            }
+            rs.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a los horarios de las Clases ");
+            System.out.println("error " + e.getMessage());
+            e.printStackTrace();
+        }
+        return listaHorarios;
+    }
+     
+     public List<LocalTime> listarHorariosDisponibles() {
+        List<LocalTime> horariosDisponibles = new ArrayList<>();
+        List<LocalTime> horariosOcupados = listarHorariosClasesActivas();
+        List<LocalTime> listaHorarios = new ArrayList<>();
+
+        LocalTime inicio = LocalTime.of(8, 0);
+        LocalTime fin = LocalTime.of(20, 0);
+        for (LocalTime time = inicio; !time.isAfter(fin); time = time.plusHours(1)) {
+            horariosDisponibles.add(time);
+        }
+  
+
+          for (LocalTime horario : horariosOcupados) {
+              System.out.println(horariosDisponibles);
+            if (horariosDisponibles.contains(horario)) {
+                horariosDisponibles.remove(horario);
+                
+            }
+        }
+             
+         
+
+        
+        return horariosDisponibles;
+    }
 }
+
+
+
 
     
 

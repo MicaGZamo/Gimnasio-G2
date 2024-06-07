@@ -20,6 +20,13 @@ public class Asistencia {
         this.fechaAsistencia = fechaAsistencia;
     }
 
+    public Asistencia(Socio socio, Clase clase, LocalDate fechaAsistencia) {
+        this.socio = socio;
+        this.clase = clase;
+        this.fechaAsistencia = fechaAsistencia;
+    }
+
+    
     public int getIdAsistencia() {
         return idAsistencia;
     }

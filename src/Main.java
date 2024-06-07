@@ -1,9 +1,11 @@
 
+import AccesoData.AsistenciaData;
 import AccesoData.ClaseData;
 import AccesoData.Conexion;
 import AccesoData.EntrenadorData;
 import AccesoData.MembresiaData;
 import AccesoData.SocioData;
+import Entidades.Asistencia;
 import Entidades.Clase;
 import Entidades.Entrenador;
 import Entidades.Membresia;
@@ -25,13 +27,13 @@ public class Main {
         Connection con = Conexion.getConexion();
 
 // ---------------------------- Entrenador ----------------------------
-//        Entrenador e1= new Entrenador("11111111","Pedro","Funes","Crossfit",true);
+        Entrenador e1= new Entrenador("11111111","Pedro","Funes","Crossfit",true);
 //        Entrenador e2= new Entrenador("22222222","Lucas","Pereyra","Funcional",true);
 //        Entrenador e3= new Entrenador("33333333","Rocio","Cussotto","Zumba",true);
 //        Entrenador e4= new Entrenador("44444444","Antonio","Villegas","Yoga",false);
 //        Agregar los entrenadores a EntrenadoraData
 //        EntrenadorData ed = new EntrenadorData();
-//        ed.guardarEntrenador(e1);
+//       ed.guardarEntrenador(e1);
 //        ed.guardarEntrenador(e2);
 //        ed.guardarEntrenador(e3);
 //        ed.guardarEntrenador(e4);
@@ -61,14 +63,14 @@ public class Main {
 // ---------------------------- Clase ----------------------------
 //              //Creacion Clase
 //          LocalTime horario = LocalTime.of(18, 30);
-//          Clase clase1 = new Clase("Zumba", 1, horario, 10, true);
-//          Clase clase2 = new Clase("Funcional", 2, horario , 10, true);
+//          Clase clase1 = new Clase("Zumba", e1, horario, 10, true);
+//          Clase clase2 = new Clase("Funcional", e2, horario , 10, true);
 //          LocalTime horario3 = LocalTime.of(19, 30);
-//          Clase clase3 = new Clase("Stretching", 1, horario3 , 10, true);
+//          Clase clase3 = new Clase("Stretching", e3, horario3 , 10, true);
 //          LocalTime horario4 = LocalTime.of(17, 30);
-//          Clase clase4 = new Clase(8, "Yoga", 2, horario4, 10, true);
+//          Clase clase4 = new Clase(8, "Yoga", e1, horario4, 10, true);
 //          Entrenador eC= new Entrenador(2,"11111111","Pedro","Funes","Crossfit",true);
-//          Clase clase5 = new Clase(13,"Clasico", eC, horario3 , 2, true);
+//         Clase clase5 = new Clase(13,"Clasico", e1, horario3 , 2, true);
 //          
 //          Agregar las clases a ClaseData
 //          ClaseData cd = new ClaseData();
@@ -92,8 +94,10 @@ public class Main {
 //        for (Clase claseE : listaClaseEntre) {
 //         System.out.println(claseE);
 //          }
+//
 //         //Modificar clase
 //         cd.modificarClase(clase5);
+//
 //         //Dar de baja 
 //         cd.darDeBajaClase(8);
 //        //Listar Clase
@@ -103,13 +107,14 @@ public class Main {
 //       for (Clase clase : listaClase) {
 //            System.out.println(clase);
 //      }
+//       //Clases activas
 //        System.out.println(" ");
 //       List<Clase> listaClaseActivas = cd.listarClasesActivas();
 //        System.out.println("--- LISTADO CLASES ACTIVAS ---");
 //        for (Clase clase : listaClaseActivas) {
 //            System.out.println(clase);
 //        }
-//
+//      //Clases inactivas
 //        System.out.println(" ");
 //        List<Clase> listaClaseInactivas = cd.listarClasesInactivas();
 //        System.out.println("--- LISTADO CLASES INACTIVAS ---");
@@ -117,15 +122,31 @@ public class Main {
 //            System.out.println(clase);
 //        }
 //
+//        //Horarios ocupados
+//
+//         System.out.println(" ");
+//        List<LocalTime> listaHorarios = cd.listarHorariosClasesActivas();
+//        System.out.println("--- LISTADO HORARIO CLASES ACTIVAS ---");
+//        for (LocalTime time : listaHorarios) {
+//            System.out.println(time);
+//        }
+//        
+//             //Horarios disponibles
+//          System.out.println(" ");
+//        List<LocalTime> listaHorariosDisponibles = cd.listarHorariosDisponibles();
+//        System.out.println("--- LISTADO HORARIO DISPONIBLES ---");
+//        for (LocalTime time : listaHorariosDisponibles) {
+//            System.out.println(time);
+//        }
 // ---------------------------- Socio ----------------------------
-//        Socio socio1 = new Socio("33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
+//       Socio socio1 = new Socio("33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
 ////        Socio socio2 = new Socio("00112233", "Soledad", "Arias", 30, "soledad@gmail.com", "154789", true);
  //       Socio socio3 = new Socio("55667799", "Mariano", "Rojas", 45, "Mariano_boquita@gmail.com", "151478", true);
 //        Socio socio4 = new Socio("77889944", "Jazmin", "Torres", 25, "jzmincita99@gmail.com", "152012", true);
     //    Socio socio5 = new Socio("55002211", "Jazmin", "Garcia", 29, "jzmi15@gmail.com", "153265", true);
 //       Socio socio7 = new Socio("5896589", "Camilo", "Lorca", 39, "cm8@gmail.com", "153696", true);
 //       SocioData sd = new SocioData();
-////        sd.guardarSocio(socio1);
+//       sd.guardarSocio(socio1);
 ////        sd.guardarSocio(socio2);
 ////        sd.guardarSocio(socio3);
 ////        sd.guardarSocio(socio4);
@@ -180,6 +201,16 @@ public class Main {
 //        } catch (DateTimeParseException e) {
 //            e.printStackTrace();
 //        }
+
+
+
+
+//            //Guardar Asisteencia
+//             Socio socioAsistencia = new Socio(1,"33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
+//            LocalDate asistenciaDia = LocalDate.of(2024, 6, 7);            
+//            AsistenciaData aD = new AsistenciaData();
+//            Asistencia a1= new Asistencia(socioAsistencia,clase5 ,asistenciaDia);
+//            aD.guardarAsistencia(a1);
   }
 //        
 
