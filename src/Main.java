@@ -120,15 +120,18 @@ public class Main {
 // ---------------------------- Socio ----------------------------
 //        Socio socio1 = new Socio("33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
 ////        Socio socio2 = new Socio("00112233", "Soledad", "Arias", 30, "soledad@gmail.com", "154789", true);
-//        Socio socio3 = new Socio("55667799", "Mariano", "Rojas", 45, "Mariano_boquita@gmail.com", "151478", true);
+ //       Socio socio3 = new Socio("55667799", "Mariano", "Rojas", 45, "Mariano_boquita@gmail.com", "151478", true);
 //        Socio socio4 = new Socio("77889944", "Jazmin", "Torres", 25, "jzmincita99@gmail.com", "152012", true);
-        Socio socio5 = new Socio("55002211", "Jazmin", "Garcia", 29, "jzmi15@gmail.com", "153265", true);
-        SocioData sd = new SocioData();
+    //    Socio socio5 = new Socio("55002211", "Jazmin", "Garcia", 29, "jzmi15@gmail.com", "153265", true);
+       Socio socio7 = new Socio("5896589", "Camilo", "Lorca", 39, "cm8@gmail.com", "153696", true);
+       SocioData sd = new SocioData();
 //        sd.guardarSocio(socio1);
 //        sd.guardarSocio(socio2);
 //        sd.guardarSocio(socio3);
 //        sd.guardarSocio(socio4);
-        sd.guardarSocio(socio5);
+//        sd.guardarSocio(socio5);
+sd.guardarSocio(socio7);
+
 //
 //        List<Socio> listadoSociosNombre = sd.buscarSocioNombre("Jazmin");
 //        System.out.println("--- SOCIO/S POR NOMBRE ---");
@@ -170,7 +173,7 @@ public class Main {
             LocalDate fechaFin = fechaInicio.plusDays(30);
 
             // Crear instancia de Membresia
-            Membresia mem1 = new Membresia(socio5, 20, fechaInicio, fechaFin, 10000, true);
+            Membresia mem1 = new Membresia(socio7, 20, fechaInicio, fechaFin, 10000, true);
 
             // Guardar membresía
             md.guardarMembresia(mem1);
