@@ -39,9 +39,15 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem14 = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
 
+        jMenuItem2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jMenuItem2.setForeground(new java.awt.Color(204, 204, 204));
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
+
+        jdpEscritorio.setBackground(new java.awt.Color(11, 9, 9));
+        jdpEscritorio.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
         jdpEscritorio.setLayout(jdpEscritorioLayout);
@@ -51,8 +57,12 @@ public class Menu extends javax.swing.JFrame {
         );
         jdpEscritorioLayout.setVerticalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 487, Short.MAX_VALUE)
+            .addGap(0, 480, Short.MAX_VALUE)
         );
+
+        jMenuBar1.setForeground(new java.awt.Color(204, 204, 204));
+        jMenuBar1.setMargin(new java.awt.Insets(4, 5, 4, 5));
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(386, 30));
 
         jMenu1.setText("Socios");
 
@@ -140,6 +150,7 @@ public class Menu extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
