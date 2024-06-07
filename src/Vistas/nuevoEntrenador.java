@@ -1,18 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
- */
+
 package Vistas;
 
-/**
- *
- * @author gomez
- */
-public class nuevoEntrenador extends javax.swing.JInternalFrame {
+import AccesoData.EntrenadorData;
+import Entidades.Entrenador;
+import javax.swing.JOptionPane;
 
-    /**
-     * Creates new form formEntrenador
-     */
+public class nuevoEntrenador extends javax.swing.JInternalFrame {
+    private EntrenadorData entrenadorData = new EntrenadorData();
+    private Entrenador entrenadorActual = null;
+    
     public nuevoEntrenador() {
         initComponents();
     }
@@ -37,6 +33,8 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
         jtfEspecialidad = new javax.swing.JTextField();
         jbGuardar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
+        jcbEstado = new javax.swing.JCheckBox();
+        jLabel6 = new javax.swing.JLabel();
 
         jLabel1.setText("NUEVO ENTRENADOR");
 
@@ -68,12 +66,21 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jcbEstado.setText("Activo");
+        jcbEstado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbEstadoActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Estado");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 185, Short.MAX_VALUE)
+                .addGap(0, 192, Short.MAX_VALUE)
                 .addComponent(jbGuardar)
                 .addGap(57, 57, 57)
                 .addComponent(jbSalir)
@@ -87,13 +94,16 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5))
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jtfDni)
-                            .addComponent(jtfNombre)
-                            .addComponent(jtfApellido)
-                            .addComponent(jtfEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcbEstado)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jtfDni)
+                                .addComponent(jtfNombre)
+                                .addComponent(jtfApellido)
+                                .addComponent(jtfEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -117,7 +127,11 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jcbEstado)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
                     .addComponent(jbSalir))
@@ -129,6 +143,42 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         // TODO add your handling code here:
+        
+        try{
+            String dni =jtfDni.getText(); //Integer dni =Integer.parseInt(jtfDni.getText()) ;
+            String nombre = jtfNombre.getText();
+            String apellido = jtfApellido.getText();
+            String especialidad = jtfEspecialidad.getText();
+            
+            if( dni.isEmpty() || nombre.isEmpty()||apellido.isEmpty()||especialidad.isEmpty()){
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios.");
+                return;}
+            
+            // Validación de DNI con expresión regular
+            String regularDni = "\\d+"; // "\\d:" Representa cualquier dígito numérico (0 al 9) y el "+" Indica que debe haber al menos un dígito, pero puede haber más.
+            if(!dni.matches(regularDni)) {
+                JOptionPane.showMessageDialog(this, "El DNI debe tener 8 dígitos numéricos.");
+            return;}
+            
+            // Validación de Nombre y Apellido para que solo contengan letras y espacios
+            String regexNombreApellido = "[a-zA-Z\\s]+";
+            if(!nombre.matches(regexNombreApellido) || !apellido.matches(regexNombreApellido)) {
+                JOptionPane.showMessageDialog(this, "El nombre y apellido solo deben contener letras y espacios.");
+            return;}
+            
+            // Validación de Especialidad
+            if(especialidad.length() < 3) {
+                JOptionPane.showMessageDialog(this, "La especialidad debe tener al menos 3 caracteres.");
+            return;}
+            
+            boolean estado = jcbEstado.isSelected();
+            entrenadorActual = new Entrenador(dni,nombre,apellido,especialidad,estado);
+            entrenadorData.guardarEntrenador(entrenadorActual);
+            limpiarCampos();
+            
+        } catch (NumberFormatException n) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un DNI válido.");
+        }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -140,6 +190,19 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfDniActionPerformed
 
+    private void jcbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEstadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcbEstadoActionPerformed
+    
+    private void limpiarCampos(){
+        jtfDni.setText("");
+        jtfNombre.setText("");
+        jtfApellido.setText("");
+        jtfEspecialidad.setText("");
+        jcbEstado.setSelected(false); // veer
+    
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -147,8 +210,10 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
+    private javax.swing.JCheckBox jcbEstado;
     private javax.swing.JTextField jtfApellido;
     private javax.swing.JTextField jtfDni;
     private javax.swing.JTextField jtfEspecialidad;
