@@ -32,7 +32,7 @@ public class ClaseData {
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, clase.getNombre());
-            ps.setInt(2, clase.getIdEntrenador());
+            ps.setInt(2, clase.getEntrenador().getIdEntrenador());
             ps.setTime(3, Time.valueOf(clase.getHorario()));
             ps.setInt(4, clase.getCapacidad());
             ps.setBoolean(5, clase.isEstado());
@@ -55,7 +55,9 @@ public class ClaseData {
 
     public Clase buscarClase(String nombre) {
         Clase clase = null;
-        String sql = "SELECT `id-clase`, `nombre`, `id-entrenador`, `horario`, `capacidad`, `estado-clase` FROM `clases` WHERE nombre=?";
+        String sql = "SELECT clases.*, entrenadores.nombre as nombre_entrenador "
+                      + " FROM `clases`, entrenadores "
+                      + " WHERE clases.`id-entrenador` = entrenadores.`id-entrenador` AND clases.nombre=? ";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -66,11 +68,13 @@ public class ClaseData {
                 clase = new Clase();
                 clase.setIdClase(rs.getInt("id-clase"));
                 clase.setNombre(rs.getString("nombre"));
-                clase.setIdEntrenador(rs.getInt("id-entrenador"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado-clase"));
-
+                Entrenador entrenador = new Entrenador(); 
+                entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                entrenador.setNombreE(rs.getString("nombre_entrenador"));
+                clase.setEntrenador(entrenador);
             }
             ps.close();
         } catch (SQLException e) {
@@ -83,22 +87,28 @@ public class ClaseData {
     
      public Clase buscarClasePorHorario(LocalTime horario) {
         Clase clase = null;
-        String sql = "SELECT `id-clase`, `nombre`, `id-entrenador`, `horario`, `capacidad`, `estado-clase` FROM `clases` WHERE horario=?";
+        String sql = "SELECT clases.*, entrenadores.nombre as nombre_entrenador "
+                      + " FROM `clases`, entrenadores "
+                      + "WHERE horario=? ";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
             ps.setTime(1,Time.valueOf( horario) );
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-
+               
                 clase = new Clase();
                 clase.setIdClase(rs.getInt("id-clase"));
                 clase.setNombre(rs.getString("nombre"));
-                clase.setIdEntrenador(rs.getInt("id-entrenador"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado-clase"));
-
+                 
+                Entrenador entrenador = new Entrenador(); 
+                 entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                 entrenador.setNombreE(rs.getString("nombre_entrenador"));
+              
+                clase.setEntrenador(entrenador);
             }
             ps.close();
         } catch (SQLException e) {
@@ -114,7 +124,7 @@ public class ClaseData {
         Clase clase = null;
         List<Clase> listaClase = new ArrayList<>();
         Entrenador entrenador = null;
-        String sql = " SELECT clases.*, entrenadores.nombre as nombre_entrenador "
+        String sql = " SELECT clases.*, entrenadores.* "
                       + " FROM `clases`, entrenadores "
                       + " WHERE clases.`id-entrenador` = entrenadores.`id-entrenador` "
                       + " AND entrenadores.nombre = ? AND entrenadores.apellido = ? " ;
@@ -130,13 +140,16 @@ public class ClaseData {
                 clase = new Clase();
                 clase.setIdClase(rs.getInt("id-clase"));
                 clase.setNombre(rs.getString("nombre"));
-                clase.setIdEntrenador(rs.getInt("id-entrenador"));
-                entrenador.setNombreE(rs.getString("nombre"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado-clase"));
                 System.out.println(rs);
-                listaClase.add(clase);
+               
+                
+                 entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                 clase.setEntrenador(entrenador);
+                  listaClase.add(clase);
+                  
             }
             ps.close();
         } catch (SQLException e) {
@@ -155,7 +168,7 @@ public class ClaseData {
         try {
             ps = con.prepareStatement(sql);
             ps.setString(1, clase.getNombre());
-            ps.setInt(2, clase.getIdEntrenador());
+            ps.setInt(2, clase.getEntrenador().getIdEntrenador());
             ps.setTime(3, Time.valueOf(clase.getHorario()));
             ps.setInt(4, clase.getCapacidad());
             ps.setBoolean(5, clase.isEstado());
@@ -197,7 +210,9 @@ public class ClaseData {
     public List<Clase> listarTodasClases() {
 
         List<Clase> listaClase = new ArrayList<>();
-        String sql = "SELECT * FROM `clases` ";
+        String sql = "SELECT clases.*, entrenadores.`id-entrenador`, entrenadores.nombre as nombre_entrenador "
+                      + " FROM `clases`, entrenadores "
+                      +" WHERE clases.`id-entrenador` = entrenadores.`id-entrenador` ";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -207,10 +222,15 @@ public class ClaseData {
                 Clase clase = new Clase();
                 clase.setIdClase(rs.getInt("id-clase"));
                 clase.setNombre(rs.getString("nombre"));
-                clase.setIdEntrenador(rs.getInt("id-entrenador"));
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado-clase"));
+                   
+                Entrenador entrenador = new Entrenador(); 
+                 entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                 entrenador.setNombreE(rs.getString("nombre_entrenador"));
+              
+                clase.setEntrenador(entrenador);
                 listaClase.add(clase);
             }
             rs.close();
@@ -225,8 +245,10 @@ public class ClaseData {
      public List<Clase> listarClasesActivas() {
 
         List<Clase> listaClase = new ArrayList<>();
-        String sql = "SELECT * FROM `clases` WHERE `estado-clase`=1 ";
-
+        String sql = "SELECT clases.*, entrenadores.`id-entrenador`, entrenadores.nombre as nombre_entrenador "
+                      + " FROM `clases`, entrenadores "
+                      +" WHERE clases.`id-entrenador` = entrenadores.`id-entrenador` "
+                       + " AND `estado-clase`=1 ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -235,10 +257,16 @@ public class ClaseData {
                 Clase clase = new Clase();
                 clase.setIdClase(rs.getInt("id-clase"));
                 clase.setNombre(rs.getString("nombre"));
-                clase.setIdEntrenador(rs.getInt("id-entrenador"));
+                
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado-clase"));
+                   
+                Entrenador entrenador = new Entrenador(); 
+                 entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                 entrenador.setNombreE(rs.getString("nombre_entrenador"));
+              
+                clase.setEntrenador(entrenador);
                 listaClase.add(clase);
             }
             rs.close();
@@ -252,7 +280,10 @@ public class ClaseData {
       public List<Clase> listarClasesInactivas() {
 
         List<Clase> listaClase = new ArrayList<>();
-        String sql = "SELECT * FROM `clases` WHERE `estado-clase`=0 ";
+        String sql = "SELECT clases.*, entrenadores.`id-entrenador`, entrenadores.nombre as nombre_entrenador "
+                      + " FROM `clases`, entrenadores "
+                      +" WHERE clases.`id-entrenador` = entrenadores.`id-entrenador` "
+                       + " AND `estado-clase`=0 ";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -262,10 +293,16 @@ public class ClaseData {
                 Clase clase = new Clase();
                 clase.setIdClase(rs.getInt("id-clase"));
                 clase.setNombre(rs.getString("nombre"));
-                clase.setIdEntrenador(rs.getInt("id-entrenador"));
+              
                 clase.setHorario(rs.getTime("horario").toLocalTime());
                 clase.setCapacidad(rs.getInt("capacidad"));
                 clase.setEstado(rs.getBoolean("estado-clase"));
+                   
+                Entrenador entrenador = new Entrenador(); 
+                 entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                 entrenador.setNombreE(rs.getString("nombre_entrenador"));
+              
+                clase.setEntrenador(entrenador);
                 listaClase.add(clase);
             }
             rs.close();

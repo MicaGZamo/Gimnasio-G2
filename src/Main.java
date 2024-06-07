@@ -22,7 +22,7 @@ public class Main {
 //        Entrenador e3= new Entrenador("33333333","Rocio","Cussotto","Zumba",true);
 //        Entrenador e4= new Entrenador("44444444","Antonio","Villegas","Yoga",false);
 //        Agregar los entrenadores a EntrenadoraData
-        EntrenadorData ed = new EntrenadorData();
+//        EntrenadorData ed = new EntrenadorData();
 //        ed.guardarEntrenador(e1);
 //        ed.guardarEntrenador(e2);
 //        ed.guardarEntrenador(e3);
@@ -52,36 +52,55 @@ public class Main {
 //        System.out.println("Dar de baja un alumno (update)");
 //        ed.darBaja(1);
 // ---------------------------- Clase ----------------------------
-//         LocalTime horario = LocalTime.of(14, 30);
-//        Clase clase1 = new Clase("Zumba", 1, horario, 10, true);
-//         LocalTime horario2 = LocalTime.of(15, 30);
-//         Clase clase2 = new Clase("Funcional", 2, horario , 10, true);
-//        LocalTime horario3 = LocalTime.of(16, 30);
-//        Clase clase3 = new Clase("Stretching", 1, horario3 , 10, true);
-//        LocalTime horario4 = LocalTime.of(17, 30);
-//        Clase clase4 = new Clase(8, "Yoga", 2, horario4, 10, true);
-////        Agregar las clases a ClaseData
-//        ClaseData cd = new ClaseData();
-//         cd.guardarClase(clase1);
-//         cd.guardarClase(clase2);
-//         cd.guardarClase(clase3);
-//        cd.guardarClase(clase5);
-        //Buscar Clase
-        // System.out.println(cd.buscarClase("Zumba"));
-        //Modificar clase
-        // Clase clase5 = new Clase(1,"Zumba", 1, horario , 2, true);
-        // cd.modificarClase(clase5);
-        //Dar de baja 
-        // cd.darDeBajaClase(9);
-        //Listar Materias
+//              //Creacion Clase
+//          LocalTime horario = LocalTime.of(18, 30);
+//          Clase clase1 = new Clase("Zumba", 1, horario, 10, true);
+//          Clase clase2 = new Clase("Funcional", 2, horario , 10, true);
+//          LocalTime horario3 = LocalTime.of(19, 30);
+//          Clase clase3 = new Clase("Stretching", 1, horario3 , 10, true);
+//          LocalTime horario4 = LocalTime.of(17, 30);
+//          Clase clase4 = new Clase(8, "Yoga", 2, horario4, 10, true);
+//          Entrenador eC= new Entrenador(2,"11111111","Pedro","Funes","Crossfit",true);
+//          Clase clase5 = new Clase(13,"Clasico", eC, horario3 , 2, true);
+//          
+//          Agregar las clases a ClaseData
+//          ClaseData cd = new ClaseData();
+//          cd.guardarClase(clase1);
+//          cd.guardarClase(clase2);
+//          cd.guardarClase(clase3);
+//          cd.guardarClase(clase5);
+//        
+//          //Buscar Clase
+//         System.out.println("La clase buscada es");
+//          System.out.println(cd.buscarClase("Zumba"));
+//        
+//         //Buscar por Horario
+//         System.out.println("La clase buscada es");
+//         System.out.println(cd.buscarClasePorHorario(horario3));
+//       
+//        //Buscar por entrenador
+//        System.out.println(cd.buscarClasePorEntrenador("Santiago", "Flores"));
+//        List<Clase> listaClaseEntre =cd.buscarClasePorEntrenador("Santiago", "Flores") ;
+//        System.out.println("--- LISTADO CLASES POR ENTRENADOR ---");
+//        for (Clase claseE : listaClaseEntre) {
+//         System.out.println(claseE);
+//          }
+        
+//         //Modificar clase
+//         cd.modificarClase(clase5);
+       
+//         //Dar de baja 
+//         cd.darDeBajaClase(8);
+        
+//        //Listar Clase
 //        System.out.println(" ");
 //        List<Clase> listaClase = cd.listarTodasClases();
 //        System.out.println("--- LISTADO CLASES ---");
-//        for (Clase clase : listaClase) {
+//       for (Clase clase : listaClase) {
 //            System.out.println(clase);
-//        }
+//      }
 //        System.out.println(" ");
-//        List<Clase> listaClaseActivas = cd.listarClasesActivas();
+//       List<Clase> listaClaseActivas = cd.listarClasesActivas();
 //        System.out.println("--- LISTADO CLASES ACTIVAS ---");
 //        for (Clase clase : listaClaseActivas) {
 //            System.out.println(clase);
