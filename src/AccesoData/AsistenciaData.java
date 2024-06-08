@@ -24,14 +24,15 @@ public class AsistenciaData {
     public void guardarAsistencia(Asistencia asistencia){
        String sql= "INSERT INTO `asistencias`(`id-socio`, `id-clase`, `fecha-asistencia`) "
                + " VALUES (?,?,?) ";
-       
+        
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, asistencia.getSocio().getIdSocio());
             ps.setInt(2, asistencia.getClase().getIdClase());
             ps.setDate(3, Date.valueOf(asistencia.getFechaAsistencia()));
+            System.out.println("antes ps.executeUpdate");
             ps.executeUpdate();
-        
+            System.out.println("luego ps.executeUpdate");
             ResultSet rs = ps.getGeneratedKeys();            
             
               if (rs.next()) {
@@ -46,6 +47,12 @@ public class AsistenciaData {
             ex.printStackTrace();
         }
     
-    }  
+    }
+    
+    public void actualizarAsistencia(Asistencia asistencia){
+        
+        
+    
+    }
     
 }

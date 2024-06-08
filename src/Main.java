@@ -28,9 +28,9 @@ public class Main {
 
 // ---------------------------- Entrenador ----------------------------
         Entrenador e1= new Entrenador("11111111","Pedro","Funes","Crossfit",true);
-//        Entrenador e2= new Entrenador("22222222","Lucas","Pereyra","Funcional",true);
-//        Entrenador e3= new Entrenador("33333333","Rocio","Cussotto","Zumba",true);
-//        Entrenador e4= new Entrenador("44444444","Antonio","Villegas","Yoga",false);
+        Entrenador e2= new Entrenador("22222222","Lucas","Pereyra","Funcional",true);
+        Entrenador e3= new Entrenador("33333333","Rocio","Cussotto","Zumba",true);
+        Entrenador e4= new Entrenador("44444444","Antonio","Villegas","Yoga",false);
 //        Agregar los entrenadores a EntrenadoraData
 //        EntrenadorData ed = new EntrenadorData();
 //       ed.guardarEntrenador(e1);
@@ -61,19 +61,19 @@ public class Main {
 //        System.out.println("Dar de baja un alumno (update)");
 //        ed.darBaja(1);
 // ---------------------------- Clase ----------------------------
-//              //Creacion Clase
+              //Creacion Clase
 //          LocalTime horario = LocalTime.of(18, 30);
 //          Clase clase1 = new Clase("Zumba", e1, horario, 10, true);
 //          Clase clase2 = new Clase("Funcional", e2, horario , 10, true);
-//          LocalTime horario3 = LocalTime.of(19, 30);
+          LocalTime horario3 = LocalTime.of(19, 30);
 //          Clase clase3 = new Clase("Stretching", e3, horario3 , 10, true);
 //          LocalTime horario4 = LocalTime.of(17, 30);
 //          Clase clase4 = new Clase(8, "Yoga", e1, horario4, 10, true);
-//          Entrenador eC= new Entrenador(2,"11111111","Pedro","Funes","Crossfit",true);
-//         Clase clase5 = new Clase(13,"Clasico", e1, horario3 , 2, true);
-//          
+          Entrenador eC= new Entrenador(2,"11111111","Pedro","Funes","Crossfit",true);
+          Clase clase5 = new Clase(6,"Clasico", eC, horario3 , 2, true);
+          
 //          Agregar las clases a ClaseData
-//          ClaseData cd = new ClaseData();
+          ClaseData cd = new ClaseData();
 //          cd.guardarClase(clase1);
 //          cd.guardarClase(clase2);
 //          cd.guardarClase(clase3);
@@ -139,19 +139,19 @@ public class Main {
 //            System.out.println(time);
 //        }
 // ---------------------------- Socio ----------------------------
-//       Socio socio1 = new Socio("33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
-////        Socio socio2 = new Socio("00112233", "Soledad", "Arias", 30, "soledad@gmail.com", "154789", true);
- //       Socio socio3 = new Socio("55667799", "Mariano", "Rojas", 45, "Mariano_boquita@gmail.com", "151478", true);
+//        Socio socio1 = new Socio("33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
+//        Socio socio2 = new Socio("00112233", "Soledad", "Arias", 30, "soledad@gmail.com", "154789", true);
+//        Socio socio3 = new Socio("55667799", "Mariano", "Rojas", 45, "Mariano_boquita@gmail.com", "151478", true);
 //        Socio socio4 = new Socio("77889944", "Jazmin", "Torres", 25, "jzmincita99@gmail.com", "152012", true);
-    //    Socio socio5 = new Socio("55002211", "Jazmin", "Garcia", 29, "jzmi15@gmail.com", "153265", true);
-//       Socio socio7 = new Socio("5896589", "Camilo", "Lorca", 39, "cm8@gmail.com", "153696", true);
-//       SocioData sd = new SocioData();
-//       sd.guardarSocio(socio1);
-////        sd.guardarSocio(socio2);
-////        sd.guardarSocio(socio3);
-////        sd.guardarSocio(socio4);
-////        sd.guardarSocio(socio5);
-//sd.guardarSocio(socio7);
+//        Socio socio5 = new Socio("55002211", "Jazmin", "Garcia", 29, "jzmi15@gmail.com", "153265", true);
+        Socio socio7 = new Socio("5896589", "Camilo", "Lorca", 39, "cm8@gmail.com", "153696", true);
+//        SocioData sd = new SocioData();
+//        sd.guardarSocio(socio1);
+//        sd.guardarSocio(socio2);
+//        sd.guardarSocio(socio3);
+//        sd.guardarSocio(socio4);
+//        sd.guardarSocio(socio5);
+//        sd.guardarSocio(socio7);
 
 //
 //        List<Socio> listadoSociosNombre = sd.buscarSocioNombre("Jazmin");
@@ -205,12 +205,12 @@ public class Main {
 
 
 
-//            //Guardar Asisteencia
-//             Socio socioAsistencia = new Socio(1,"33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
-//            LocalDate asistenciaDia = LocalDate.of(2024, 6, 7);            
-//            AsistenciaData aD = new AsistenciaData();
-//            Asistencia a1= new Asistencia(socioAsistencia,clase5 ,asistenciaDia);
-//            aD.guardarAsistencia(a1);
+//            Guardar Asisteencia
+            Socio socioAsistencia = new Socio(2,"33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
+            LocalDate asistenciaDia = LocalDate.of(2024, 6, 7);            
+            AsistenciaData aD = new AsistenciaData();
+            Asistencia a1= new Asistencia(socioAsistencia,clase5 ,asistenciaDia);
+            aD.guardarAsistencia(a1);
   }
 //        
 

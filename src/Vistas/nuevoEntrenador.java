@@ -33,8 +33,7 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
         jtfEspecialidad = new javax.swing.JTextField();
         jbGuardar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
-        jcbEstado = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
+        jbLimpiar = new javax.swing.JButton();
 
         jLabel1.setText("NUEVO ENTRENADOR");
 
@@ -66,23 +65,23 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
-        jcbEstado.setText("Activo");
-        jcbEstado.addActionListener(new java.awt.event.ActionListener() {
+        jbLimpiar.setText("Limpiar");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jcbEstadoActionPerformed(evt);
+                jbLimpiarActionPerformed(evt);
             }
         });
-
-        jLabel6.setText("Estado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 192, Short.MAX_VALUE)
+                .addGap(37, 37, 37)
+                .addComponent(jbLimpiar)
+                .addGap(54, 54, 54)
                 .addComponent(jbGuardar)
-                .addGap(57, 57, 57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 84, Short.MAX_VALUE)
                 .addComponent(jbSalir)
                 .addGap(19, 19, 19))
             .addGroup(layout.createSequentialGroup()
@@ -94,16 +93,13 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel5))
                         .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jcbEstado)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jtfDni)
-                                .addComponent(jtfNombre)
-                                .addComponent(jtfApellido)
-                                .addComponent(jtfEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtfDni)
+                            .addComponent(jtfNombre)
+                            .addComponent(jtfApellido)
+                            .addComponent(jtfEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,14 +123,11 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jtfEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jcbEstado)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar)
-                    .addComponent(jbSalir))
+                    .addComponent(jbSalir)
+                    .addComponent(jbLimpiar))
                 .addGap(18, 18, 18))
         );
 
@@ -171,8 +164,8 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "La especialidad debe tener al menos 3 caracteres.");
             return;}
             
-            boolean estado = jcbEstado.isSelected();
-            entrenadorActual = new Entrenador(dni,nombre,apellido,especialidad,estado);
+            //boolean estado = jcbEstado.isSelected();
+            entrenadorActual = new Entrenador(dni,nombre,apellido,especialidad,true);
             entrenadorData.guardarEntrenador(entrenadorActual);
             limpiarCampos();
             
@@ -190,16 +183,18 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfDniActionPerformed
 
-    private void jcbEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbEstadoActionPerformed
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jcbEstadoActionPerformed
+        limpiarCampos();
+        entrenadorActual=null;
+    }//GEN-LAST:event_jbLimpiarActionPerformed
     
     private void limpiarCampos(){
         jtfDni.setText("");
         jtfNombre.setText("");
         jtfApellido.setText("");
         jtfEspecialidad.setText("");
-        jcbEstado.setSelected(false); // veer
+        
     
     }
     
@@ -210,10 +205,9 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbSalir;
-    private javax.swing.JCheckBox jcbEstado;
     private javax.swing.JTextField jtfApellido;
     private javax.swing.JTextField jtfDni;
     private javax.swing.JTextField jtfEspecialidad;
