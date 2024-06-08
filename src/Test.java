@@ -2,13 +2,18 @@
 import AccesoData.AsistenciaData;
 import AccesoData.ClaseData;
 import AccesoData.EntrenadorData;
+import AccesoData.MembresiaData;
 import AccesoData.SocioData;
+
 import Entidades.Asistencia;
 import Entidades.Clase;
 import Entidades.Entrenador;
+import Entidades.Membresia;
 import Entidades.Socio;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 /*
@@ -25,7 +30,8 @@ public class Test {
     ClaseData cd = new ClaseData();
     SocioData sd = new SocioData();
     AsistenciaData aD = new AsistenciaData();
-    
+    MembresiaData md = new MembresiaData();
+
     public void agregarEntrenadorTest() {
         Entrenador e1 = new Entrenador("11111111", "Pedro", "Funes", "Crossfit", true);
         Entrenador e2 = new Entrenador("22222222", "Lucas", "Pereyra", "Funcional", true);
@@ -191,15 +197,16 @@ public class Test {
             System.out.println(time);
         }
     }
+
     //   Socio Test
-    public void guardarSocioTest(){
+    public void guardarSocioTest() {
         Socio socio1 = new Socio("33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
         Socio socio2 = new Socio("00112233", "Soledad", "Arias", 30, "soledad@gmail.com", "154789", true);
         Socio socio3 = new Socio("55667799", "Mariano", "Rojas", 45, "Mariano_boquita@gmail.com", "151478", true);
         Socio socio4 = new Socio("77889944", "Jazmin", "Torres", 25, "jzmincita99@gmail.com", "152012", true);
         Socio socio5 = new Socio("55002211", "Jazmin", "Garcia", 29, "jzmi15@gmail.com", "153265", true);
         Socio socio7 = new Socio("5896589", "Camilo", "Lorca", 39, "cm8@gmail.com", "153696", true);
-      
+
         sd.guardarSocio(socio1);
         sd.guardarSocio(socio2);
         sd.guardarSocio(socio3);
@@ -207,52 +214,82 @@ public class Test {
         sd.guardarSocio(socio5);
         sd.guardarSocio(socio7);
     }
-    public void listadoSocioPorNombreTest(){
+
+    public void listadoSocioPorNombreTest() {
         List<Socio> listadoSociosNombre = sd.buscarSocioNombre("Jazmin");
         System.out.println("--- SOCIO/S POR NOMBRE ---");
         for (Socio socio : listadoSociosNombre) {
             System.out.println(socio);
-        }  
+        }
     }
-    public void buscarSocioIdTest(){
-         System.out.println(sd.buscarSocioId(2));
+
+    public void buscarSocioIdTest() {
+        System.out.println(sd.buscarSocioId(2));
         System.out.println(sd.buscarSocioDni("33221100"));
     }
-    
-    public void darBajaSocioTest(){
+
+    public void darBajaSocioTest() {
         sd.darDeBajaSocio(1);
     }
-    
-    public void listarSociosTest(){
-         List<Socio> listadoSocios = sd.listarTodosSocios();
-         System.out.println("--- LISTADO DE TODOS LOS SOCIOS ---");
+
+    public void listarSociosTest() {
+        List<Socio> listadoSocios = sd.listarTodosSocios();
+        System.out.println("--- LISTADO DE TODOS LOS SOCIOS ---");
         for (Socio socio : listadoSocios) {
             System.out.println(socio);
         }
     }
-    
-    public void listarSociosActivosInactivosTest(){
-         List<Socio> listadoSociosAct = sd.listarSociosActivos();
-         System.out.println("--- LISTADO DE SOCIOS ACTIVOS ---");
+
+    public void listarSociosActivosInactivosTest() {
+        List<Socio> listadoSociosAct = sd.listarSociosActivos();
+        System.out.println("--- LISTADO DE SOCIOS ACTIVOS ---");
         for (Socio socio : listadoSociosAct) {
             System.out.println(socio);
         }
-        
-          List<Socio> listadoSociosInact = sd.listarSociosInactivos();
-         System.out.println("--- LISTADO DE SOCIOS INACTIVOS ---");
+
+        List<Socio> listadoSociosInact = sd.listarSociosInactivos();
+        System.out.println("--- LISTADO DE SOCIOS INACTIVOS ---");
         for (Socio socio : listadoSociosInact) {
             System.out.println(socio);
         }
     }
-    
+
     // Asistencia Test
-    
-    public void guardarAsistenciaTest(){
- //       Guardar Asisteencia
-            Clase clase5 = cd.buscarClase("Zumba");
-            Socio socioAsistencia = sd.buscarSocioDni("55667799");
-            LocalDate asistenciaDia = LocalDate.of(2024, 6, 7);           
-            Asistencia a1= new Asistencia(socioAsistencia,clase5 ,asistenciaDia);
-            aD.guardarAsistencia(a1);
+    public void guardarAsistenciaTest() {
+        //       Guardar Asisteencia
+        Clase clase5 = cd.buscarClase("Zumba");
+        Socio socioAsistencia = sd.buscarSocioDni("55667799");
+        LocalDate asistenciaDia = LocalDate.of(2024, 6, 7);
+        Asistencia a1 = new Asistencia(socioAsistencia, clase5, asistenciaDia);
+        aD.guardarAsistencia(a1);
     }
+
+    public void guardarMembresiaTest() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        try {
+            // Crear fecha de inicio
+            LocalDate fechaInicio = LocalDate.parse("2024-01-01", formatter);
+
+            // Sumar 30 días a la fecha de inicio para obtener la fecha de fin (sumando 30 dias)
+            LocalDate fechaFin = fechaInicio.plusDays(30);
+
+            // Buscar socio por DNI
+            
+            Socio socio = sd.buscarSocioDni("55667799");
+            
+            // Crear instancia de Membresia
+            Membresia mem1 = new Membresia(socio, 20, fechaInicio, fechaFin, 10000, true);
+
+            // Guardar membresía
+            md.guardarMembresia(mem1);
+        } catch (DateTimeParseException e) {
+            //mensaje de error
+            e.printStackTrace();
+        }
+
+    }
+    
+    
+
 }

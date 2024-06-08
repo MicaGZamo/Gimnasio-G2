@@ -43,5 +43,26 @@ public class MembresiaData {
         }
 
     }
-
+    
+    public Membresia buscarPorSocio(Socio socio){ //Ramiro
+        Membresia membresia1 = null;
+        
+    return membresia1;}
+    
+    public List<Membresia> listarMembresiasActivas(){ //Nadia
+        List<Membresia> lista = new ArrayList<>();
+    
+    return lista;} 
+    
+    public List<Membresia> listarMembresiasInactivas(){ //Nadia 
+        List<Membresia> lista = new ArrayList<>();
+    
+    return lista;} 
+    
+    
+    public void modificarMembresia(Membresia membresia){ //Ramiro   update
+    }
+    
+    public void darBajaMembresia(Membresia membresia){ // Mica  estado = 0
+    }
 }

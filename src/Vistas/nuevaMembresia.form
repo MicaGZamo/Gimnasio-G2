@@ -91,7 +91,7 @@
                                   <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
                                   <Component id="jtIDSocio" min="-2" pref="114" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="jbBuscar" min="-2" pref="63" max="-2" attributes="0"/>
+                                  <Component id="jbBuscarSocio" min="-2" pref="63" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
@@ -143,7 +143,7 @@
                           <Component id="jtIDSocio" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="jbBuscar" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="jbBuscarSocio" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jtNombreSocio" min="-2" max="-2" attributes="0"/>
@@ -192,7 +192,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="ID Socio"/>
+            <Property name="text" type="java.lang.String" value="DNI Socio"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
@@ -332,13 +332,16 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jbBuscar">
+        <Component class="javax.swing.JButton" name="jbBuscarSocio">
           <Properties>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbBuscarSocioActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
           <Properties>

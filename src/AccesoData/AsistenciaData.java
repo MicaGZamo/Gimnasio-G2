@@ -53,18 +53,18 @@ public class AsistenciaData {
     
     }
     
-    public List<Asistencia> buscarPorSocio(Socio socio){ // o ver si por nombre y apellido
+    public List<Asistencia> buscarPorSocio(Socio socio){ // o ver si por nombre y apellido // nadia
         List<Asistencia> lista = new ArrayList<>();
   
     return lista;}
     
     
-    public List<Asistencia> buscarPorClase(Clase clase){
+    public List<Asistencia> buscarPorClase(Clase clase){ // mica
         List<Asistencia> lista = new ArrayList<>();
     return lista;}
     
     
-    public List<Asistencia> buscarPorFecha(LocalDate fecha){
+    public List<Asistencia> buscarPorFecha(LocalDate fecha){ // Ramiro
         List<Asistencia> lista = new ArrayList<>();
         
     return lista;}

@@ -61,8 +61,8 @@ public class Main {
 //        System.out.println("Dar de baja un alumno (update)");
 //        ed.darBaja(1);
 // ---------------------------- Clase ----------------------------
-              //Creacion Clase
-               ClaseData cd = new ClaseData();  
+        //Creacion Clase
+        ClaseData cd = new ClaseData();
 //          LocalTime horario = LocalTime.of(18, 30);
 //          LocalTime horario2 = LocalTime.of(19, 30); 
 //          LocalTime horario3 = LocalTime.of(17, 30);
@@ -73,9 +73,8 @@ public class Main {
 //          Clase clase3 = new Clase("Stretching", eC, horario2 , 10, true);
 //          Clase clase4 = new Clase(8, "Yoga", eC1, horario3, 10, true);        
 //          Clase clase5 = cd.buscarClase("Zumba");
-          
+
 //          Agregar las clases a ClaseData
-       
 //          cd.guardarClase(clase1);
 //          cd.guardarClase(clase2);
 //          cd.guardarClase(clase3);
@@ -154,7 +153,6 @@ public class Main {
 //        sd.guardarSocio(socio4);
 //        sd.guardarSocio(socio5);
 //        sd.guardarSocio(socio7);
-
 //
 //        List<Socio> listadoSociosNombre = sd.buscarSocioNombre("Jazmin");
 //        System.out.println("--- SOCIO/S POR NOMBRE ---");
@@ -180,42 +178,15 @@ public class Main {
 //         System.out.println("--- LISTADO DE SOCIOS INACTIVOS ---");
 //        for (Socio socio : listadoSociosInact) {
 //            System.out.println(socio);
-//        }
-// ---------------------------- Membresia ----------------------------
-//        MembresiaData md = new MembresiaData();
-//        
-//              
-//        // Formato de fecha
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//
-//        try {
-//            // Crear fecha de inicio
-//            LocalDate fechaInicio = LocalDate.parse("2024-01-01", formatter);
-//
-//            // Sumar 30 días a la fecha de inicio para obtener la fecha de fin (sumando 30 dias)
-//            LocalDate fechaFin = fechaInicio.plusDays(30);
-//
-//            // Crear instancia de Membresia
-//            Membresia mem1 = new Membresia(socio7, 20, fechaInicio, fechaFin, 10000, true);
-//
-//            // Guardar membresía
-//            md.guardarMembresia(mem1);
-//        } catch (DateTimeParseException e) {
-//            e.printStackTrace();
-//        }
-
-
-
-
+//        }  
 //            Guardar Asisteencia
 //            Socio socioAsistencia = new Socio(2,"33221100", "Luciano", "Castro", 19, "luchoC@gmail.com", "152534", true);
 //            LocalDate asistenciaDia = LocalDate.of(2024, 6, 7);            
 //            AsistenciaData aD = new AsistenciaData();
 //            Asistencia a1= new Asistencia(socioAsistencia,clase5 ,asistenciaDia);
 //            aD.guardarAsistencia(a1);
-  
-          Test test = new Test();
-       //   Test Entrenador
+        Test test = new Test();
+        //   Test Entrenador
 //          test.agregarEntrenadorTest();
 //          test.busquedaPorDniEntTest();
 //          test.busquedaEntrenadorApellTest();
@@ -225,8 +196,8 @@ public class Main {
 //          test.modificarEntrenadorTest();
 //          test.darDeBajaEntrenadorTest();
 //          test.listaEntrenadoresActivosTest();
-         
-       //Test clase   
+
+        //Test clase   
 //          test.guardaClaseTest();
 //          test.buscarClasePorNombreTest();
 //          test.buscarClasePorHorarioTest();
@@ -238,7 +209,6 @@ public class Main {
 //          test.darBajaClaseTest();
 //          test.horariosDisponiblesTest();
 //          test.horariosOcupadosTest();
-       
 //     Test socio 
 //            test.guardarSocioTest();
 //            test.listarSociosTest();
@@ -246,16 +216,10 @@ public class Main {
 //            test.listadoSocioPorNombreTest();
 //            test.buscarSocioIdTest();
 //            test.darBajaSocioTest();
-
 //      Test Asistencia
 //            test.guardarAsistenciaTest();
+        // Test Membresia
+        test.guardarMembresiaTest();
     }
-    
-    
-    
-    
-       
-
-    
 
 }

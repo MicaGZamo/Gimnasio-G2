@@ -1,6 +1,4 @@
-
 package Vistas;
-
 
 public class Menu extends javax.swing.JFrame {
 
@@ -23,7 +21,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem2 = new javax.swing.JMenuItem();
         jdpEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        jmNuevoSocio = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -33,7 +31,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        jmNuevaMem = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
@@ -65,8 +63,8 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1.setMargin(new java.awt.Insets(4, 5, 4, 5));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(386, 30));
 
-        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/nuevosocio.png"))); // NOI18N
-        jMenu1.setText("Socios");
+        jmNuevoSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/nuevosocio.png"))); // NOI18N
+        jmNuevoSocio.setText("Socios");
 
         jMenuItem1.setText("Nuevo");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,12 +72,12 @@ public class Menu extends javax.swing.JFrame {
                 jMenuItem1ActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jmNuevoSocio.add(jMenuItem1);
 
         jMenuItem3.setText("Lista");
-        jMenu1.add(jMenuItem3);
+        jmNuevoSocio.add(jMenuItem3);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jmNuevoSocio);
 
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/entrenador.png"))); // NOI18N
         jMenu2.setText("Entrenadores");
@@ -116,8 +114,13 @@ public class Menu extends javax.swing.JFrame {
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/membresias.png"))); // NOI18N
         jMenu4.setText("Membresias");
 
-        jMenuItem11.setText("Nueva");
-        jMenu4.add(jMenuItem11);
+        jmNuevaMem.setText("Nueva");
+        jmNuevaMem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmNuevaMemActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jmNuevaMem);
 
         jMenuItem12.setText("Lista");
         jMenu4.add(jMenuItem12);
@@ -161,7 +164,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jmiNuevoEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNuevoEntrenadorActionPerformed
@@ -187,6 +190,14 @@ public class Menu extends javax.swing.JFrame {
         System.out.println("Cerrando ventana...");
         dispose(); // o System.exit(0);
     }//GEN-LAST:event_jmSalirMouseClicked
+
+    private void jmNuevaMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNuevaMemActionPerformed
+        jdpEscritorio.removeAll();//removemos todos los componentes
+        jdpEscritorio.repaint();// repintamos
+        nuevaMembresia nuevaMem = new nuevaMembresia();
+        nuevaMem.setVisible(true);
+        jdpEscritorio.add(nuevaMem);// agrega al escritorio al jdesktoppane        // TODO add your handling code here:
+    }//GEN-LAST:event_jmNuevaMemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,14 +235,12 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
@@ -239,6 +248,8 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane jdpEscritorio;
+    private javax.swing.JMenuItem jmNuevaMem;
+    private javax.swing.JMenu jmNuevoSocio;
     private javax.swing.JMenu jmSalir;
     private javax.swing.JMenuItem jmiBuscarListarEntrenador;
     private javax.swing.JMenuItem jmiNuevoEntrenador;
