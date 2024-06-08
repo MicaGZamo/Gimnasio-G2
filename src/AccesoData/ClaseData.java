@@ -348,7 +348,7 @@ public class ClaseData {
   
 
           for (LocalTime horario : horariosOcupados) {
-              System.out.println(horariosDisponibles);
+             
             if (horariosDisponibles.contains(horario)) {
                 horariosDisponibles.remove(horario);
                 
