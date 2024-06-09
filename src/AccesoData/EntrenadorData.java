@@ -72,6 +72,37 @@ public class EntrenadorData {
     
     return entrenador;}
     
+    public Entrenador buscarPorId(int id){
+        Entrenador entrenador = null;
+        String sql = "SELECT * FROM `entrenadores` WHERE `id-entrenador`=?"; // no importa el estado
+        //String sql = "SELECT `id-entrenador`, `dni`, `nombre`, `apellido`, `especialidad`, `estado-en` FROM `entrenadores` WHERE dni=? AND `estado-en`=1"; // solo los activos
+        PreparedStatement ps = null;
+       
+        try{
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery(); //busqueda////////////
+            
+            if(rs.next()){
+                entrenador = new Entrenador ();
+                entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                entrenador.setDniE(rs.getString("dni"));
+                entrenador.setNombreE(rs.getString("nombre"));
+                entrenador.setApellidoE(rs.getString("apellido"));
+                entrenador.setEspecialidad(rs.getString("especialidad"));
+                //entrenador.setEstado(true);
+                entrenador.setEstado(rs.getBoolean("estado-en"));
+            }else{
+                JOptionPane.showMessageDialog(null, "No se encontró el entrenador");
+            }
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Entrenador ");
+            System.out.println("error " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    
+    return entrenador;}
+    
     public Entrenador buscarPorNombreYApellido(String nom, String ape){
         Entrenador entrenador = null;
         String sql = "SELECT `id-entrenador`, `dni`, `nombre`, `apellido`, `especialidad`, `estado-en` "
