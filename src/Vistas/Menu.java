@@ -104,6 +104,11 @@ public class Menu extends javax.swing.JFrame {
         jMenu3.setText("Clases");
 
         jMenuItem8.setText("Nueva");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem8);
 
         jMenuItem9.setText("Gestión");
@@ -215,6 +220,15 @@ public class Menu extends javax.swing.JFrame {
         jdpEscritorio.add(mem);
 
     }//GEN-LAST:event_jMenuItem12ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+        jdpEscritorio.removeAll();//removemos todos los componentes
+        jdpEscritorio.repaint();// repintamos
+        nuevaClase clase = new nuevaClase();
+        clase.setVisible(true);
+        jdpEscritorio.add(clase);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
