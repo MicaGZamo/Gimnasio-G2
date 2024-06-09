@@ -86,6 +86,10 @@ public class AsistenciaData {
 
     public List<Asistencia> buscarPorClase(Clase clase) { // mica
         List<Asistencia> lista = new ArrayList<>();
+        
+        
+        
+        
         return lista;
     }
 
