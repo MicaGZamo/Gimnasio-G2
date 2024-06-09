@@ -56,12 +56,12 @@ public class Menu extends javax.swing.JFrame {
         );
         jdpEscritorioLayout.setVerticalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGap(0, 495, Short.MAX_VALUE)
         );
 
         jMenuBar1.setForeground(new java.awt.Color(204, 204, 204));
         jMenuBar1.setMargin(new java.awt.Insets(4, 5, 4, 5));
-        jMenuBar1.setPreferredSize(new java.awt.Dimension(386, 30));
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(386, 40));
 
         jmNuevoSocio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/nuevosocio.png"))); // NOI18N
         jmNuevoSocio.setText("Socios");
@@ -154,9 +154,7 @@ public class Menu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jdpEscritorio)
-                .addContainerGap())
+            .addComponent(jdpEscritorio, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();

@@ -172,12 +172,12 @@ public class MembresiaData {
             int exito = ps.executeUpdate();
             
             if (exito==1) { // pregunta si tiene datos
-                JOptionPane.showMessageDialog(null, "Datos del membresia actualizados");
+                JOptionPane.showMessageDialog(null, "Datos de membresia actualizados.");
             }
             ps.close();
 
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar datos del entrenador");
+            JOptionPane.showMessageDialog(null, "Error al actualizar datos de la membresia.");
             System.out.println("error " + e.getMessage());
             e.printStackTrace();
         }
@@ -186,5 +186,28 @@ public class MembresiaData {
     }
     
     public void darBajaMembresia(Membresia membresia){ // Mica  estado = 0
+        
+     try{
+     String sql = "UPDATE `membresias` SET `estado-m` = ? WHERE `id-socio` = ?";
+     PreparedStatement ps = con.prepareStatement(sql);
+     ps.setInt(1,0);
+     ps.setInt(2, membresia.getSocio().getIdSocio());
+     
+      int fila = ps.executeUpdate(); // Ejecuta la sentencia
+      
+        if(fila>0){  // n° de filas afectadas, si es menor a 0, no se ejecutó la sentencia
+            JOptionPane.showMessageDialog(null, "Se dio de baja la membresia con id: "+ membresia.getSocio().getIdSocio());
+        }else{
+            JOptionPane.showMessageDialog(null, "No se pudo dar de baja la membresia con id: "+membresia.getSocio().getIdSocio());
+        }
+        ps.close();
+      
+       } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error con la tabla membresia.");
+            System.out.println("error " + e.getMessage());
+            e.printStackTrace();
+        }   
+        
+        
     }
 }

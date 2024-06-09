@@ -361,6 +361,12 @@ public class Test {
         for (Membresia membre : membresias) {
             System.out.println(membre);
         }
-
 }
+     public void darBajaMembresiaTest (){
+     Socio socioM = sd.buscarSocioDni("5896589");   
+     Membresia m1 = new Membresia();
+     m1.setSocio(socioM); // seteo el socio en vez de llamar al constructor
+     md.darBajaMembresia(m1);
+ 
+     }
 }

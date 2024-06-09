@@ -186,7 +186,7 @@ public class Main {
 //            Asistencia a1= new Asistencia(socioAsistencia,clase5 ,asistenciaDia);
 //            aD.guardarAsistencia(a1);
         Test test = new Test();
-        //   Test Entrenador
+//------------- Test Entrenador -------------
 //          test.agregarEntrenadorTest();
 //          test.busquedaPorDniEntTest();
 //          test.busquedaEntrenadorApellTest();
@@ -197,7 +197,7 @@ public class Main {
 //          test.darDeBajaEntrenadorTest();
 //          test.listaEntrenadoresActivosTest();
 
-        //Test clase   
+//------------- Test clase -------------  
 //          test.guardaClaseTest();
 //          test.buscarClasePorNombreTest();
 //          test.buscarClasePorHorarioTest();
@@ -209,22 +209,23 @@ public class Main {
 //          test.darBajaClaseTest();
 //          test.horariosDisponiblesTest();
 //          test.horariosOcupadosTest();
-//     Test socio 
+//------------- Test socio -------------
 //          test.guardarSocioTest();
 //          test.listarSociosTest();
 //          test.listarSociosActivosInactivosTest();
 //          test.listadoSocioPorNombreTest();
 //          test.buscarSocioIdTest();
 //          test.darBajaSocioTest();
-//      Test Asistencia
+//------------- Test Asistencia -------------
 //          test.guardarAsistenciaTest();
 //          test.listarAsistenciaSocioTest();
-//      Test Membresia
+// ------------- Test Membresia -------------
 //          test.guardarMembresiaTest();
 //          test.buscarPorSocioMemTest();
 //          test.modificarMembresiaTest();
 //          test.listarMembresiasActivas();
-            test.listarMembresiasInactivas();
+//          test.listarMembresiasInactivas();
+            test.darBajaMembresiaTest();
     }
 
 }
