@@ -14,9 +14,18 @@ public class Membresia {
     private boolean estado;
 
     public Membresia(Socio socio, int cantPases, LocalDate fechaInicio, LocalDate fechaFin, int precioMembresia, boolean estado) {
+        //this.idMembresia = idMembresia;
+        this.socio = socio;
+        this.cantPases = cantPases;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.precioMembresia = precioMembresia;
+        this.estado = estado;
+    }
+
+    public Membresia(int idMembresia, Socio socio, int cantPases, LocalDate fechaInicio, LocalDate fechaFin, double precioMembresia, boolean estado) {
         this.idMembresia = idMembresia;
         this.socio = socio;
-
         this.cantPases = cantPases;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
@@ -86,7 +95,8 @@ public class Membresia {
     @Override
     public String toString() {
         String estadoStr = estado ? "Activo" : "Inactivo";
-        return "Membresia{" + "idMembresia=" + idMembresia + ", Socio=" + socio + ", cantPases=" + cantPases + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", precioMembresia=" + precioMembresia + ", estado=" + estadoStr + '}';
+        //return "Membresia{" + "idMembresia=" + idMembresia + ", Socio=" + socio + ", cantPases=" + cantPases + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", precioMembresia=" + precioMembresia + ", estado=" + estadoStr + '}';
+        return "Membresia{" + "idMembresia=" + idMembresia + ", idSocio=" + socio.getIdSocio() + ", cantPases=" + cantPases + ", fechaInicio=" + fechaInicio + ", fechaFin=" + fechaFin + ", precioMembresia=" + precioMembresia + ", estado=" + estadoStr + '}';
     }
 
 }

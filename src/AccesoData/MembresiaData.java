@@ -3,6 +3,7 @@ package AccesoData;
 import Entidades.Membresia;
 import Entidades.Socio;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -44,10 +45,42 @@ public class MembresiaData {
 
     }
     
-    public Membresia buscarPorSocio(Socio socio){ //Ramiro
+    public List<Membresia> buscarPorSocio(Socio socio){ //Ramiro
+        List<Membresia> lista = new ArrayList<>();
         Membresia membresia1 = null;
+        String sql ="SELECT * FROM `membresias` WHERE `id-socio`=?";
+        boolean flag=false;
+        //PreparedStatement ps = null;
         
-    return membresia1;}
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, socio.getIdSocio());
+            ResultSet rs = ps.executeQuery(); //-->busqueda////////////
+            
+            while(rs.next()){
+                flag=true;
+                membresia1 = new Membresia ();
+                membresia1.setIdMembresia(rs.getInt("id-membresia"));
+                membresia1.setSocio(socio);
+                membresia1.setCantPases(rs.getInt("CantidadPases"));
+                membresia1.setFechaInicio(rs.getDate("fecha-inicio").toLocalDate());
+                membresia1.setFechaFin(rs.getDate("fecha-fin").toLocalDate());
+                membresia1.setPrecioMembresia(rs.getDouble("costo-membresia"));
+                membresia1.setEstado(rs.getBoolean("estado-m"));
+                lista.add(membresia1);
+            }
+            if(!flag){
+            JOptionPane.showMessageDialog(null, "no se encontro la socio");
+            }
+            ps.close();
+            
+        }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Membresia ");
+            System.out.println("error " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        
+    return lista;}
     
     public List<Membresia> listarMembresiasActivas(){ //Nadia
         List<Membresia> lista = new ArrayList<>();
@@ -61,6 +94,38 @@ public class MembresiaData {
     
     
     public void modificarMembresia(Membresia membresia){ //Ramiro   update
+//        String sql = "UPDATE `entrenadores` "
+//                   + "SET `dni`=?,`nombre`=?,`apellido`=?,`especialidad`=?,`estado-en`=? "
+//                   + "WHERE `id-entrenador`=? ";
+          String sql = "UPDATE `membresias` "
+                     + "SET `id-socio`=?,`CantidadPases`=?,`fecha-inicio`=?,`fecha-fin`=?,`costo-membresia`=?,`estado-m`=? "
+                     + "WHERE `id-membresia`=?";
+
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, membresia.getSocio().getIdSocio());
+            ps.setInt(2, membresia.getCantPases());
+            ps.setDate(3, Date.valueOf(membresia.getFechaInicio()) ); // de LocalDate a Date
+            ps.setDate(4,Date.valueOf(membresia.getFechaFin()) ); // de LocalDate a Date
+            ps.setDouble(5, membresia.getPrecioMembresia());
+            ps.setBoolean(6, membresia.isEstado());
+            ps.setInt(7, membresia.getIdMembresia());
+            
+            int exito = ps.executeUpdate();
+            
+            if (exito==1) { // pregunta si tiene datos
+                JOptionPane.showMessageDialog(null, "Datos del membresia actualizados");
+            }
+            ps.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar datos del entrenador");
+            System.out.println("error " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        
     }
     
     public void darBajaMembresia(Membresia membresia){ // Mica  estado = 0

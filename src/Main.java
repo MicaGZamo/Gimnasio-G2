@@ -219,7 +219,9 @@ public class Main {
 //      Test Asistencia
 //            test.guardarAsistenciaTest();
         // Test Membresia
-        test.guardarMembresiaTest();
+//        test.guardarMembresiaTest();
+            test.buscarPorSocioMemTest();
+            test.modificarMembresiaTest();
     }
 
 }

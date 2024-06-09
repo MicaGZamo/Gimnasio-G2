@@ -248,7 +248,6 @@ public class EntrenadorData {
     
     public void actualizarEntrenador(Entrenador entrenador) {
 
-        //String sql = "UPDATE alumno SET dni=?, apellido=?, nombre=?, fechaNacimiento=?, estado=? WHERE idAlumno=? ";
         String sql = "UPDATE `entrenadores` "
                    + "SET `dni`=?,`nombre`=?,`apellido`=?,`especialidad`=?,`estado-en`=? "
                    + "WHERE `id-entrenador`=? ";

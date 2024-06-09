@@ -16,14 +16,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-/**
- *
- * @author sapat
- */
+
 public class Test {
 
     EntrenadorData ed = new EntrenadorData();
@@ -269,25 +262,76 @@ public class Test {
 
         try {
             // Crear fecha de inicio
-            LocalDate fechaInicio = LocalDate.parse("2024-01-01", formatter);
-
+            LocalDate fechaInicio1 = LocalDate.parse("2024-01-01", formatter);
+            LocalDate fechaInicio2 = LocalDate.parse("2024-02-01", formatter);
+            LocalDate fechaInicio3 = LocalDate.parse("2024-03-15", formatter);
+            LocalDate fechaInicio4 = LocalDate.parse("2024-03-15", formatter);
             // Sumar 30 días a la fecha de inicio para obtener la fecha de fin (sumando 30 dias)
-            LocalDate fechaFin = fechaInicio.plusDays(30);
+            LocalDate fechaFin1 = fechaInicio1.plusDays(30);
+            LocalDate fechaFin2 = fechaInicio2.plusDays(30);
+            LocalDate fechaFin3 = fechaInicio3.plusDays(30);
+            LocalDate fechaFin4 = fechaInicio4.plusDays(30);
 
             // Buscar socio por DNI
             
-            Socio socio = sd.buscarSocioDni("55667799");
+            Socio socio1 = sd.buscarSocioDni("55667799");
+            Socio socio2 = sd.buscarSocioDni("55002211");
+            Socio socio3 = sd.buscarSocioDni("5896589");
             
             // Crear instancia de Membresia
-            Membresia mem1 = new Membresia(socio, 20, fechaInicio, fechaFin, 10000, true);
+            Membresia mem1 = new Membresia(socio1, 20, fechaInicio1, fechaFin1, 10000, true);
+            Membresia mem2 = new Membresia(socio2, 8, fechaInicio2, fechaFin2, 5000, true);
+            Membresia mem3 = new Membresia(socio2, 12, fechaInicio3, fechaFin3, 8000, true);
+            Membresia mem4 = new Membresia(socio3, 12, fechaInicio4, fechaFin4, 8000, true);
 
             // Guardar membresía
             md.guardarMembresia(mem1);
+            md.guardarMembresia(mem2);
+            md.guardarMembresia(mem3);
+            md.guardarMembresia(mem4);
         } catch (DateTimeParseException e) {
             //mensaje de error
             e.printStackTrace();
         }
 
+    }
+    
+    public void buscarPorSocioMemTest() {
+        System.out.println("busqueda de entrenador por DNI");
+        Socio socio = sd.buscarSocioDni("55002211"); // socio a buscar en la membresia
+        //System.out.println(socio);
+        
+        List<Membresia> MembresiasPorSocios = md.buscarPorSocio(socio);
+        System.out.println("--- LISTADO DE MEMBRESIAS POR SOCIO ---");
+        for (Membresia membre : MembresiasPorSocios) {
+            System.out.println(membre);
+        }
+    }
+    
+    public void modificarMembresiaTest(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            // Buscar socio por DNI
+            Socio socio1 = sd.buscarSocioDni("5896589");
+            
+            // Crear fecha de inicio
+            LocalDate fechaInicio1 = LocalDate.parse("2024-01-01", formatter);
+            
+            // Sumar 30 días a la fecha de inicio para obtener la fecha de fin (sumando 30 dias)
+            LocalDate fechaFin1 = fechaInicio1.plusDays(30);
+            
+            // Crear instancia de Membresia----------ver
+            Membresia mem1 = new Membresia(5,socio1, 20, fechaInicio1, fechaFin1, 10000, true);
+            mem1.getIdMembresia();
+            
+            // Guardar membresía
+            md.modificarMembresia(mem1);
+
+        } catch (DateTimeParseException e) {
+            //mensaje de error
+            e.printStackTrace();
+        }
+    
     }
     
     
