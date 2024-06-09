@@ -23,7 +23,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jmNuevoSocio = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
+        Gestión = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmiNuevoEntrenador = new javax.swing.JMenuItem();
         jmiBuscarListarEntrenador = new javax.swing.JMenuItem();
@@ -74,8 +74,8 @@ public class Menu extends javax.swing.JFrame {
         });
         jmNuevoSocio.add(jMenuItem1);
 
-        jMenuItem3.setText("Lista");
-        jmNuevoSocio.add(jMenuItem3);
+        Gestión.setText("Lista");
+        jmNuevoSocio.add(Gestión);
 
         jMenuBar1.add(jmNuevoSocio);
 
@@ -90,7 +90,7 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu2.add(jmiNuevoEntrenador);
 
-        jmiBuscarListarEntrenador.setText("Lista");
+        jmiBuscarListarEntrenador.setText("Gestión");
         jmiBuscarListarEntrenador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmiBuscarListarEntrenadorActionPerformed(evt);
@@ -106,7 +106,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem8.setText("Nueva");
         jMenu3.add(jMenuItem8);
 
-        jMenuItem9.setText("Lista");
+        jMenuItem9.setText("Gestión");
         jMenu3.add(jMenuItem9);
 
         jMenuBar1.add(jMenu3);
@@ -122,7 +122,12 @@ public class Menu extends javax.swing.JFrame {
         });
         jMenu4.add(jmNuevaMem);
 
-        jMenuItem12.setText("Lista");
+        jMenuItem12.setText("Getión");
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem12);
 
         jMenuBar1.add(jMenu4);
@@ -162,7 +167,11 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
+        jdpEscritorio.removeAll();//removemos todos los componentes
+        jdpEscritorio.repaint();// repintamos
+        gestionSocio socio = new gestionSocio();
+        socio.setVisible(true);
+        jdpEscritorio.add(socio);//
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jmiNuevoEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNuevoEntrenadorActionPerformed
@@ -178,7 +187,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         jdpEscritorio.removeAll();//removemos todos los componentes
         jdpEscritorio.repaint();// repintamos
-        buscarYlistarEntrenador listarEntrenador = new buscarYlistarEntrenador();
+        gestionEntrenador listarEntrenador = new gestionEntrenador();
         listarEntrenador.setVisible(true);
         jdpEscritorio.add(listarEntrenador);// agrega al escritorio al jdesktoppane
     }//GEN-LAST:event_jmiBuscarListarEntrenadorActionPerformed
@@ -197,9 +206,16 @@ public class Menu extends javax.swing.JFrame {
         jdpEscritorio.add(nuevaMem);// agrega al escritorio al jdesktoppane        // TODO add your handling code here:
     }//GEN-LAST:event_jmNuevaMemActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+
+        jdpEscritorio.removeAll();//removemos todos los componentes
+        jdpEscritorio.repaint();// repintamos
+        gestionMembresia mem = new gestionMembresia();
+        mem.setVisible(true);
+        jdpEscritorio.add(mem);
+
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -233,6 +249,7 @@ public class Menu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Gestión;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
@@ -242,7 +259,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane jdpEscritorio;

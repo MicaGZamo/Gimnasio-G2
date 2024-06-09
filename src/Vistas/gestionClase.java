@@ -8,12 +8,12 @@ package Vistas;
  *
  * @author gomez
  */
-public class buscarYlistarClase extends javax.swing.JInternalFrame {
+public class gestionClase extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form buscarYlistarClase
      */
-    public buscarYlistarClase() {
+    public gestionClase() {
         initComponents();
     }
 
