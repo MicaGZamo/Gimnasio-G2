@@ -16,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
 
-
 public class Test {
 
     EntrenadorData ed = new EntrenadorData();
@@ -256,15 +255,14 @@ public class Test {
         Asistencia a1 = new Asistencia(socioAsistencia, clase5, asistenciaDia);
         aD.guardarAsistencia(a1);
     }
-    
-    public void listarAsistenciaSocioTest(){
+
+    public void listarAsistenciaSocioTest() {
         Socio socioAsistencia = sd.buscarSocioDni("33221100");
-       List<Asistencia> listaAsistencia= aD.buscarPorSocio(socioAsistencia);
-         for(Asistencia asistencia : listaAsistencia) {
+        List<Asistencia> listaAsistencia = aD.buscarPorSocio(socioAsistencia);
+        for (Asistencia asistencia : listaAsistencia) {
             System.out.println(asistencia);
         }
     }
-
 
     //Membresia Test
     public void guardarMembresiaTest() {
@@ -283,11 +281,10 @@ public class Test {
             LocalDate fechaFin4 = fechaInicio4.plusDays(30);
 
             // Buscar socio por DNI
-            
             Socio socio1 = sd.buscarSocioDni("55667799");
             Socio socio2 = sd.buscarSocioDni("55002211");
             Socio socio3 = sd.buscarSocioDni("5896589");
-            
+
             // Crear instancia de Membresia
             Membresia mem1 = new Membresia(socio1, 20, fechaInicio1, fechaFin1, 10000, true);
             Membresia mem2 = new Membresia(socio2, 8, fechaInicio2, fechaFin2, 5000, true);
@@ -305,35 +302,35 @@ public class Test {
         }
 
     }
-    
+
     public void buscarPorSocioMemTest() {
         System.out.println("busqueda de entrenador por DNI");
         Socio socio = sd.buscarSocioDni("55002211"); // socio a buscar en la membresia
         //System.out.println(socio);
-        
+
         List<Membresia> MembresiasPorSocios = md.buscarPorSocio(socio);
         System.out.println("--- LISTADO DE MEMBRESIAS POR SOCIO ---");
         for (Membresia membre : MembresiasPorSocios) {
             System.out.println(membre);
         }
     }
-    
-    public void modificarMembresiaTest(){
+
+    public void modificarMembresiaTest() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         try {
             // Buscar socio por DNI
             Socio socio1 = sd.buscarSocioDni("5896589");
-            
+
             // Crear fecha de inicio
             LocalDate fechaInicio1 = LocalDate.parse("2024-01-01", formatter);
-            
+
             // Sumar 30 días a la fecha de inicio para obtener la fecha de fin (sumando 30 dias)
             LocalDate fechaFin1 = fechaInicio1.plusDays(30);
-            
+
             // Crear instancia de Membresia----------ver
-            Membresia mem1 = new Membresia(5,socio1, 20, fechaInicio1, fechaFin1, 10000, true);
+            Membresia mem1 = new Membresia(5, socio1, 20, fechaInicio1, fechaFin1, 10000, true);
             mem1.getIdMembresia();
-            
+
             // Guardar membresía
             md.modificarMembresia(mem1);
 
@@ -341,32 +338,45 @@ public class Test {
             //mensaje de error
             e.printStackTrace();
         }
-    
+
     }
-    
-    public void listarMembresiasActivas(){
-    
-     List<Membresia> membresias = md.listarMembresiasActivas();
+
+    public void listarMembresiasActivas() {
+
+        List<Membresia> membresias = md.listarMembresiasActivas();
         System.out.println("--- LISTADO DE MEMBRESIAS ACTIVAS ---");
         for (Membresia membre : membresias) {
             System.out.println(membre);
         }
 
-}
-    
-     public void listarMembresiasInactivas(){
-    
-     List<Membresia> membresias = md.listarMembresiasInactivas();
+    }
+
+    public void listarMembresiasInactivas() {
+
+        List<Membresia> membresias = md.listarMembresiasInactivas();
         System.out.println("--- LISTADO DE MEMBRESIAS INACTIVAS ---");
         for (Membresia membre : membresias) {
             System.out.println(membre);
         }
-}
-     public void darBajaMembresiaTest (){
-     Socio socioM = sd.buscarSocioDni("5896589");   
-     Membresia m1 = new Membresia();
-     m1.setSocio(socioM); // seteo el socio en vez de llamar al constructor
-     md.darBajaMembresia(m1);
- 
-     }
+    }
+
+    public void darBajaMembresiaTest() {
+        Socio socioM = sd.buscarSocioDni("5896589");
+        Membresia m1 = new Membresia();
+        m1.setSocio(socioM); // seteo el socio en vez de llamar al constructor
+        md.darBajaMembresia(m1);
+
+    }
+
+    public void listarAsistenciaPorClaseTest() {
+        Clase clase1 = cd.buscarClase("zumba");
+
+        List<Asistencia> listaAsist = aD.buscarPorClase(clase1);
+        
+        System.out.println("Lista de Asistencias por Clase");
+        for (Asistencia asistencia : listaAsist) {
+            System.out.println(listaAsist);
+            
+        }
+    }
 }

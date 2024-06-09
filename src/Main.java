@@ -27,9 +27,9 @@ public class Main {
         Connection con = Conexion.getConexion();
 
         Test test = new Test();
-        
-//------------- Test Entrenador -------------
 
+//       [Cargar cada clase por bloque y volver a comentar]
+//------------- Test Entrenador -------------
 //          test.agregarEntrenadorTest();
 //          test.busquedaPorDniEntTest();
 //          test.busquedaEntrenadorApellTest();
@@ -39,7 +39,6 @@ public class Main {
 //          test.modificarEntrenadorTest();
 //          test.darDeBajaEntrenadorTest();
 //          test.listaEntrenadoresActivosTest();
-
 //------------- Test clase -------------  
 //          test.guardaClaseTest();
 //          test.buscarClasePorNombreTest();
@@ -52,7 +51,6 @@ public class Main {
 //          test.darBajaClaseTest();
 //          test.horariosDisponiblesTest();
 //          test.horariosOcupadosTest();
-
 //------------- Test socio -------------
 //          test.guardarSocioTest();
 //          test.listarSociosTest();
@@ -60,11 +58,10 @@ public class Main {
 //          test.listadoSocioPorNombreTest();
 //          test.buscarSocioIdTest();
 //          test.darBajaSocioTest();
-
 //------------- Test Asistencia -------------
 //          test.guardarAsistenciaTest();
 //          test.listarAsistenciaSocioTest();
-
+//          test.listarAsistenciaPorClaseTest();
 // ------------- Test Membresia -------------
 //          test.guardarMembresiaTest();
 //          test.buscarPorSocioMemTest();
@@ -72,7 +69,6 @@ public class Main {
 //          test.listarMembresiasActivas();
 //          test.listarMembresiasInactivas();
 //          test.darBajaMembresiaTest();
-
     }
 
 }

@@ -86,9 +86,38 @@ public class AsistenciaData {
 
     public List<Asistencia> buscarPorClase(Clase clase) { // mica
         List<Asistencia> lista = new ArrayList<>();
+           
+        String sql = "SELECT `id-asistencia`, `id-socio`, `id-clase`, `fecha-asistencia` "
+                + "FROM `asistencias`"
+                + " WHERE `id-clase`= ? ";
         
-        
-        
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, clase.getIdClase());
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+            Asistencia asistencia = new Asistencia();
+            Socio socio = new Socio();
+            Clase claseR = new Clase();
+                    
+            asistencia.setIdAsistencia(rs.getInt("id-asistencia")); //Guardamos el id de la tabla
+            socio.setIdSocio(rs.getInt("id-socio"));
+            asistencia.setSocio(socio); //seteamos el socio con el id obetenido del rs en asistencia
+            clase.setIdClase(rs.getInt("id-clase"));
+            asistencia.setFechaAsistencia(rs.getDate("fecha-asistencia").toLocalDate());
+            asistencia.setClase(clase); //pasamos la clase obtenida por rs a la asistencia
+            
+            lista.add(asistencia);
+                        
+            }
+            rs.close();
+            
+           } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Membresia ");
+            System.out.println("error " + ex.getMessage());
+            ex.printStackTrace();
+        }
         
         return lista;
     }
