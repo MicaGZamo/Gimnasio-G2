@@ -1,6 +1,6 @@
-
 package AccesoData;
 
+import java.sql.*;
 import Entidades.Asistencia;
 import Entidades.Clase;
 import Entidades.Entrenador;
@@ -18,56 +18,81 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-
 public class AsistenciaData {
-    private Connection con = null; 
+
+    private Connection con = null;
 
     public AsistenciaData() {
-         con = Conexion.getConexion();
-        
+        con = Conexion.getConexion();
+
     }
- 
-    public void guardarAsistencia(Asistencia asistencia){
-       String sql= "INSERT INTO `asistencias`(`id-socio`, `id-clase`, `fecha-asistencia`) "
-               + " VALUES (?,?,?) ";
-        
+
+    public void guardarAsistencia(Asistencia asistencia) {
+        String sql = "INSERT INTO `asistencias`(`id-socio`, `id-clase`, `fecha-asistencia`) "
+                + " VALUES (?,?,?) ";
+
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, asistencia.getSocio().getIdSocio());
             ps.setInt(2, asistencia.getClase().getIdClase());
             ps.setDate(3, Date.valueOf(asistencia.getFechaAsistencia()));
             ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();            
-            
-              if (rs.next()) {
-            asistencia.setIdAsistencia(rs.getInt("idAsistencia"));
-            JOptionPane.showMessageDialog(null, "Asistencia cargada correctamente");
+            ResultSet rs = ps.getGeneratedKeys();
+
+            if (rs.next()) {
+                asistencia.setIdAsistencia(rs.getInt("idAsistencia"));
+                JOptionPane.showMessageDialog(null, "Asistencia cargada correctamente");
             }
             ps.close();
-            
-    }catch (SQLException ex) {
+
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Asistencia ");
             System.out.println("error " + ex.getMessage());
             ex.printStackTrace();
         }
-    
+
     }
-    
-    public List<Asistencia> buscarPorSocio(Socio socio){ // o ver si por nombre y apellido // nadia
-        List<Asistencia> lista = new ArrayList<>();
-  
-    return lista;}
-    
-    
-    public List<Asistencia> buscarPorClase(Clase clase){ // mica
-        List<Asistencia> lista = new ArrayList<>();
-    return lista;}
-    
-    
-    public List<Asistencia> buscarPorFecha(LocalDate fecha){ // Ramiro
-        List<Asistencia> lista = new ArrayList<>();
-        
-    return lista;}
 
-} 
+    public List<Asistencia> buscarPorSocio(Socio socio) { // o ver si por nombre y apellido // nadia
+        List<Asistencia> lista = new ArrayList<>();
+      
+        String sql = "SELECT `id-asistencia`, `id-socio`, `id-clase`, `fecha-asistencia` "
+                + " FROM `asistencias`"
+                + " WHERE `id-socio` = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, socio.getIdSocio());
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Asistencia asistencia = new Asistencia();
+                Clase clase = new Clase();
+                asistencia.setIdAsistencia(rs.getInt("id-asistencia"));
+                socio.setIdSocio(rs.getInt("id-socio"));
+                asistencia.setSocio(socio);
+                clase.setIdClase(rs.getInt("id-clase"));
+                asistencia.setClase(clase);
+                asistencia.setFechaAsistencia( rs.getDate("fecha-asistencia").toLocalDate());
+                lista.add(asistencia);
+            }
+         rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Membresia ");
+            System.out.println("error " + ex.getMessage());
+            ex.printStackTrace();
+        }
 
+        return lista;
+    }
+
+    public List<Asistencia> buscarPorClase(Clase clase) { // mica
+        List<Asistencia> lista = new ArrayList<>();
+        return lista;
+    }
+
+    public List<Asistencia> buscarPorFecha(LocalDate fecha) { // Ramiro
+        List<Asistencia> lista = new ArrayList<>();
+
+        return lista;
+    }
+
+}

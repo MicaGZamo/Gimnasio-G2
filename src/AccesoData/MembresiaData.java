@@ -84,11 +84,68 @@ public class MembresiaData {
     
     public List<Membresia> listarMembresiasActivas(){ //Nadia
         List<Membresia> lista = new ArrayList<>();
-    
-    return lista;} 
+        String sql= "SELECT membresias.*, socios.`id-socio` , socios.nombre, socios.apellido " 
+                     +"FROM `membresias`, `socios` "
+                     +"WHERE `estado-m`=1 "
+                     +"AND membresias.`id-socio`= socios.`id-socio`";
+         try{
+            PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery();
+             
+             while(rs.next()){
+                Membresia membresia1 = new Membresia ();
+                membresia1.setIdMembresia(rs.getInt("id-membresia"));
+                Socio socio= new Socio();
+                socio.setIdSocio(rs.getInt("id-socio"));
+                socio.setNombre(rs.getNString("nombre"));
+                socio.setApellido(rs.getNString("apellido"));
+                membresia1.setSocio(socio);
+                membresia1.setCantPases(rs.getInt("CantidadPases"));
+                membresia1.setFechaInicio(rs.getDate("fecha-inicio").toLocalDate());
+                membresia1.setFechaFin(rs.getDate("fecha-fin").toLocalDate());
+                membresia1.setPrecioMembresia(rs.getDouble("costo-membresia"));
+                membresia1.setEstado(rs.getBoolean("estado-m"));
+                lista.add(membresia1); 
+             }
+            
+         }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Membresia ");
+            System.out.println("error " + ex.getMessage());
+            ex.printStackTrace();
+         }
+                return lista;} 
     
     public List<Membresia> listarMembresiasInactivas(){ //Nadia 
-        List<Membresia> lista = new ArrayList<>();
+         List<Membresia> lista = new ArrayList<>();
+        String sql= "SELECT membresias.*, socios.`id-socio` , socios.nombre, socios.apellido " 
+                     +"FROM `membresias`, `socios` "
+                     +"WHERE `estado-m`=0 "
+                     +"AND membresias.`id-socio`= socios.`id-socio`";
+         try{
+            PreparedStatement ps = con.prepareStatement(sql);
+             ResultSet rs = ps.executeQuery();
+             
+             while(rs.next()){
+                Membresia membresia1 = new Membresia ();
+                membresia1.setIdMembresia(rs.getInt("id-membresia"));
+                Socio socio= new Socio();
+                socio.setIdSocio(rs.getInt("id-socio"));
+                socio.setNombre(rs.getNString("nombre"));
+                socio.setApellido(rs.getNString("apellido"));
+                membresia1.setSocio(socio);
+                membresia1.setCantPases(rs.getInt("CantidadPases"));
+                membresia1.setFechaInicio(rs.getDate("fecha-inicio").toLocalDate());
+                membresia1.setFechaFin(rs.getDate("fecha-fin").toLocalDate());
+                membresia1.setPrecioMembresia(rs.getDouble("costo-membresia"));
+                membresia1.setEstado(rs.getBoolean("estado-m"));
+                lista.add(membresia1); 
+             }
+            
+         }catch (SQLException ex){
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Membresia ");
+            System.out.println("error " + ex.getMessage());
+            ex.printStackTrace();
+         }
     
     return lista;} 
     

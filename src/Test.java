@@ -87,9 +87,9 @@ public class Test {
     public void guardaClaseTest() {
         //Creacion Clase
 
-        LocalTime horario = LocalTime.of(18, 30);
-        LocalTime horario2 = LocalTime.of(19, 30);
-        LocalTime horario3 = LocalTime.of(17, 30);
+        LocalTime horario = LocalTime.of(18, 00);
+        LocalTime horario2 = LocalTime.of(19, 00);
+        LocalTime horario3 = LocalTime.of(17, 00);
         Entrenador eC1 = ed.buscarPorDni("22222222");
         Entrenador eC = ed.buscarPorDni("44444444");
         Clase clase1 = new Clase("Zumba", eC1, horario, 10, true);
@@ -256,7 +256,17 @@ public class Test {
         Asistencia a1 = new Asistencia(socioAsistencia, clase5, asistenciaDia);
         aD.guardarAsistencia(a1);
     }
+    
+    public void listarAsistenciaSocioTest(){
+        Socio socioAsistencia = sd.buscarSocioDni("33221100");
+       List<Asistencia> listaAsistencia= aD.buscarPorSocio(socioAsistencia);
+         for(Asistencia asistencia : listaAsistencia) {
+            System.out.println(asistencia);
+        }
+    }
 
+
+    //Membresia Test
     public void guardarMembresiaTest() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
@@ -334,6 +344,23 @@ public class Test {
     
     }
     
+    public void listarMembresiasActivas(){
     
+     List<Membresia> membresias = md.listarMembresiasActivas();
+        System.out.println("--- LISTADO DE MEMBRESIAS ACTIVAS ---");
+        for (Membresia membre : membresias) {
+            System.out.println(membre);
+        }
 
+}
+    
+     public void listarMembresiasInactivas(){
+    
+     List<Membresia> membresias = md.listarMembresiasInactivas();
+        System.out.println("--- LISTADO DE MEMBRESIAS INACTIVAS ---");
+        for (Membresia membre : membresias) {
+            System.out.println(membre);
+        }
+
+}
 }

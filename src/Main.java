@@ -210,18 +210,21 @@ public class Main {
 //          test.horariosDisponiblesTest();
 //          test.horariosOcupadosTest();
 //     Test socio 
-//            test.guardarSocioTest();
-//            test.listarSociosTest();
-//            test.listarSociosActivosInactivosTest();
-//            test.listadoSocioPorNombreTest();
-//            test.buscarSocioIdTest();
-//            test.darBajaSocioTest();
+//          test.guardarSocioTest();
+//          test.listarSociosTest();
+//          test.listarSociosActivosInactivosTest();
+//          test.listadoSocioPorNombreTest();
+//          test.buscarSocioIdTest();
+//          test.darBajaSocioTest();
 //      Test Asistencia
-//            test.guardarAsistenciaTest();
-        // Test Membresia
-//        test.guardarMembresiaTest();
-            test.buscarPorSocioMemTest();
-            test.modificarMembresiaTest();
+//          test.guardarAsistenciaTest();
+//          test.listarAsistenciaSocioTest();
+//      Test Membresia
+//          test.guardarMembresiaTest();
+//          test.buscarPorSocioMemTest();
+//          test.modificarMembresiaTest();
+//          test.listarMembresiasActivas();
+            test.listarMembresiasInactivas();
     }
 
 }
