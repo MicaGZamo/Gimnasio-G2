@@ -263,6 +263,15 @@ public class Test {
             System.out.println(asistencia);
         }
     }
+    
+    public void ListarAsistenciaPorFechaTest(){
+        LocalDate asistenciaDia = LocalDate.of(2024, 6, 7);
+        List<Asistencia> listaAsistencia = aD.ListarPorFecha(asistenciaDia);
+        System.out.println("lista de asistencia en el dia: "+asistenciaDia);
+        for (Asistencia asistencia : listaAsistencia) {
+            System.out.println(asistencia);
+        }
+    }
 
     //Membresia Test
     public void guardarMembresiaTest() {

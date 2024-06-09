@@ -61,7 +61,8 @@ public class Main {
 //------------- Test Asistencia -------------
 //          test.guardarAsistenciaTest();
 //          test.listarAsistenciaSocioTest();
-//          test.listarAsistenciaPorClaseTest();
+            test.listarAsistenciaPorClaseTest();
+            test.ListarAsistenciaPorFechaTest();
 // ------------- Test Membresia -------------
 //          test.guardarMembresiaTest();
 //          test.buscarPorSocioMemTest();

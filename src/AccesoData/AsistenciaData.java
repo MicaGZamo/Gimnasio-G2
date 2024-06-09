@@ -114,7 +114,7 @@ public class AsistenciaData {
             rs.close();
             
            } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Membresia ");
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Asistencia ");
             System.out.println("error " + ex.getMessage());
             ex.printStackTrace();
         }
@@ -122,9 +122,41 @@ public class AsistenciaData {
         return lista;
     }
 
-    public List<Asistencia> buscarPorFecha(LocalDate fecha) { // Ramiro
+    public List<Asistencia> ListarPorFecha(LocalDate fecha) { // Ramiro
         List<Asistencia> lista = new ArrayList<>();
-
+        String sql ="SELECT `id-asistencia`, `id-socio`, `id-clase`, `fecha-asistencia` "
+                  + "FROM `asistencias` "
+                  + "WHERE `fecha-asistencia`=?";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setDate(1, Date.valueOf(fecha));
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                Asistencia asistencia = new Asistencia();
+                Socio socioA = new Socio();
+                Clase claseA = new Clase();
+                
+                asistencia.setIdAsistencia(rs.getInt("id-asistencia"));
+                
+                socioA.setIdSocio(rs.getInt("id-socio"));
+                asistencia.setSocio(socioA);
+                
+                claseA.setIdClase(rs.getInt("id-clase"));
+                asistencia.setClase(claseA);
+                
+                asistencia.setFechaAsistencia(rs.getDate("fecha-asistencia").toLocalDate());
+                
+                lista.add(asistencia);
+                        
+            }
+            rs.close();
+            
+           } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Asistencia ");
+            System.out.println("error " + ex.getMessage());
+            ex.printStackTrace();
+        }
         return lista;
     }
 
