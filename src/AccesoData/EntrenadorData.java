@@ -196,7 +196,46 @@ public class EntrenadorData {
                 lista.add(entrenador);
             }
             if(!flag){
-                JOptionPane.showMessageDialog(null, "no se encontro el apellido: "+nom);
+                JOptionPane.showMessageDialog(null, "no se encontro el nombre: "+nom);
+            }
+            ps.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Entrenador ");
+            System.out.println("error " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return lista;}
+    
+    public List<Entrenador> listarPorNombreApellidoEspecialidad(String nom,String ape,String espe) {
+        List<Entrenador> lista = new ArrayList<>();
+        String sql = "SELECT * FROM `entrenadores`WHERE nombre=? AND apellido=? AND especialidad=?";
+        boolean flag=false;
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, nom);
+            ps.setString(2, ape);
+            ps.setString(3, espe);
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()) {
+                flag=true;
+                Entrenador entrenador = new Entrenador();
+                entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                entrenador.setDniE(rs.getString("dni"));
+                entrenador.setNombreE(rs.getString("nombre"));
+                entrenador.setApellidoE(rs.getString("apellido"));
+                entrenador.setEspecialidad(rs.getString("especialidad"));
+                //entrenador.setEstado(true);
+                entrenador.setEstado(rs.getBoolean("estado-en"));
+
+                lista.add(entrenador);
+            }
+            if(!flag){
+                JOptionPane.showMessageDialog(null, "no se encontro el nombre: "+nom);
             }
             ps.close();
 
