@@ -35,6 +35,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem12 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
 
         jMenuItem2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
@@ -74,7 +75,12 @@ public class Menu extends javax.swing.JFrame {
         });
         jmNuevoSocio.add(jMenuItem1);
 
-        Gestión.setText("Lista");
+        Gestión.setText("Gestión");
+        Gestión.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GestiónActionPerformed(evt);
+            }
+        });
         jmNuevoSocio.add(Gestión);
 
         jMenuBar1.add(jmNuevoSocio);
@@ -140,8 +146,21 @@ public class Menu extends javax.swing.JFrame {
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Recursos/icons8-asistencia-25.png"))); // NOI18N
         jMenu5.setText("Asistencias");
 
-        jMenuItem14.setText("jMenuItem14");
+        jMenuItem14.setText("Nueva");
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
         jMenu5.add(jMenuItem14);
+
+        jMenuItem3.setText("Administrar");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu5.add(jMenuItem3);
 
         jMenuBar1.add(jMenu5);
 
@@ -174,9 +193,9 @@ public class Menu extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         jdpEscritorio.removeAll();//removemos todos los componentes
         jdpEscritorio.repaint();// repintamos
-        gestionSocio socio = new gestionSocio();
-        socio.setVisible(true);
-        jdpEscritorio.add(socio);//
+        nuevoSocio socioN = new nuevoSocio();
+        socioN.setVisible(true);
+        jdpEscritorio.add(socioN);//
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jmiNuevoEntrenadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiNuevoEntrenadorActionPerformed
@@ -230,6 +249,31 @@ public class Menu extends javax.swing.JFrame {
         jdpEscritorio.add(clase);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+    private void GestiónActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GestiónActionPerformed
+        jdpEscritorio.removeAll();//removemos todos los componentes
+        jdpEscritorio.repaint();// repintamos
+        gestionSocio socio = new gestionSocio();
+        socio.setVisible(true);
+        jdpEscritorio.add(socio);//
+
+    }//GEN-LAST:event_GestiónActionPerformed
+
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+        jdpEscritorio.removeAll();//removemos todos los componentes
+        jdpEscritorio.repaint();// repintamos
+        nuevaAsistencia asistencia = new nuevaAsistencia();
+        asistencia.setVisible(true);
+        jdpEscritorio.add(asistencia);//
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        jdpEscritorio.removeAll();//removemos todos los componentes
+        jdpEscritorio.repaint();// repintamos
+        gestionAsistencia gestionA = new gestionAsistencia();
+        gestionA.setVisible(true);
+        jdpEscritorio.add(gestionA);//
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -273,6 +317,7 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JDesktopPane jdpEscritorio;
