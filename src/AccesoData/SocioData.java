@@ -109,36 +109,36 @@ public class SocioData {
     }
 
     public Socio buscarSocioId(int id) {
-        Socio socio = null;
-        String sql = "SELECT `id-socio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono`, `estado-so` FROM `socios` WHERE 'id-socio'=?";
-        PreparedStatement ps = null;
+         Socio socio = null;
+    String sql = "SELECT `id-socio`, `dni`, `nombre`, `apellido`, `edad`, `correo`, `telefono`, `estado-so` FROM `socios` WHERE `id-socio`=?";
+    PreparedStatement ps = null;
 
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, "id-socio");
-            ResultSet rs = ps.executeQuery();
+    try {
+        ps = con.prepareStatement(sql);
+        ps.setInt(1, id);  // Establecer el valor del parámetro ID
+        ResultSet rs = ps.executeQuery();
 
-            if (rs.next()) {
-                socio = new Socio();
-                socio.setIdSocio(rs.getInt("id-socio"));
-                socio.setDniSocio(rs.getString("dni"));
-                socio.setNombre(rs.getString("nombre"));
-                socio.setApellido(rs.getString("apellido"));
-                socio.setEdad(rs.getInt("edad"));
-                socio.setCorreo(rs.getString("correo"));
-                socio.setTelefono(rs.getString("telefono"));
-                socio.setEstado(rs.getBoolean("estado-so"));
-            }
-            ps.close();
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Socio");
-            System.out.println("error" + e);
-            e.printStackTrace();
+        if (rs.next()) {
+            socio = new Socio();
+            socio.setIdSocio(rs.getInt("id-socio"));
+            socio.setDniSocio(rs.getString("dni"));
+            socio.setNombre(rs.getString("nombre"));
+            socio.setApellido(rs.getString("apellido"));
+            socio.setEdad(rs.getInt("edad"));
+            socio.setCorreo(rs.getString("correo"));
+            socio.setTelefono(rs.getString("telefono"));
+            socio.setEstado(rs.getBoolean("estado-so"));
         }
+        ps.close();
 
-        return socio;
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Socio");
+        System.out.println("error" + e);
+        e.printStackTrace();
     }
+
+    return socio;
+}
 
     public void modificarSocio(Socio socio) {
         String sql = "UPDATE `socios` SET `dni`='?',`nombre`='?',`apellido`='?',`edad`='?',`correo`='?',`telefono`='?',`estado-so`='?' WHERE 'id-socio'=?";
