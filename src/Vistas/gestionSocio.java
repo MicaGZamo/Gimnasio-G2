@@ -18,6 +18,7 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         initComponents();
         modelo = new DefaultTableModel(); // Inicializar el modelo de la tabla
         armarCabeceraTabla(); // Agregar las columnas al modelo de la tabla
+        cargarSocios();
     }
 
     @SuppressWarnings("unchecked")
@@ -135,10 +136,20 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jrbActivos.setForeground(new java.awt.Color(204, 204, 204));
         jrbActivos.setText("Activos");
         jrbActivos.setToolTipText("");
+        jrbActivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbActivosActionPerformed(evt);
+            }
+        });
 
         jrbInactivos.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jrbInactivos.setForeground(new java.awt.Color(204, 204, 204));
         jrbInactivos.setText("Inactivos");
+        jrbInactivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbInactivosActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -160,6 +171,11 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jrbTodos.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jrbTodos.setForeground(new java.awt.Color(204, 204, 204));
         jrbTodos.setText("Todos");
+        jrbTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbTodosActionPerformed(evt);
+            }
+        });
 
         jDesktopPane1.setLayer(jbBuscarID, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtBuscarID, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -307,36 +323,51 @@ public class gestionSocio extends javax.swing.JInternalFrame {
 
     private void jbBuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarIDActionPerformed
 
-  // Borrar filas existentes en la tabla antes de realizar la búsqueda
-    borrarFilaTabla();
+        // Borrar filas existentes en la tabla antes de realizar la búsqueda
+        borrarFilaTabla();
 
-    try {
-        // Obtener el ID ingresado por el usuario
-        Integer id = Integer.parseInt(jtBuscarID.getText());
+        try {
+            // Obtener el ID ingresado por el usuario
+            Integer id = Integer.parseInt(jtBuscarID.getText());
 
-        // Realizar la búsqueda del socio por ID
-        Socio socioEncontrado = socioData.buscarSocioId(id);
+            // Realizar la búsqueda del socio por ID
+            Socio socioEncontrado = socioData.buscarSocioId(id);
 
-        // Si se encontró un socio con el ID especificado, agregarlo a la tabla
-        if (socioEncontrado != null) {
-            modelo.addRow(new Object[]{
-                socioEncontrado.getIdSocio(), socioEncontrado.getDniSocio(),
-                socioEncontrado.getNombre(), socioEncontrado.getApellido(),
-                socioEncontrado.getEdad(), socioEncontrado.getCorreo(),
-                socioEncontrado.getTelefono(), socioEncontrado.isEstado() ? "Activo" : "Inactivo"
-            });
-        } else {
-            JOptionPane.showMessageDialog(this, "Socio no encontrado.");
+            // Si se encontró un socio con el ID especificado, agregarlo a la tabla
+            if (socioEncontrado != null) {
+                modelo.addRow(new Object[]{
+                    socioEncontrado.getIdSocio(), socioEncontrado.getDniSocio(),
+                    socioEncontrado.getNombre(), socioEncontrado.getApellido(),
+                    socioEncontrado.getEdad(), socioEncontrado.getCorreo(),
+                    socioEncontrado.getTelefono(), socioEncontrado.isEstado() ? "Activo" : "Inactivo"
+                });
+            } else {
+                JOptionPane.showMessageDialog(this, "Socio no encontrado.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un número válido para el ID.");
         }
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(this, "Debe ingresar un número válido para el ID.");
-    }
 
     }//GEN-LAST:event_jbBuscarIDActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         limpiarCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jrbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTodosActionPerformed
+        borrarFilaTabla();
+        cargarSocios();
+    }//GEN-LAST:event_jrbTodosActionPerformed
+
+    private void jrbActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbActivosActionPerformed
+       borrarFilaTabla();
+       cargarSociosAct();
+    }//GEN-LAST:event_jrbActivosActionPerformed
+
+    private void jrbInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbInactivosActionPerformed
+      borrarFilaTabla();
+      cargarSociosInact();
+    }//GEN-LAST:event_jrbInactivosActionPerformed
 
     private void actualizarTabla(List<Socio> listaSocios1) {
         DefaultTableModel modelo = (DefaultTableModel) jtTablaSocio.getModel();
@@ -375,12 +406,49 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         DefaultTableModel modeloTabla = (DefaultTableModel) jtTablaSocio.getModel();
         modeloTabla.setRowCount(0); // Limpiar la tabla
     }
-     private void borrarFilaTabla(){
-        int indice = modelo.getRowCount()-1;
+
+    private void borrarFilaTabla() {
+        int indice = modelo.getRowCount() - 1;
         for (int i = indice; i >= 0; i--) {
             modelo.removeRow(i);
         }
-     }
+    }
+
+    private void cargarSocios() {
+
+        List<Socio> listaSocios = socioData.listarTodosSocios();
+        for (Socio socio : listaSocios) {
+            modelo.addRow(new Object[]{
+                socio.getIdSocio(), socio.getDniSocio(), socio.getNombre(), socio.getApellido(),
+                socio.getEdad(), socio.getCorreo(), socio.getTelefono(), socio.isEstado() ? "Activo" : "Inactivo"
+            });
+
+        }
+
+    }
+
+    private void cargarSociosAct() {
+         List<Socio> listaAct = socioData.listarSociosActivos();
+
+        for (Socio socio : listaAct) {
+            modelo.addRow(new Object[]{
+                socio.getIdSocio(), socio.getDniSocio(), socio.getNombre(), socio.getApellido(),
+                socio.getEdad(), socio.getCorreo(), socio.getTelefono(), socio.isEstado() ? "Activo" : "Inactivo"
+            });
+
+        }
+    }
+    private void cargarSociosInact (){
+      List<Socio> listaInact = socioData.listarSociosInactivos();
+
+        for (Socio socio : listaInact) {
+            modelo.addRow(new Object[]{
+                socio.getIdSocio(), socio.getDniSocio(), socio.getNombre(), socio.getApellido(),
+                socio.getEdad(), socio.getCorreo(), socio.getTelefono(), socio.isEstado() ? "Activo" : "Inactivo"
+            });
+        }
+    
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
