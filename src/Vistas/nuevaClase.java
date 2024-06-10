@@ -17,15 +17,16 @@ import javax.swing.JOptionPane;
  * @author gomez
  */
 public class nuevaClase extends javax.swing.JInternalFrame {
-Entrenador entrenadorActual = null;
-EntrenadorData eD = new EntrenadorData();
-ClaseData cD = new ClaseData();
-Clase clase = new Clase();
- private ArrayList<LocalTime> listaHorario;
-   
+
+    Entrenador entrenadorActual = null;
+    EntrenadorData eD = new EntrenadorData();
+    ClaseData cD = new ClaseData();
+    Clase clase = new Clase();
+    private ArrayList<LocalTime> listaHorario;
+
     public nuevaClase() {
         initComponents();
-        listaHorario= (ArrayList<LocalTime>)cD.listarHorariosDisponibles();
+        listaHorario = (ArrayList<LocalTime>) cD.listarHorariosDisponibles();
         horariosDisponibles();
     }
 
@@ -73,6 +74,11 @@ Clase clase = new Clase();
         jLabel4.setText("Clase");
 
         jbLimpiar.setText("Limpiar");
+        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbLimpiarActionPerformed(evt);
+            }
+        });
 
         jbGuardar.setText("Guardar");
         jbGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -220,39 +226,39 @@ Clase clase = new Clase();
     }//GEN-LAST:event_jtNombreApellidoEntrenadorActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        try{
-         String nombre = jtNombreClase.getText();
-         LocalTime horario = (LocalTime) jcbHorariosDisponibles.getSelectedItem();
-         
-         int capacidad = Integer.parseInt(jtCapasidad.getText());
-         clase.setNombre(nombre);
-         clase.setEntrenador(entrenadorActual);
-         clase.setHorario(horario);
-         clase.setCapacidad(capacidad);
-         clase.setEstado(true);
-         cD.guardarClase(clase);
-        }catch (NumberFormatException e) {
+        try {
+            String nombre = jtNombreClase.getText();
+            LocalTime horario = (LocalTime) jcbHorariosDisponibles.getSelectedItem();
+
+            int capacidad = Integer.parseInt(jtCapasidad.getText());
+            clase.setNombre(nombre);
+            clase.setEntrenador(entrenadorActual);
+            clase.setHorario(horario);
+            clase.setCapacidad(capacidad);
+            clase.setEstado(true);
+            cD.guardarClase(clase);
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número válido.");
         }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
-         try {
-             String dni = jtDniEntrenador.getText();
-             String regularDni = "\\d+";
-             if(!dni.matches(regularDni)){
-                 JOptionPane.showMessageDialog(this, "El DNI debe tener 8 dígitos numéricos.");
-            return;
-             }
-             entrenadorActual=    eD.buscarPorDni(dni);
-             if(entrenadorActual!=null && entrenadorActual.isEstado()){
-                 jtNombreApellidoEntrenador.setText(entrenadorActual.getNombreE()+" "+entrenadorActual.getApellidoE());
-             }else{
-                JOptionPane.showMessageDialog(this, "El entrenador no se encuantra cargado en la base" );
-             }
-         }catch (NumberFormatException n) {
+        try {
+            String dni = jtDniEntrenador.getText();
+            String regularDni = "\\d+";
+            if (!dni.matches(regularDni)) {
+                JOptionPane.showMessageDialog(this, "El DNI debe tener 8 dígitos numéricos.");
+                return;
+            }
+            entrenadorActual = eD.buscarPorDni(dni);
+            if (entrenadorActual.isEstado()) {
+                jtNombreApellidoEntrenador.setText(entrenadorActual.getNombreE() + " " + entrenadorActual.getApellidoE());
+            } else {
+                JOptionPane.showMessageDialog(this, "El entrenador esta inactivo");
+            }
+        } catch (NumberFormatException n) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un DNI válido.");
-         }
+        }
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jtNombreClaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtNombreClaseActionPerformed
@@ -260,13 +266,21 @@ Clase clase = new Clase();
     }//GEN-LAST:event_jtNombreClaseActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-dispose();        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jbSalirActionPerformed
 
-private void horariosDisponibles(){
+    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
+        jtNombreClase.setText("");
+        jtDniEntrenador.setText("");
+        jtNombreApellidoEntrenador.setText("");
+        jtCapasidad.setText("");
+
+    }//GEN-LAST:event_jbLimpiarActionPerformed
+
+    private void horariosDisponibles() {
         for (LocalTime item : listaHorario) {
-            jcbHorariosDisponibles.addItem(item); 
-            
+            jcbHorariosDisponibles.addItem(item);
+
         }
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
