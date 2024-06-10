@@ -52,16 +52,16 @@ public class ClaseData {
             ex.printStackTrace();
         }
     }
-
-    public Clase buscarClase(String nombre) {
+ public Clase  buscarClaseId(int id) {
         Clase clase = null;
+         
         String sql = "SELECT clases.*, entrenadores.nombre as nombre_entrenador "
                       + " FROM `clases`, entrenadores "
-                      + " WHERE clases.`id-entrenador` = entrenadores.`id-entrenador` AND clases.nombre=? ";
+                      + " WHERE clases.`id-entrenador` = entrenadores.`id-entrenador` AND clases.`id-clase`=? ";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, nombre);
+            ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
 
@@ -75,6 +75,7 @@ public class ClaseData {
                 entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
                 entrenador.setNombreE(rs.getString("nombre_entrenador"));
                 clase.setEntrenador(entrenador);
+              
             }
             ps.close();
         } catch (SQLException e) {
@@ -83,6 +84,40 @@ public class ClaseData {
             e.printStackTrace();
         }
         return clase;
+    }
+ 
+    public List<Clase>  buscarClase(String nombre) {
+        Clase clase = null;
+         List<Clase> listaClase = new ArrayList<>();
+        String sql = "SELECT clases.*, entrenadores.nombre as nombre_entrenador "
+                      + " FROM `clases`, entrenadores "
+                      + " WHERE clases.`id-entrenador` = entrenadores.`id-entrenador` AND clases.nombre=? ";
+        PreparedStatement ps = null;
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, nombre);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+
+                clase = new Clase();
+                clase.setIdClase(rs.getInt("id-clase"));
+                clase.setNombre(rs.getString("nombre"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
+                clase.setCapacidad(rs.getInt("capacidad"));
+                clase.setEstado(rs.getBoolean("estado-clase"));
+                Entrenador entrenador = new Entrenador(); 
+                entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                entrenador.setNombreE(rs.getString("nombre_entrenador"));
+                clase.setEntrenador(entrenador);
+                listaClase.add(clase);
+            }
+            ps.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Clase");
+            System.out.println("error" + e);
+            e.printStackTrace();
+        }
+        return listaClase;
     }
     
      public Clase buscarClasePorHorario(LocalTime horario) {

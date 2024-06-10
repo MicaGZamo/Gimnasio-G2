@@ -129,7 +129,7 @@ public class Test {
 
     public void modificarClaseTest() {
         //  Modificar clase
-        Clase clase5 = cd.buscarClase("Zumba");
+        Clase clase5 = cd.buscarClaseId(10);
         cd.modificarClase(clase5);
     }
 
@@ -249,7 +249,7 @@ public class Test {
     // Asistencia Test
     public void guardarAsistenciaTest() {
         //       Guardar Asisteencia
-        Clase clase5 = cd.buscarClase("Zumba");
+        Clase clase5 = cd.buscarClaseId(12);
         Socio socioAsistencia = sd.buscarSocioDni("55667799");
         LocalDate asistenciaDia = LocalDate.of(2024, 6, 7);
         Asistencia a1 = new Asistencia(socioAsistencia, clase5, asistenciaDia);
@@ -378,14 +378,20 @@ public class Test {
     }
 
     public void listarAsistenciaPorClaseTest() {
-        Clase clase1 = cd.buscarClase("zumba");
+        Clase clase1 = cd.buscarClaseId(12);
 
         List<Asistencia> listaAsist = aD.buscarPorClase(clase1);
         
         System.out.println("Lista de Asistencias por Clase");
         for (Asistencia asistencia : listaAsist) {
-            System.out.println(listaAsist);
+            System.out.println(asistencia);
             
         }
     }
+
+
+public void buscarClaseTest(){
+        Clase clase1 = cd.buscarClaseId(12);
+    System.out.println("la clase buscada por id es "+clase1);
+}
 }
