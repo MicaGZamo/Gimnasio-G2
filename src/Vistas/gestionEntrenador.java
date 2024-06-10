@@ -24,6 +24,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         modelo=new DefaultTableModel();
         
         armarCabeceraTabla();
+        cargarTodosEntrenadores();
         
     }
     
@@ -38,7 +39,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
-        jtEntrenadores.setModel(modelo);
+        jtTablaEntrenadores.setModel(modelo);
     }
     
     private void borrarFilaTabla(){
@@ -72,13 +73,11 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         jtNombre = new javax.swing.JTextField();
         jtApellido = new javax.swing.JTextField();
         jtEspecialidad = new javax.swing.JTextField();
-        jbBuscarPorNombre = new javax.swing.JButton();
-        jbBuscarPorApellido = new javax.swing.JButton();
-        jbBuscarPorEspecialidad = new javax.swing.JButton();
+        jbBuscar = new javax.swing.JButton();
         jrbActivos = new javax.swing.JRadioButton();
         jrbInactivos = new javax.swing.JRadioButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jtEntrenadores = new javax.swing.JTable();
+        jtTablaEntrenadores = new javax.swing.JTable();
         jbDarBaja = new javax.swing.JButton();
         jbModificar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
@@ -104,18 +103,19 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
-        jbBuscarPorNombre.setText("Buscar");
-        jbBuscarPorNombre.addActionListener(new java.awt.event.ActionListener() {
+        jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarPorNombreActionPerformed(evt);
+                jbBuscarActionPerformed(evt);
             }
         });
 
-        jbBuscarPorApellido.setText("Buscar");
-
-        jbBuscarPorEspecialidad.setText("Buscar");
-
         jrbActivos.setText("Activos");
+        jrbActivos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jrbActivosActionPerformed(evt);
+            }
+        });
 
         jrbInactivos.setText("Inactivos");
         jrbInactivos.addActionListener(new java.awt.event.ActionListener() {
@@ -124,7 +124,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
-        jtEntrenadores.setModel(new javax.swing.table.DefaultTableModel(
+        jtTablaEntrenadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -135,7 +135,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jtEntrenadores);
+        jScrollPane1.setViewportView(jtTablaEntrenadores);
 
         jbDarBaja.setText("Dar Baja");
         jbDarBaja.addActionListener(new java.awt.event.ActionListener() {
@@ -172,9 +172,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jtNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtApellido, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtEspecialidad, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jbBuscarPorNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jbBuscarPorApellido, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jbBuscarPorEspecialidad, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jbBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jrbActivos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jrbInactivos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -187,48 +185,42 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(51, 51, 51)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtNombre)
-                    .addComponent(jtApellido)
-                    .addComponent(jtEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jbBuscarPorNombre)
-                        .addComponent(jbBuscarPorApellido))
-                    .addComponent(jbBuscarPorEspecialidad, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(64, 64, 64))
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(jLabel1))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(jrbActivos)
-                        .addGap(52, 52, 52)
-                        .addComponent(jrbInactivos)
-                        .addGap(43, 43, 43)
-                        .addComponent(jrbTodos))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jbDarBaja)
-                        .addGap(107, 107, 107)
-                        .addComponent(jbModificar)
-                        .addGap(163, 163, 163)
-                        .addComponent(jbSalir)))
-                .addContainerGap(83, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 524, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 31, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4))
+                                .addGap(51, 51, 51)
+                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jtNombre)
+                                    .addComponent(jtApellido)
+                                    .addComponent(jtEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                                .addGap(67, 67, 67)
+                                .addComponent(jbBuscar))
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addGap(213, 213, 213)
+                                .addComponent(jLabel1))
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addGap(116, 116, 116)
+                                .addComponent(jrbActivos)
+                                .addGap(52, 52, 52)
+                                .addComponent(jrbInactivos)
+                                .addGap(43, 43, 43)
+                                .addComponent(jrbTodos))
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addComponent(jbDarBaja)
+                                .addGap(108, 108, 108)
+                                .addComponent(jbModificar)
+                                .addGap(137, 137, 137)
+                                .addComponent(jbSalir)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,19 +229,16 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscarPorNombre))
-                .addGap(12, 12, 12)
+                    .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscarPorApellido))
+                    .addComponent(jbBuscar))
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jbBuscarPorEspecialidad)))
+                    .addComponent(jtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jrbActivos)
@@ -257,7 +246,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
                     .addComponent(jrbTodos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbDarBaja)
                     .addComponent(jbModificar)
@@ -283,6 +272,11 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
 
     private void jrbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTodosActionPerformed
         // TODO add your handling code here:
+        borrarFilaTabla();
+        cargarTodosEntrenadores();
+        jrbActivos.setSelected(false);
+        jrbInactivos.setSelected(false);
+        jrbTodos.setSelected(true);
     }//GEN-LAST:event_jrbTodosActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -295,11 +289,24 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarBajaActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: dar de baja a un entrenador----------------------------
+        //int selecIDmateria= (int)jTablaNotas.getValueAt(jTablaNotas.getSelectedRow()  , 0);
+        int idEntrenador=(int) jtTablaEntrenadores.getValueAt(jtTablaEntrenadores.getSelectedRow(),0);
+        //System.out.println("entrenador seleccionado con id: " +idEntrenador);
+        //Entrenador selecEntrenador=entrenadorData.buscarPorId(idEntrenador);
+        entrenadorData.darBaja(idEntrenador);
+        borrarFilaTabla();
+        cargarEntrenadoresActivos();
+        
     }//GEN-LAST:event_jbDarBajaActionPerformed
 
     private void jrbInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbInactivosActionPerformed
         // TODO add your handling code here:
+        borrarFilaTabla();
+        cargarEntrenadoresInactivos();
+        jrbActivos.setSelected(false);
+        jrbInactivos.setSelected(true);
+        jrbTodos.setSelected(false);
     }//GEN-LAST:event_jrbInactivosActionPerformed
 
     private void jtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtApellidoActionPerformed
@@ -310,17 +317,18 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtNombreActionPerformed
 
-    private void jbBuscarPorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPorNombreActionPerformed
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here: buscar por nombre
         borrarFilaTabla();
         String nombre =jtNombre.getText();
         String apellido =jtApellido.getText();
         String especialidad=jtEspecialidad.getText();
-        System.out.println("nombre: "+nombre);
-        System.out.println("apellido: "+apellido);
-        System.out.println("Especialidad: "+especialidad);
+//        System.out.println("nombre: "+nombre);
+//        System.out.println("apellido: "+apellido);
+//        System.out.println("Especialidad: "+especialidad);
         
         if(apellido.isEmpty() && especialidad.isEmpty()){ //busca por nombre cuando los campos apellido y especialidad estan vacios
+            System.out.println("busqueda solo nombre");
             List<Entrenador> lista = entrenadorData.listarPorNombre(nombre);
             for (Entrenador e : lista) {
                 modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
@@ -341,14 +349,52 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         }
         
-        if(!nombre.isEmpty() && !apellido.isEmpty()){
-            System.out.println("buscar por nombre y apellido");
+        if(!nombre.isEmpty() && !apellido.isEmpty() && especialidad.isEmpty()){
+            System.out.println("busqueda por nombre y apellido, sin especialidad");
             Entrenador e= entrenadorData.buscarPorNombreYApellido(nombre, apellido);
-            
             modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );
         }
         
-    }//GEN-LAST:event_jbBuscarPorNombreActionPerformed
+        if(!nombre.isEmpty() && !apellido.isEmpty() && !especialidad.isEmpty()){
+            System.out.println("busqueda por nombre, apellido y especialidad");
+            List<Entrenador> lista = entrenadorData.listarPorNombreApellidoEspecialidad(nombre, apellido, especialidad);
+            for (Entrenador e : lista) {
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+            }
+        }
+        
+    }//GEN-LAST:event_jbBuscarActionPerformed
+
+    private void jrbActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbActivosActionPerformed
+        // TODO add your handling code here:
+        borrarFilaTabla();
+        cargarEntrenadoresActivos();
+        jrbActivos.setSelected(true);
+        jrbInactivos.setSelected(false);
+        jrbTodos.setSelected(false);
+        
+    }//GEN-LAST:event_jrbActivosActionPerformed
+    
+    private void cargarTodosEntrenadores(){
+        List<Entrenador> lista = entrenadorData.listarTodosEntrenadores();
+            for (Entrenador e : lista) {
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+            }
+    }
+    
+    private void cargarEntrenadoresActivos(){
+        List<Entrenador> lista = entrenadorData.listarEntrenadores();
+            for (Entrenador e : lista) {
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+            }
+    }
+    
+    private void cargarEntrenadoresInactivos(){
+        List<Entrenador> lista = entrenadorData.listarEntrenadoresInactivos();
+            for (Entrenador e : lista) {
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+            }
+    }
     
     public void cargarEntrenadoresPorNombre(){
         String nombre = jtNombre.getSelectedText();
@@ -361,9 +407,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton jbBuscarPorApellido;
-    private javax.swing.JButton jbBuscarPorEspecialidad;
-    private javax.swing.JButton jbBuscarPorNombre;
+    private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbDarBaja;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
@@ -371,8 +415,8 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
     private javax.swing.JRadioButton jrbInactivos;
     private javax.swing.JRadioButton jrbTodos;
     private javax.swing.JTextField jtApellido;
-    private javax.swing.JTable jtEntrenadores;
     private javax.swing.JTextField jtEspecialidad;
     private javax.swing.JTextField jtNombre;
+    private javax.swing.JTable jtTablaEntrenadores;
     // End of variables declaration//GEN-END:variables
 }

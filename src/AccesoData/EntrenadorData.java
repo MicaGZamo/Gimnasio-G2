@@ -283,7 +283,40 @@ public class EntrenadorData {
 
         return lista;}
     
-    public List<Entrenador> listarEntrenadores() {
+    
+    public List<Entrenador> listarTodosEntrenadores() { //todos los entrenadores 
+        List<Entrenador> lista = new ArrayList<>();
+        //String sql = "SELECT * FROM `entrenadores`WHERE `estado-en`=1";
+        String sql = "SELECT * FROM `entrenadores`"; //todos los entrenadores: activos y no activos
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Entrenador entrenador = new Entrenador();
+                entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                entrenador.setDniE(rs.getString("dni"));
+                entrenador.setNombreE(rs.getString("nombre"));
+                entrenador.setApellidoE(rs.getString("apellido"));
+                entrenador.setEspecialidad(rs.getString("especialidad"));
+                //entrenador.setEstado(true);
+                entrenador.setEstado(rs.getBoolean("estado-en"));
+
+                lista.add(entrenador);
+            }
+            ps.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Entrenador ");
+            System.out.println("error " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return lista;}
+    
+    
+    public List<Entrenador> listarEntrenadores() { //entrenadores activos
         List<Entrenador> lista = new ArrayList<>();
         String sql = "SELECT * FROM `entrenadores`WHERE `estado-en`=1";
         //String sql = "SELECT * FROM `entrenadores`"; //todos los entrenadores: activos y no activos
@@ -314,6 +347,36 @@ public class EntrenadorData {
 
         return lista;}
     
+    public List<Entrenador> listarEntrenadoresInactivos() { //entrenadores Inactivos
+        List<Entrenador> lista = new ArrayList<>();
+        String sql = "SELECT * FROM `entrenadores`WHERE `estado-en`=0";
+        //String sql = "SELECT * FROM `entrenadores`"; //todos los entrenadores: activos y no activos
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Entrenador entrenador = new Entrenador();
+                entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                entrenador.setDniE(rs.getString("dni"));
+                entrenador.setNombreE(rs.getString("nombre"));
+                entrenador.setApellidoE(rs.getString("apellido"));
+                entrenador.setEspecialidad(rs.getString("especialidad"));
+                //entrenador.setEstado(true);
+                entrenador.setEstado(rs.getBoolean("estado-en"));
+
+                lista.add(entrenador);
+            }
+            ps.close();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Entrenador ");
+            System.out.println("error " + e.getMessage());
+            e.printStackTrace();
+        }
+
+        return lista;}
     
     
     public void actualizarEntrenador(Entrenador entrenador) {
@@ -350,18 +413,42 @@ public class EntrenadorData {
     public void darBaja(int id){ 
     
         try {
-        //String sql= "UPDATE alumno SET estado = 0 WHERE idAlumno = ? ";
-        String sql= "UPDATE `entrenadores` SET `estado-en`=0 WHERE `id-entrenador`=? ";
-        PreparedStatement ps = con.prepareStatement(sql);
-        ps.setInt(1, id);
-        int fila = ps.executeUpdate();
+       
+            String sql= "UPDATE `entrenadores` SET `estado-en`=0 WHERE `id-entrenador`=? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
         
-        if(fila==1){
-            JOptionPane.showMessageDialog(null, "Se dio de baja al entrenador con id: "+id);
-        }else{
-            JOptionPane.showMessageDialog(null, "No se pudo dar de baja al entrenador con id: "+id);
+            if(fila==1){
+                JOptionPane.showMessageDialog(null, "Se dio de baja al entrenador con id: "+id);
+            }else{
+                JOptionPane.showMessageDialog(null, "No se pudo dar de baja al entrenador con id: "+id);
+            }
+            ps.close();
+        
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al actualizar datos");
+            System.out.println("error " + e.getMessage());
+            e.printStackTrace();
         }
-        ps.close();
+
+    }
+    
+    public void darAlta(int id){ 
+    
+        try {
+        
+            String sql= "UPDATE `entrenadores` SET `estado-en`=1 WHERE `id-entrenador`=? ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+            int fila = ps.executeUpdate();
+
+            if(fila==1){
+                JOptionPane.showMessageDialog(null, "Se dio de alta al entrenador con id: "+id);
+            }else{
+                JOptionPane.showMessageDialog(null, "No se pudo dar de alta al entrenador con id: "+id);
+            }
+            ps.close();
         
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Error al actualizar datos");
