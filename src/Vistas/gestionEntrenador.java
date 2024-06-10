@@ -82,6 +82,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         jbModificar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jrbTodos = new javax.swing.JRadioButton();
+        jbDarAlta = new javax.swing.JButton();
 
         jLabel1.setText("BUSCAR ENTRENADOR");
 
@@ -165,6 +166,13 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jbDarAlta.setText("Dar Alta");
+        jbDarAlta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDarAltaActionPerformed(evt);
+            }
+        });
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -180,6 +188,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jbModificar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jrbTodos, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jbDarAlta, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -212,15 +221,20 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
                                 .addGap(52, 52, 52)
                                 .addComponent(jrbInactivos)
                                 .addGap(43, 43, 43)
-                                .addComponent(jrbTodos))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jbDarBaja)
-                                .addGap(108, 108, 108)
-                                .addComponent(jbModificar)
-                                .addGap(137, 137, 137)
-                                .addComponent(jbSalir)))
+                                .addComponent(jrbTodos)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jbDarBaja)
+                        .addGap(36, 36, 36)
+                        .addComponent(jbDarAlta)
+                        .addGap(81, 81, 81)
+                        .addComponent(jbModificar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jbSalir)
+                        .addGap(28, 28, 28))))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -250,7 +264,8 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbDarBaja)
                     .addComponent(jbModificar)
-                    .addComponent(jbSalir))
+                    .addComponent(jbSalir)
+                    .addComponent(jbDarAlta))
                 .addGap(24, 24, 24))
         );
 
@@ -286,17 +301,22 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
         // TODO add your handling code here:
+        //clase = new Clase();
+       int idEntrenador=(int) jtTablaEntrenadores.getValueAt(jtTablaEntrenadores.getSelectedRow(),0);
+       jDesktopPane1.removeAll();
+       ActualizarEntrenador actualizarE = new ActualizarEntrenador(idEntrenador);
+       actualizarE.setVisible(true);
+       jDesktopPane1.add(actualizarE);
+                                        
+                
     }//GEN-LAST:event_jbModificarActionPerformed
 
     private void jbDarBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarBajaActionPerformed
-        // TODO add your handling code here: dar de baja a un entrenador----------------------------
-        //int selecIDmateria= (int)jTablaNotas.getValueAt(jTablaNotas.getSelectedRow()  , 0);
+        // TODO add your handling code here: dar de baja a un entrenador
         int idEntrenador=(int) jtTablaEntrenadores.getValueAt(jtTablaEntrenadores.getSelectedRow(),0);
-        //System.out.println("entrenador seleccionado con id: " +idEntrenador);
-        //Entrenador selecEntrenador=entrenadorData.buscarPorId(idEntrenador);
         entrenadorData.darBaja(idEntrenador);
         borrarFilaTabla();
-        cargarEntrenadoresActivos();
+        cargarEntrenadoresInactivos();
         
     }//GEN-LAST:event_jbDarBajaActionPerformed
 
@@ -374,6 +394,14 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         jrbTodos.setSelected(false);
         
     }//GEN-LAST:event_jrbActivosActionPerformed
+
+    private void jbDarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarAltaActionPerformed
+        // TODO add your handling code here:-------------------------------------------------------
+        int idEntrenador=(int) jtTablaEntrenadores.getValueAt(jtTablaEntrenadores.getSelectedRow(),0);
+        entrenadorData.darAlta(idEntrenador);
+        borrarFilaTabla();
+        cargarEntrenadoresActivos(); 
+    }//GEN-LAST:event_jbDarAltaActionPerformed
     
     private void cargarTodosEntrenadores(){
         List<Entrenador> lista = entrenadorData.listarTodosEntrenadores();
@@ -408,6 +436,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBuscar;
+    private javax.swing.JButton jbDarAlta;
     private javax.swing.JButton jbDarBaja;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
