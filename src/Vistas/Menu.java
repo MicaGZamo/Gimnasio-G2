@@ -43,7 +43,7 @@ public class Menu extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setResizable(false);
 
         jdpEscritorio.setBackground(new java.awt.Color(11, 9, 9));
         jdpEscritorio.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
