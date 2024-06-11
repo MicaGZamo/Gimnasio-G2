@@ -4,6 +4,8 @@ package Vistas;
 import AccesoData.AsistenciaData;
 import AccesoData.ClaseData;
 import AccesoData.SocioData;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,6 +21,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
     
     public nuevaAsistencia() {
         initComponents();
+        fechahoy();
         modelo=new DefaultTableModel();
         armarCabeceraTabla();
     }
@@ -52,12 +55,13 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         jtfNombreApellido = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jcbHorario = new javax.swing.JComboBox<>();
-        jTextField2 = new javax.swing.JTextField();
+        jtfFechaHoy = new javax.swing.JTextField();
         jbLimpiar = new javax.swing.JButton();
         jbRegistrar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jtTablaClase = new javax.swing.JTable();
+        jLabel4 = new javax.swing.JLabel();
 
         jLabel1.setText("Control asistencia");
 
@@ -73,9 +77,9 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
 
         jcbHorario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jtfFechaHoy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jtfFechaHoyActionPerformed(evt);
             }
         });
 
@@ -108,6 +112,8 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         ));
         jScrollPane2.setViewportView(jtTablaClase);
 
+        jLabel4.setText("Fecha:");
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -117,11 +123,12 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jtfNombreApellido, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jcbHorario, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jTextField2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jtfFechaHoy, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbLimpiar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbRegistrar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -133,7 +140,9 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
                         .addGap(123, 123, 123)
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jtfFechaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +183,8 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jtfFechaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
                 .addGap(19, 19, 19)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -225,19 +235,26 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         dispose();
     }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void jtfFechaHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfFechaHoyActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
-
+    }//GEN-LAST:event_jtfFechaHoyActionPerformed
+    
+    private void fechahoy(){
+        LocalDate hoy=LocalDate.now();
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String FechaFormateada = hoy.format(formato);
+        jtfFechaHoy.setColumns(10);
+        jtfFechaHoy.setText(FechaFormateada);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbRegistrar;
@@ -246,6 +263,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox<String> jcbHorario;
     private javax.swing.JTable jtTablaClase;
     private javax.swing.JTextField jtfDni;
+    private javax.swing.JTextField jtfFechaHoy;
     private javax.swing.JTextField jtfNombreApellido;
     // End of variables declaration//GEN-END:variables
 }
