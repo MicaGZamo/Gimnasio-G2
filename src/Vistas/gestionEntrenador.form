@@ -70,17 +70,23 @@
                                   <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
                                   <Component id="jrbTodos" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jbDarBaja" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="108" max="-2" attributes="0"/>
-                                  <Component id="jbModificar" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
-                                  <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
-                              </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
                       </Group>
-                      <Component id="jScrollPane1" min="-2" pref="583" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jScrollPane1" min="-2" pref="583" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="jbDarBaja" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="jbDarAlta" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="81" max="-2" attributes="0"/>
+                          <Component id="jbModificar" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="jbSalir" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
           </Group>
@@ -118,6 +124,7 @@
                       <Component id="jbDarBaja" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbModificar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbSalir" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jbDarAlta" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
@@ -232,6 +239,14 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrbTodosActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="jbDarAlta">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Dar Alta"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbDarAltaActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

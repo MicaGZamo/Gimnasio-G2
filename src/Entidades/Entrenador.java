@@ -83,7 +83,8 @@ public class Entrenador {
 
     @Override
     public String toString() {
-        return "Entrenador{" + "id=" + idEntrenador + ", dni=" + dniE + ", nombre=" + nombreE + ", apellido=" + apellidoE + ", especialidad=" + especialidad + ", estado=" + estado + '}';
+        String estadoStr = estado ? "Activo" : "Inactivo"; //expresion condicional ternaria
+        return "Entrenador{" + "id=" + idEntrenador + ", dni=" + dniE + " - " + nombreE + " - " + apellidoE + ", especialidad=" + especialidad + ", estado=" + estadoStr + '}';
     }
 
 }
