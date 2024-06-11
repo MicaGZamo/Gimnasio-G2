@@ -249,9 +249,9 @@ public class Test {
     // Asistencia Test
     public void guardarAsistenciaTest() {
         //       Guardar Asisteencia
-        Clase clase5 = cd.buscarClaseId(12);
-        Socio socioAsistencia = sd.buscarSocioDni("55667799");
-        LocalDate asistenciaDia = LocalDate.of(2024, 6, 7);
+        Clase clase5 = cd.buscarClaseId(4);
+        Socio socioAsistencia = sd.buscarSocioDni("00112233");
+        LocalDate asistenciaDia = LocalDate.of(2024, 4, 1);
         Asistencia a1 = new Asistencia(socioAsistencia, clase5, asistenciaDia);
         aD.guardarAsistencia(a1);
     }
