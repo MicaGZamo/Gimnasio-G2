@@ -14,6 +14,7 @@ public class MembresiaData {
 
     public MembresiaData() {
         con = Conexion.getConexion();
+        
     }
 
     public void guardarMembresia(Membresia membresia) {
