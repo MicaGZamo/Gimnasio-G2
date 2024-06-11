@@ -247,6 +247,11 @@ public class ActualizarEntrenador extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         dispose();
+        Menu menuPrincipal = new Menu();
+        gestionEntrenador ge = new gestionEntrenador();
+        menuPrincipal.getJdpEscritorio().add(ge);
+        ge.setVisible(true);
+        menuPrincipal.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jtfidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfidActionPerformed
