@@ -18,10 +18,10 @@ import javax.swing.JOptionPane;
  */
 public class nuevaClase extends javax.swing.JInternalFrame {
 
-    Entrenador entrenadorActual = null;
-    EntrenadorData eD = new EntrenadorData();
-    ClaseData cD = new ClaseData();
-    Clase clase = new Clase();
+    private Entrenador entrenadorActual = null;
+    private EntrenadorData eD = new EntrenadorData();
+    private ClaseData cD = new ClaseData();
+    private Clase clase = new Clase();
     private ArrayList<LocalTime> listaHorario;
 
     public nuevaClase() {

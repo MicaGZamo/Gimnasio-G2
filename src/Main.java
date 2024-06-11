@@ -51,7 +51,7 @@ public class Main {
 //          test.darBajaClaseTest();
 //          test.horariosDisponiblesTest();
 //          test.horariosOcupadosTest();
-test.buscarClaseTest();
+//          test.buscarClaseTest();
 //------------- Test socio -------------
 //          test.guardarSocioTest();
 //          test.listarSociosTest();
@@ -62,8 +62,8 @@ test.buscarClaseTest();
 //------------- Test Asistencia -------------
 //          test.guardarAsistenciaTest();
 //          test.listarAsistenciaSocioTest();
-//            test.listarAsistenciaPorClaseTest();
-//            test.ListarAsistenciaPorFechaTest();
+//          test.listarAsistenciaPorClaseTest();
+//          test.ListarAsistenciaPorFechaTest();
 // ------------- Test Membresia -------------
 //          test.guardarMembresiaTest();
 //          test.buscarPorSocioMemTest();
