@@ -1,5 +1,7 @@
 package Vistas;
 
+import javax.swing.JDesktopPane;
+
 public class Menu extends javax.swing.JFrame {
 
     /**
@@ -7,6 +9,18 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+    }
+
+    public Menu(JDesktopPane jdpEscritorio) {
+        this.jdpEscritorio = jdpEscritorio;
+    }
+
+    public JDesktopPane getJdpEscritorio() {
+        return jdpEscritorio;
+    }
+
+    public void setJdpEscritorio(JDesktopPane jdpEscritorio) {
+        this.jdpEscritorio = jdpEscritorio;
     }
 
     /**
@@ -254,7 +268,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         jdpEscritorio.removeAll();//removemos todos los componentes
         jdpEscritorio.repaint();// repintamos
-        NuevaClase clase = new NuevaClase();
+        nuevaClase clase = new nuevaClase();
         clase.setVisible(true);
         jdpEscritorio.add(clase);
     }//GEN-LAST:event_jMenuItem8ActionPerformed

@@ -55,7 +55,7 @@ public class ClaseData {
  public Clase  buscarClaseId(int id) {
         Clase clase = null;
          
-        String sql = "SELECT clases.*, entrenadores.nombre as nombre_entrenador "
+        String sql = "SELECT clases.*, entrenadores.nombre as nombre_entrenador , entrenadores.dni "
                       + " FROM `clases`, entrenadores "
                       + " WHERE clases.`id-entrenador` = entrenadores.`id-entrenador` AND clases.`id-clase`=? ";
         PreparedStatement ps = null;
@@ -73,6 +73,7 @@ public class ClaseData {
                 clase.setEstado(rs.getBoolean("estado-clase"));
                 Entrenador entrenador = new Entrenador(); 
                 entrenador.setIdEntrenador(rs.getInt("id-entrenador"));
+                entrenador.setDniE(rs.getString("dni"));
                 entrenador.setNombreE(rs.getString("nombre_entrenador"));
                 clase.setEntrenador(entrenador);
               
