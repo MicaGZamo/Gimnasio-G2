@@ -348,7 +348,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
 //        System.out.println("Especialidad: "+especialidad);
         
         if(apellido.isEmpty() && especialidad.isEmpty()){ //busca por nombre cuando los campos apellido y especialidad estan vacios
-            System.out.println("busqueda solo nombre");
+            //System.out.println("busqueda solo nombre");
             List<Entrenador> lista = entrenadorData.listarPorNombre(nombre);
             for (Entrenador e : lista) {
                 modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );  
@@ -370,13 +370,13 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         }
         
         if(!nombre.isEmpty() && !apellido.isEmpty() && especialidad.isEmpty()){
-            System.out.println("busqueda por nombre y apellido, sin especialidad");
+            //System.out.println("busqueda por nombre y apellido, sin especialidad");
             Entrenador e= entrenadorData.buscarPorNombreYApellido(nombre, apellido);
             modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );
         }
         
         if(!nombre.isEmpty() && !apellido.isEmpty() && !especialidad.isEmpty()){
-            System.out.println("busqueda por nombre, apellido y especialidad");
+            //System.out.println("busqueda por nombre, apellido y especialidad");
             List<Entrenador> lista = entrenadorData.listarPorNombreApellidoEspecialidad(nombre, apellido, especialidad);
             for (Entrenador e : lista) {
                 modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );  
