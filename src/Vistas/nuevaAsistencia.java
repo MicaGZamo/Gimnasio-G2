@@ -12,6 +12,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 public class nuevaAsistencia extends javax.swing.JInternalFrame {
@@ -48,7 +51,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         filaCabecera.add("Pases");
         filaCabecera.add("fechaInicio");
         filaCabecera.add("FechaFin");
-        filaCabecera.add("Estado");
+        filaCabecera.add("Membresia");
         
         for (Object it : filaCabecera) {
             modeloMembresia.addColumn(it);
@@ -316,8 +319,29 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         jtfNombreApellido.setText(s.getNombre()+" "+s.getApellido());
         List<Membresia> lista=MData.buscarPorSocio(s);
         for (Membresia m : lista) {
-                modeloMembresia.addRow(new Object[] {m.getCantPases(), m.getFechaInicio(),m.getFechaFin(),m.isEstado()?"Activo" : "Inactivo"} );  
+                //modeloMembresia.addRow(new Object[] {m.getCantPases(), m.getFechaInicio(),m.getFechaFin(),m.isEstado()?"Activo" : "Inactivo"} );
+                modeloMembresia.addRow(new Object[] {m.getCantPases(), m.getFechaInicio(),m.getFechaFin(),m.isEstado()} );
         }
+       
+        //---------------------------Bloque pregunta primero si hay un fila seleccionada-------------------------------
+        //Luego captura es fila y consulta sobre su estado
+        jtTablaMembresiaSocio.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+        public void valueChanged(ListSelectionEvent event) {
+            if (!event.getValueIsAdjusting() && jtTablaMembresiaSocio.getSelectedRow() != -1) { // Se ha seleccionado una fila
+                //System.out.println("Fila seleccionada: " + jtTablaMembresiaSocio.getSelectedRow());
+                boolean estadoM=(boolean) jtTablaMembresiaSocio.getValueAt(jtTablaMembresiaSocio.getSelectedRow(),3);
+                //System.out.println("estadoM: "+estadoM);
+                if(estadoM){
+                    jbRegistrar.setEnabled(true);
+                }else{
+                    JOptionPane.showMessageDialog(null,"Membresia vencida");
+                    jbRegistrar.setEnabled(false);
+                }
+            }
+            }
+        }); 
+        //--------------------------------------------------------------------------------------------------------------
+        
     }//GEN-LAST:event_jbBuscarActionPerformed
     
     private void fechahoy(){
