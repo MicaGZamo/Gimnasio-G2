@@ -3,10 +3,15 @@ package Vistas;
 
 import AccesoData.AsistenciaData;
 import AccesoData.ClaseData;
+import AccesoData.MembresiaData;
 import AccesoData.SocioData;
+import Entidades.Clase;
+import Entidades.Membresia;
+import Entidades.Socio;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 
 public class nuevaAsistencia extends javax.swing.JInternalFrame {
@@ -17,25 +22,66 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
     private AsistenciaData AData;
     private SocioData SData;
     private ClaseData CData;
-    private DefaultTableModel modelo;
+    private MembresiaData MData;
+    private DefaultTableModel modeloMembresia;
+    private DefaultTableModel modeloClase;
+    private Socio s=null;
+    private Clase c=null;
+    private Membresia m=null;
     
     public nuevaAsistencia() {
         initComponents();
         fechahoy();
-        modelo=new DefaultTableModel();
-        armarCabeceraTabla();
+        modeloMembresia=new DefaultTableModel();
+        modeloClase=new DefaultTableModel();
+        s=new Socio();
+        c=new Clase();
+        m=new Membresia();
+        SData=new SocioData();
+        CData=new ClaseData();
+        MData=new MembresiaData();
+        armarCabeceraTablaMembresia();
+        armarCabeceraTablaClase();
     }
-    private void armarCabeceraTabla(){
+    private void armarCabeceraTablaMembresia(){
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("Pases");
+        filaCabecera.add("fechaInicio");
+        filaCabecera.add("FechaFin");
+        filaCabecera.add("Estado");
+        
+        for (Object it : filaCabecera) {
+            modeloMembresia.addColumn(it);
+        }
+        jtTablaMembresiaSocio.setModel(modeloMembresia);
+    }
+    
+    private void armarCabeceraTablaClase(){
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add("ID CLASE");
         filaCabecera.add("ENTRENADOR");
         filaCabecera.add("CAPACIDAD");
         
         for (Object it : filaCabecera) {
-            modelo.addColumn(it);
+            modeloClase.addColumn(it);
         }
-        jtTablaClase.setModel(modelo);
+        jtTablaClase.setModel(modeloClase);
     }
+    
+    private void borrarFilaTablaMembresia(){
+        int indice = modeloMembresia.getRowCount()-1;
+        for (int i = indice; i >= 0; i--) {
+            modeloMembresia.removeRow(i);
+        }
+    }
+    
+    private void borrarFilaTablaClase(){
+        int indice = modeloClase.getRowCount()-1;
+        for (int i = indice; i >= 0; i--) {
+            modeloClase.removeRow(i);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +120,11 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         jcbClase.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jbBuscar.setText("Buscar");
+        jbBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Horario");
 
@@ -118,9 +169,6 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
 
         jtTablaMembresiaSocio.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
                 {null, null, null, null}
             },
             new String [] {
@@ -168,8 +216,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
                                 .addGap(108, 108, 108)
                                 .addComponent(jbRegistrar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jbSalir)
-                                .addGap(56, 56, 56))))
+                                .addComponent(jbSalir))))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,13 +232,15 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addGap(17, 17, 17)
                                 .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jcbClase, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
-                                .addComponent(jLabel5)
                                 .addGap(18, 18, 18)
-                                .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jcbClase, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(52, 52, 52)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(23, 23, 23))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -209,11 +258,11 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jtfNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
                     .addComponent(jcbClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
                     .addComponent(jLabel5)
                     .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -258,6 +307,18 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
     private void jtfFechaHoyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfFechaHoyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtfFechaHoyActionPerformed
+
+    private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
+        // TODO add your handling code here:
+        borrarFilaTablaMembresia();
+        String dniSocio =jtfDni.getText();
+        Socio s=SData.buscarSocioDni(dniSocio);
+        jtfNombreApellido.setText(s.getNombre()+" "+s.getApellido());
+        List<Membresia> lista=MData.buscarPorSocio(s);
+        for (Membresia m : lista) {
+                modeloMembresia.addRow(new Object[] {m.getCantPases(), m.getFechaInicio(),m.getFechaFin(),m.isEstado()?"Activo" : "Inactivo"} );  
+        }
+    }//GEN-LAST:event_jbBuscarActionPerformed
     
     private void fechahoy(){
         LocalDate hoy=LocalDate.now();
