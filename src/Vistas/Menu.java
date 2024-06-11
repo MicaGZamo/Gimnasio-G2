@@ -254,7 +254,7 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
         jdpEscritorio.removeAll();//removemos todos los componentes
         jdpEscritorio.repaint();// repintamos
-        nuevaClase clase = new nuevaClase();
+        NuevaClase clase = new NuevaClase();
         clase.setVisible(true);
         jdpEscritorio.add(clase);
     }//GEN-LAST:event_jMenuItem8ActionPerformed

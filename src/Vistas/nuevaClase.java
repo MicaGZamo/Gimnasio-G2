@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  *
  * @author gomez
  */
-public class nuevaClase extends javax.swing.JInternalFrame {
+public class NuevaClase extends javax.swing.JInternalFrame {
 
     Entrenador entrenadorActual = null;
     EntrenadorData eD = new EntrenadorData();
@@ -24,7 +24,7 @@ public class nuevaClase extends javax.swing.JInternalFrame {
     Clase clase = new Clase();
     private ArrayList<LocalTime> listaHorario;
 
-    public nuevaClase() {
+    public NuevaClase() {
         initComponents();
         listaHorario = (ArrayList<LocalTime>) cD.listarHorariosDisponibles();
         horariosDisponibles();

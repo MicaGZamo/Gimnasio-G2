@@ -187,8 +187,18 @@ public class gestionClase extends javax.swing.JInternalFrame {
         });
 
         jbBaja.setText("Dar baja");
+        jbBaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBajaActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         jcbClases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -309,9 +319,13 @@ public class gestionClase extends javax.swing.JInternalFrame {
     private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
        clase = new Clase();
        int selecId= (int)jtClases.getValueAt(jtClases.getSelectedRow(), 0);
+        System.out.println(selecId);
+       Clase clase= cD.buscarClaseId(selecId);
+        System.out.println(clase);
        jDesktopPane1.removeAll();
-       ActualizarClase actualizarC = new ActualizarClase();
+       ActualizarClase actualizarC = new ActualizarClase(clase);
        actualizarC.setVisible(true);
+     
        jDesktopPane1.add(actualizarC);
     }//GEN-LAST:event_jbActualizarActionPerformed
 
@@ -340,6 +354,19 @@ public class gestionClase extends javax.swing.JInternalFrame {
          borrarFilaTabla();
          cargarClaseNombre();
     }//GEN-LAST:event_jcbClasesActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+       dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbBajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBajaActionPerformed
+        clase = new Clase();
+       int selecId= (int)jtClases.getValueAt(jtClases.getSelectedRow(), 0);
+        System.out.println(selecId);
+       Clase clase= cD.buscarClaseId(selecId);
+       clase.setEstado(false);
+       cD.modificarClase(clase);
+    }//GEN-LAST:event_jbBajaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
