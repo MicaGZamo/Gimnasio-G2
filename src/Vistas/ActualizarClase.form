@@ -154,7 +154,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="jActualizar">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Actualizar"/>
+            <Property name="text" type="java.lang.String" value="Guardar"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jActualizarActionPerformed"/>
@@ -235,9 +235,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jtfDniActual">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="jTextField1"/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>

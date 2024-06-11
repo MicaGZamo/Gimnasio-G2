@@ -73,7 +73,7 @@ public class ActualizarClase extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jtfDniActual = new javax.swing.JTextField();
 
-        jActualizar.setText("Actualizar");
+        jActualizar.setText("Guardar");
         jActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jActualizarActionPerformed(evt);
@@ -113,8 +113,6 @@ public class ActualizarClase extends javax.swing.JInternalFrame {
         jLabel6.setText("Horario Actual");
 
         jLabel7.setText("DNI Entrenador busqueda");
-
-        jtfDniActual.setText("jTextField1");
 
         jDesktopPane1.setLayer(jActualizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
