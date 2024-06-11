@@ -60,7 +60,7 @@ public class Main {
 //          test.buscarSocioIdTest();
 //          test.darBajaSocioTest();
 //------------- Test Asistencia -------------
-          test.guardarAsistenciaTest();
+//          test.guardarAsistenciaTest();
 //          test.listarAsistenciaSocioTest();
 //          test.listarAsistenciaPorClaseTest();
 //          test.ListarAsistenciaPorFechaTest();

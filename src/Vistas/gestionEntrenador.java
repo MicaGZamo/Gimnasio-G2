@@ -351,35 +351,35 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             System.out.println("busqueda solo nombre");
             List<Entrenador> lista = entrenadorData.listarPorNombre(nombre);
             for (Entrenador e : lista) {
-                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );  
             }
         }
         
         if(nombre.isEmpty() && especialidad.isEmpty()){ // busca por apellido cuando los campos nombre y especialidad estan vacios
             List<Entrenador> lista = entrenadorData.listarPorApellido(apellido);
             for (Entrenador e : lista) {
-                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );  
             }
         }
         
         if(nombre.isEmpty() && apellido.isEmpty()){ // busca por especialidada cuando los campos nombre y pellido estan vacios
             List<Entrenador> lista = entrenadorData.listarPorEspecialidad(especialidad);
             for (Entrenador e : lista) {
-                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );  
             }
         }
         
         if(!nombre.isEmpty() && !apellido.isEmpty() && especialidad.isEmpty()){
             System.out.println("busqueda por nombre y apellido, sin especialidad");
             Entrenador e= entrenadorData.buscarPorNombreYApellido(nombre, apellido);
-            modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );
+            modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );
         }
         
         if(!nombre.isEmpty() && !apellido.isEmpty() && !especialidad.isEmpty()){
             System.out.println("busqueda por nombre, apellido y especialidad");
             List<Entrenador> lista = entrenadorData.listarPorNombreApellidoEspecialidad(nombre, apellido, especialidad);
             for (Entrenador e : lista) {
-                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );  
             }
         }
         
@@ -407,21 +407,21 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
     private void cargarTodosEntrenadores(){
         List<Entrenador> lista = entrenadorData.listarTodosEntrenadores();
             for (Entrenador e : lista) {
-                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );  
             }
     }
     
     private void cargarEntrenadoresActivos(){
         List<Entrenador> lista = entrenadorData.listarEntrenadores();
             for (Entrenador e : lista) {
-                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );  
             }
     }
     
     private void cargarEntrenadoresInactivos(){
         List<Entrenador> lista = entrenadorData.listarEntrenadoresInactivos();
             for (Entrenador e : lista) {
-                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()} );  
+                modelo.addRow(new Object[] {e.getIdEntrenador(), e.getDniE(),e.getNombreE(),e.getApellidoE(),e.getEspecialidad(),e.isEstado()?"Activo" : "Inactivo"} );  
             }
     }
     
