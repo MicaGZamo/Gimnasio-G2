@@ -393,6 +393,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         jrbInactivos.setSelected(false);
         jrbTodos.setSelected(false);
         
+        
     }//GEN-LAST:event_jrbActivosActionPerformed
 
     private void jbDarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarAltaActionPerformed
