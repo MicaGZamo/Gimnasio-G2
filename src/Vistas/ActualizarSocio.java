@@ -3,25 +3,25 @@ package Vistas;
 
 import AccesoData.SocioData;
 import Entidades.Socio;
-import static java.awt.Color.black;
-import static java.awt.Color.gray;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class ActualizarSocio extends javax.swing.JInternalFrame {
 
-    SocioData socioData = new SocioData();
-    Socio socioActual = null;
-    Socio socio = null;
-    private DefaultTableModel modelo;
-    List<Socio> listaSocios = new ArrayList<>();
+    private SocioData socioData;
+    private Socio socioActual;
+     private DefaultTableModel modelo;
+   
     
-    public ActualizarSocio() {
+    public ActualizarSocio(int id) {
         initComponents();
+        socioData = new SocioData();
+        cargarDatos(id);
     }
+
+        
+    
 
    
     @SuppressWarnings("unchecked")
@@ -41,7 +41,7 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
         jtNombre = new javax.swing.JTextField();
         jtApellido = new javax.swing.JTextField();
         jbSalir = new javax.swing.JButton();
-        jbGuardar = new javax.swing.JButton();
+        jbActualizar = new javax.swing.JButton();
         jtEdad = new javax.swing.JTextField();
         jtCorreo = new javax.swing.JTextField();
         jtTelefono = new javax.swing.JTextField();
@@ -84,7 +84,7 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
         jLabel7.setText("Telefono");
 
         jtDni.setBackground(new java.awt.Color(204, 204, 204));
-        jtDni.setForeground(new java.awt.Color(102, 102, 102));
+        jtDni.setForeground(new java.awt.Color(0, 0, 0));
         jtDni.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jtDniMousePressed(evt);
@@ -107,13 +107,13 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
             }
         });
 
-        jbGuardar.setBackground(new java.awt.Color(51, 51, 51));
-        jbGuardar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        jbGuardar.setForeground(new java.awt.Color(204, 204, 204));
-        jbGuardar.setText("Guardar");
-        jbGuardar.addActionListener(new java.awt.event.ActionListener() {
+        jbActualizar.setBackground(new java.awt.Color(51, 51, 51));
+        jbActualizar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbActualizar.setForeground(new java.awt.Color(204, 204, 204));
+        jbActualizar.setText("Actualizar");
+        jbActualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbGuardarActionPerformed(evt);
+                jbActualizarActionPerformed(evt);
             }
         });
 
@@ -129,7 +129,7 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
         });
 
         jtTelefono.setBackground(new java.awt.Color(204, 204, 204));
-        jtTelefono.setForeground(new java.awt.Color(102, 102, 102));
+        jtTelefono.setForeground(new java.awt.Color(0, 0, 0));
         jtTelefono.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 jtTelefonoMousePressed(evt);
@@ -148,7 +148,7 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jtNombre, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtApellido, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jbGuardar, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jbActualizar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtEdad, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtCorreo, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtTelefono, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -189,8 +189,8 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(73, 73, 73)
+                        .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(52, 52, 52)
                         .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jtNombre)
@@ -234,7 +234,7 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
                     .addComponent(jLabel7))
                 .addGap(27, 27, 27)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
@@ -254,15 +254,7 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtDniMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtDniMousePressed
-        if (jtDni.getText().equals("Ingrese 8 digitos")){
-            jtDni.setText("");
-            jtDni.setForeground(black);
-        }
-        if (jtTelefono.getText().isEmpty()){
-            jtTelefono.setText("Numero con o sin prefijo");
-            jtTelefono.setForeground(gray);
-        }
-
+        
     }//GEN-LAST:event_jtDniMousePressed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -274,7 +266,7 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
         menuPrincipal.setVisible(true);
     }//GEN-LAST:event_jbSalirActionPerformed
 
-    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+    private void jbActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbActualizarActionPerformed
 
         try {
 
@@ -316,28 +308,39 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
                 JOptionPane.showMessageDialog(this, "El teléfono debe contener entre 8 y 10 dígitos.");
                 return;
             }
+            socioActual.setDniSocio(dni);
+            socioActual.setNombre(nombre);
+            socioActual.setApellido(apellido);
+            socioActual.setEdad(edad);
+            socioActual.setCorreo(correo);
+            socioActual.setTelefono(telefono);
+            
+            
+            socioData.modificarSocio(socioActual);
             socioActual = new Socio (dni, nombre, apellido, edad, correo, telefono, true);
-            socioData.guardarSocio(socioActual);
+            socioData.modificarSocio(socioActual);
             
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(rootPane,"Ingrese una edad válida.");
         }
-    }//GEN-LAST:event_jbGuardarActionPerformed
+    }//GEN-LAST:event_jbActualizarActionPerformed
 
     private void jtCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCorreoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtCorreoActionPerformed
-
+ private void cargarDatos(int id) {
+      socioActual = socioData.buscarSocioId(id); 
+        
+        jtNombre.setText(socioActual.getNombre());
+        jtApellido.setText(socioActual.getApellido());
+        jtDni.setText(socioActual.getDniSocio());
+        jtEdad.setText(String.valueOf(socioActual.getEdad()));
+        jtCorreo.setText(socioActual.getCorreo());
+        jtTelefono.setText(socioActual.getTelefono());
+       
+    }
     private void jtTelefonoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTelefonoMousePressed
-        if (jtTelefono.getText().equals("Numero con o sin prefijo")){
-            jtTelefono.setText("");
-            jtTelefono.setForeground(black);
-        }
-        if (jtDni.getText().isEmpty()){
-            jtDni.setText("Ingrese 8 digitos");
-            jtDni.setForeground(gray);
-        }
-
+      
     }//GEN-LAST:event_jtTelefonoMousePressed
 
 
@@ -351,7 +354,7 @@ public class ActualizarSocio extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton jbGuardar;
+    private javax.swing.JButton jbActualizar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JTextField jtApellido;
     private javax.swing.JTextField jtCorreo;

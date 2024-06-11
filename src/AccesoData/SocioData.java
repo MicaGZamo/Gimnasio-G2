@@ -141,31 +141,32 @@ public class SocioData {
 }
 
     public void modificarSocio(Socio socio) {
-        String sql = "UPDATE `socios` SET `dni`='?',`nombre`='?',`apellido`='?',`edad`='?',`correo`='?',`telefono`='?',`estado-so`='?' WHERE 'id-socio'=?";
-        PreparedStatement ps = null;
+          String sql = "UPDATE `socios` SET `dni`=?, `nombre`=?, `apellido`=?, `edad`=?, `correo`=?, `telefono`=?, `estado-so`=? WHERE `id-socio`=?";
+    PreparedStatement ps = null;
 
-        try {
-            ps = con.prepareStatement(sql);
-            ps.setString(1, socio.getDniSocio());
-            ps.setString(2, socio.getNombre());
-            ps.setString(3, socio.getApellido());
-            ps.setInt(4, socio.getEdad());
-            ps.setString(5, socio.getCorreo());
-            ps.setString(6, socio.getTelefono());
-            ps.setBoolean(7, socio.isEstado());
+    try {
+        ps = con.prepareStatement(sql);
+        ps.setString(1, socio.getDniSocio());
+        ps.setString(2, socio.getNombre());
+        ps.setString(3, socio.getApellido());
+        ps.setInt(4, socio.getEdad());
+        ps.setString(5, socio.getCorreo());
+        ps.setString(6, socio.getTelefono());
+        ps.setBoolean(7, socio.isEstado());
+        ps.setInt(8, socio.getIdSocio());
 
-            int exito = ps.executeUpdate();
-            System.out.println("exito =" + exito);
-            if (exito == 1) { // pregunta si tiene datos
-                JOptionPane.showMessageDialog(null, "Actualizacion exitosa del Socio");
-            }
-            ps.close();
-
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Error al actualizar los datos ");
-            System.out.println("error " + e.getMessage());
-            e.printStackTrace();
+        int exito = ps.executeUpdate();
+        System.out.println("éxito = " + exito);
+        if (exito == 1) {
+            JOptionPane.showMessageDialog(null, "Actualización exitosa del Socio");
         }
+        ps.close();
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al actualizar los datos");
+        System.out.println("error " + e.getMessage());
+        e.printStackTrace();
+    }
 
     }
 

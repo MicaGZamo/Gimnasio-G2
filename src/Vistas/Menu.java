@@ -34,8 +34,6 @@ public class Menu extends javax.swing.JFrame {
 
         jMenuItem2 = new javax.swing.JMenuItem();
         jdpEscritorio = new javax.swing.JDesktopPane();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmNuevoSocio = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -66,44 +64,15 @@ public class Menu extends javax.swing.JFrame {
         jdpEscritorio.setFont(new java.awt.Font("Lucida Sans Unicode", 1, 18)); // NOI18N
         jdpEscritorio.setOpaque(false);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jButton1.setText("jButton1");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(201, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(150, 150, 150))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(349, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(16, 16, 16))
-        );
-
-        jdpEscritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
         javax.swing.GroupLayout jdpEscritorioLayout = new javax.swing.GroupLayout(jdpEscritorio);
         jdpEscritorio.setLayout(jdpEscritorioLayout);
         jdpEscritorioLayout.setHorizontalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdpEscritorioLayout.createSequentialGroup()
-                .addGap(301, 301, 301)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(197, Short.MAX_VALUE))
+            .addGap(0, 906, Short.MAX_VALUE)
         );
         jdpEscritorioLayout.setVerticalGroup(
             jdpEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jdpEscritorioLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(99, Short.MAX_VALUE))
+            .addGap(0, 527, Short.MAX_VALUE)
         );
 
         jMenuBar1.setForeground(new java.awt.Color(204, 204, 204));
@@ -387,7 +356,6 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem Gestion;
-    private javax.swing.JButton jButton1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
@@ -398,7 +366,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JDesktopPane jdpEscritorio;
     private javax.swing.JMenu jmClase;
     private javax.swing.JMenuItem jmGestionClase;

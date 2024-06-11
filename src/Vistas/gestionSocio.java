@@ -9,10 +9,11 @@ import javax.swing.table.DefaultTableModel;
 
 public class gestionSocio extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo;
     SocioData socioData = new SocioData();
     Socio socioActual = null;
     Socio socio = null;
-    private DefaultTableModel modelo;
+
     List<Socio> listaSocios = new ArrayList<>();
 
     public gestionSocio() {
@@ -21,6 +22,7 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         armarCabeceraTabla(); // Agregar las columnas al modelo de la tabla
         cargarSocios();
         jrbTodos.setSelected(true);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -46,9 +48,8 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jrbInactivos = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        jbDaralta = new javax.swing.JButton();
         jrbTodos = new javax.swing.JRadioButton();
-        jButton2 = new javax.swing.JButton();
 
         jDesktopPane1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 1, true));
 
@@ -66,6 +67,11 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jtBuscarID.setFont(new java.awt.Font("Ebrima", 0, 12)); // NOI18N
         jtBuscarID.setForeground(new java.awt.Color(51, 51, 51));
         jtBuscarID.setSelectionColor(new java.awt.Color(204, 204, 204));
+        jtBuscarID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtBuscarIDActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
@@ -96,6 +102,11 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jbBuscarDNI.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jbBuscarDNI.setForeground(new java.awt.Color(204, 204, 204));
         jbBuscarDNI.setText("Buscar");
+        jbBuscarDNI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbBuscarDNIActionPerformed(evt);
+            }
+        });
 
         jbBuscarNombre.setBackground(new java.awt.Color(51, 51, 51));
         jbBuscarNombre.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
@@ -124,6 +135,11 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jbSalir.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jbSalir.setForeground(new java.awt.Color(204, 204, 204));
         jbSalir.setText("Salir");
+        jbSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbSalirActionPerformed(evt);
+            }
+        });
 
         jbModificar.setBackground(new java.awt.Color(51, 51, 51));
         jbModificar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
@@ -139,6 +155,11 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jbDarbaja.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jbDarbaja.setForeground(new java.awt.Color(204, 204, 204));
         jbDarbaja.setText("Dar Baja");
+        jbDarbaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbDarbajaActionPerformed(evt);
+            }
+        });
 
         jrbActivos.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jrbActivos.setForeground(new java.awt.Color(204, 204, 204));
@@ -166,13 +187,13 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
-        jButton1.setBackground(new java.awt.Color(51, 51, 51));
-        jButton1.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(204, 204, 204));
-        jButton1.setText("Limpiar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbDaralta.setBackground(new java.awt.Color(51, 51, 51));
+        jbDaralta.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbDaralta.setForeground(new java.awt.Color(204, 204, 204));
+        jbDaralta.setText("Dar Alta");
+        jbDaralta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbDaraltaActionPerformed(evt);
             }
         });
 
@@ -184,8 +205,6 @@ public class gestionSocio extends javax.swing.JInternalFrame {
                 jrbTodosActionPerformed(evt);
             }
         });
-
-        jButton2.setText("jButton2");
 
         jDesktopPane1.setLayer(jbBuscarID, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtBuscarID, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -204,26 +223,23 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jrbInactivos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jbDaralta, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jrbTodos, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addComponent(jbDarbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(48, 48, 48)
+                .addComponent(jbDarbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(52, 52, 52)
+                .addComponent(jbDaralta, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(77, 77, 77)
+                .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(69, 69, 69)
-                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
@@ -272,7 +288,7 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -298,15 +314,14 @@ public class gestionSocio extends javax.swing.JInternalFrame {
                     .addComponent(jrbTodos)
                     .addComponent(jrbInactivos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
-                    .addComponent(jbDarbaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbSalir)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(22, 22, 22))
+                    .addComponent(jbDaralta, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbDarbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -328,7 +343,36 @@ public class gestionSocio extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtBuscarDNIActionPerformed
 
     private void jbBuscarNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarNombreActionPerformed
-        // TODO add your handling code here:
+        borrarFilaTabla();
+
+        try {
+            String nombre = jtBuscarNombre.getText();
+
+            // Verifica que el nombre no incluya números ni símbolos, pero sí la Ñ y acentos
+            if (!nombre.matches("[a-zA-ZáéíóúÁÉÍÓÚñÑ\\s]+")) {
+                throw new IllegalArgumentException("El nombre solo debe contener letras.");
+            }
+
+            List<Socio> sociosEncontrados = socioData.buscarSocioNombre(nombre);
+
+            if (!sociosEncontrados.isEmpty()) {
+                for (Socio socio : sociosEncontrados) {
+                    modelo.addRow(new Object[]{
+                        socio.getIdSocio(), socio.getDniSocio(),
+                        socio.getNombre(), socio.getApellido(),
+                        socio.getEdad(), socio.getCorreo(),
+                        socio.getTelefono(), socio.isEstado() ? "Activo" : "Inactivo"
+                    });
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Socio no encontrado.");
+            }
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(this, "El nombre solo debe contener letras.");
+        }
+
+        limpiarCampos();
+        limpiarRButton();
     }//GEN-LAST:event_jbBuscarNombreActionPerformed
 
     private void jbBuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarIDActionPerformed
@@ -357,18 +401,43 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número válido para el ID.");
         }
-
+        limpiarCampos();
+        limpiarRButton();
     }//GEN-LAST:event_jbBuscarIDActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        limpiarCampos();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jbDaraltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDaraltaActionPerformed
+    try {
+        int idSocio = (int) jtTablaSocio.getValueAt(jtTablaSocio.getSelectedRow(), 0);
+        if (idSocio == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione un socio de la tabla.");
+            return;
+        }
+
+        Socio socio = socioData.buscarSocioId(idSocio);
+
+        if (socio != null) {
+            if (!socio.isEstado()) {
+                socio.setEstado(true);
+                socioData.modificarSocio(socio);
+                borrarFilaTabla();
+                cargarSocios();
+            } else {
+                JOptionPane.showMessageDialog(this, "El socio ya está activo.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No se encontró el socio con ID: " + idSocio);
+        }
+    } catch (ArrayIndexOutOfBoundsException e) {
+        JOptionPane.showMessageDialog(this, "Seleccione una línea válida en la tabla.");
+    }
+    }//GEN-LAST:event_jbDaraltaActionPerformed
 
     private void jrbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTodosActionPerformed
         borrarFilaTabla();
         cargarSocios();
         jrbActivos.setSelected(false);
         jrbInactivos.setSelected(false);
+        limpiarCampos();
     }//GEN-LAST:event_jrbTodosActionPerformed
 
     private void jrbActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbActivosActionPerformed
@@ -376,6 +445,9 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         cargarSociosAct();
         jrbInactivos.setSelected(false);
         jrbTodos.setSelected(false);
+        limpiarCampos();
+
+
     }//GEN-LAST:event_jrbActivosActionPerformed
 
     private void jrbInactivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbInactivosActionPerformed
@@ -383,17 +455,85 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         cargarSociosInact();
         jrbTodos.setSelected(false);
         jrbActivos.setSelected(false);
+        limpiarCampos();
     }//GEN-LAST:event_jrbInactivosActionPerformed
 
     private void jbModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbModificarActionPerformed
-        socio = new Socio();
-        int selec = (int) jtTablaSocio.getValueAt(jtTablaSocio.getSelectedRow(), 0);
 
+        int idSocio = (int) jtTablaSocio.getValueAt(jtTablaSocio.getSelectedRow(), 0);
         jDesktopPane1.removeAll();
-        ActualizarSocio actSocio = new ActualizarSocio();
+        ActualizarSocio actSocio = new ActualizarSocio(idSocio);
         actSocio.setVisible(true);
         jDesktopPane1.add(actSocio);
     }//GEN-LAST:event_jbModificarActionPerformed
+
+    private void jtBuscarIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtBuscarIDActionPerformed
+
+
+    }//GEN-LAST:event_jtBuscarIDActionPerformed
+
+    private void jbBuscarDNIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarDNIActionPerformed
+        borrarFilaTabla();
+
+        try {
+
+            String dni = jtBuscarDNI.getText();
+
+            // verificamos que solo tenga numero el dni
+            if (!dni.matches("\\d+")) {
+                throw new NumberFormatException("El DNI debe contener solo números.");
+            }
+
+            Socio socioEncontrado = socioData.buscarSocioDni(dni);
+
+            if (socioEncontrado != null) {
+                modelo.addRow(new Object[]{
+                    socioEncontrado.getIdSocio(), socioEncontrado.getDniSocio(),
+                    socioEncontrado.getNombre(), socioEncontrado.getApellido(),
+                    socioEncontrado.getEdad(), socioEncontrado.getCorreo(),
+                    socioEncontrado.getTelefono(), socioEncontrado.isEstado() ? "Activo" : "Inactivo"
+                });
+            } else {
+                JOptionPane.showMessageDialog(this, "Socio no encontrado.");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un número válido para el DNI.");
+        }
+        limpiarCampos();
+        limpiarRButton();
+    }//GEN-LAST:event_jbBuscarDNIActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbDarbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbDarbajaActionPerformed
+       
+        try {
+        int idSocio = (int) jtTablaSocio.getValueAt(jtTablaSocio.getSelectedRow(), 0);
+        if (idSocio == -1) {
+            JOptionPane.showMessageDialog(rootPane, "Seleccione un socio de la tabla.");
+            return;
+        }
+
+        Socio socio = socioData.buscarSocioId(idSocio);
+
+        if (socio != null) {
+            if (socio.isEstado() == true) {
+                socioData.darDeBajaSocio(idSocio);
+                borrarFilaTabla();
+                cargarSocios();
+              
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "El socio ya está inactivo.");
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No se encontró el socio con ID: " + idSocio);
+        }
+        } catch (ArrayIndexOutOfBoundsException e) {
+        JOptionPane.showMessageDialog(this, "Seleccione una línea válida en la tabla.");
+    }
+    }//GEN-LAST:event_jbDarbajaActionPerformed
 
     private void actualizarTabla(List<Socio> listaSocios1) {
         DefaultTableModel modelo = (DefaultTableModel) jtTablaSocio.getModel();
@@ -427,10 +567,12 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jtBuscarID.setText("");
         jtBuscarDNI.setText("");
         jtBuscarNombre.setText("");
+    }
+
+    private void limpiarRButton() {
+        jrbTodos.setSelected(false);
         jrbActivos.setSelected(false);
         jrbInactivos.setSelected(false);
-        DefaultTableModel modeloTabla = (DefaultTableModel) jtTablaSocio.getModel();
-        modeloTabla.setRowCount(0); // Limpiar la tabla
     }
 
     private void borrarFilaTabla() {
@@ -478,8 +620,6 @@ public class gestionSocio extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -490,6 +630,7 @@ public class gestionSocio extends javax.swing.JInternalFrame {
     private javax.swing.JButton jbBuscarDNI;
     private javax.swing.JButton jbBuscarID;
     private javax.swing.JButton jbBuscarNombre;
+    private javax.swing.JButton jbDaralta;
     private javax.swing.JButton jbDarbaja;
     private javax.swing.JButton jbModificar;
     private javax.swing.JButton jbSalir;
