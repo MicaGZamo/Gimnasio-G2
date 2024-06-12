@@ -18,8 +18,8 @@ public class gestionSocio extends javax.swing.JInternalFrame {
 
     public gestionSocio() {
         initComponents();
-        modelo = new DefaultTableModel(); // Inicializar el modelo de la tabla
-        armarCabeceraTabla(); // Agregar las columnas al modelo de la tabla
+        modelo = new DefaultTableModel(); 
+        armarCabeceraTabla(); 
         cargarSocios();
         jrbTodos.setSelected(true);
 

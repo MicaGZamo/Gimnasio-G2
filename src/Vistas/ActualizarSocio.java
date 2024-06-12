@@ -4,14 +4,14 @@ package Vistas;
 import AccesoData.SocioData;
 import Entidades.Socio;
 import javax.swing.JOptionPane;
-import javax.swing.table.DefaultTableModel;
+
 
 
 public class ActualizarSocio extends javax.swing.JInternalFrame {
 
     private SocioData socioData;
     private Socio socioActual;
-     private DefaultTableModel modelo;
+     
    
     
     public ActualizarSocio(int id) {

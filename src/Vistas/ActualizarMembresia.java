@@ -4,49 +4,35 @@ import AccesoData.MembresiaData;
 import AccesoData.SocioData;
 import Entidades.Membresia;
 import Entidades.Socio;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 
-public class nuevaMembresia extends javax.swing.JInternalFrame {
+public class ActualizarMembresia extends javax.swing.JInternalFrame {
 
     private MembresiaData membresiaData;
-    private Membresia membresiaActual;
-    private Socio socioN;
     private SocioData socioData;
+    private Socio socio;
     private List<String> pases;
     private List<Double> precios;
 
-    public nuevaMembresia() {
+    public ActualizarMembresia(int id) {
         initComponents();
         this.membresiaData = new MembresiaData();
         this.socioData = new SocioData();
+        this.pases = new ArrayList<>();
+        this.precios = new ArrayList<>();
         cargarPases();
-        
-        jcPases.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                jcPasesActionPerformed(evt);
-            }
-        });
-        
-        jDate.addPropertyChangeListener(new PropertyChangeListener() {
-            public void propertyChange(PropertyChangeEvent evt) {
-                jDatePropertyChange(evt);
-            }
-        });
+        cargarDatosSocio();
+        cargarDatosMembresia(id);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -58,24 +44,18 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jbGuardar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        jbLimpiar = new javax.swing.JButton();
-        jbBuscarSocio = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jlNombreApellido = new javax.swing.JLabel();
         jDate = new com.toedter.calendar.JDateChooser();
         jlCosto = new javax.swing.JLabel();
         jDateVencimiento = new com.toedter.calendar.JDateChooser();
 
-        jLabel4.setText("jLabel4");
-
-        setFocusable(false);
-
         jDesktopPane1.setBackground(new java.awt.Color(75, 102, 113));
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
 
         jLabel1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Crear Nueva Membresia");
+        jLabel1.setText("Renovar Membresia del Socio");
 
         jLabel2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
@@ -96,6 +76,8 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
         jtDNISocio.setBackground(new java.awt.Color(204, 204, 204));
         jtDNISocio.setForeground(new java.awt.Color(51, 51, 51));
         jtDNISocio.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtDNISocio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jtDNISocio.setEnabled(false);
         jtDNISocio.setSelectedTextColor(new java.awt.Color(51, 51, 51));
         jtDNISocio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,26 +118,6 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
         jLabel7.setForeground(new java.awt.Color(204, 204, 204));
         jLabel7.setText("Costo");
 
-        jbLimpiar.setBackground(new java.awt.Color(51, 51, 51));
-        jbLimpiar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        jbLimpiar.setForeground(new java.awt.Color(204, 204, 204));
-        jbLimpiar.setText("Limpiar");
-        jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbLimpiarActionPerformed(evt);
-            }
-        });
-
-        jbBuscarSocio.setBackground(new java.awt.Color(51, 51, 51));
-        jbBuscarSocio.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
-        jbBuscarSocio.setForeground(new java.awt.Color(204, 204, 204));
-        jbBuscarSocio.setText("Buscar");
-        jbBuscarSocio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbBuscarSocioActionPerformed(evt);
-            }
-        });
-
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
@@ -191,8 +153,6 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbGuardar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel7, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jbLimpiar, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jbBuscarSocio, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jlNombreApellido, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jDate, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -207,53 +167,44 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jlNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(146, 146, 146))
+                .addGap(152, 152, 152))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(56, 56, 56)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jtDNISocio, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jcPases, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(78, 78, 78)
                         .addComponent(jLabel7)
                         .addGap(120, 120, 120)
                         .addComponent(jlCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addGap(181, 181, 181)
-                            .addComponent(jtDNISocio)
-                            .addGap(18, 18, 18)
-                            .addComponent(jbBuscarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                            .addGap(56, 56, 56)
-                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(27, 27, 27))
-                                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                            .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(57, 57, 57)))
-                                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                            .addGap(16, 16, 16)
-                                            .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(60, 60, 60)
-                                            .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))
-                                    .addGap(34, 34, 34)
-                                    .addComponent(jcPases, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(105, 105, 105)))))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(180, 180, 180)
-                        .addComponent(jLabel1)))
-                .addContainerGap(64, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(40, 40, 40)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -265,8 +216,7 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
                 .addGap(7, 7, 7)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtDNISocio, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscarSocio, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
@@ -277,23 +227,23 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
+                        .addGap(48, 48, 48)
                         .addComponent(jLabel5)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel6))
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel6)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31)
-                        .addComponent(jDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(46, 46, 46))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -309,136 +259,27 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
                 .addComponent(jDesktopPane1))
         );
 
-        setBounds(125, 0, 572, 515);
+        pack();
     }// </editor-fold>//GEN-END:initComponents
+private void cargarDatosSocio() {
+        jtDNISocio.setText(socio.getDniSocio());
+        jlNombreApellido.setText(socio.getNombre() + " " + socio.getApellido());
+    }
 
+    private void cargarDatosMembresia(int id) {
+        Membresia membresia = membresiaData.buscarMembresiaPorId(id);
+        if (membresia != null) {
+            jcPases.setSelectedIndex(membresia.getCantPases() - 1);
+            jlCosto.setText(String.valueOf(membresia.getPrecioMembresia()));
+            jDate.setDate(java.util.Date.from(membresia.getFechaInicio().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            jDateVencimiento.setDate(java.util.Date.from(membresia.getFechaFin().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        }
+    }
     private void jtDNISocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDNISocioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtDNISocioActionPerformed
-
-    private void jbBuscarSocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarSocioActionPerformed
-
-        try {
-            String dni = jtDNISocio.getText();
-
-            if (!dni.matches("\\d+")) {
-                throw new NumberFormatException("El DNI debe contener solo números.");
-            }
-
-            jlNombreApellido.setText("");
-
-            Socio socioEncontrado = socioData.buscarSocioDni(dni);
-
-            if (socioEncontrado != null) {
-                jlNombreApellido.setText(socioEncontrado.getNombre() + " " + socioEncontrado.getApellido());
-            } else {
-                JOptionPane.showMessageDialog(this, "No se encontró ningún socio con el DNI proporcionado.");
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Debe ingresar un número válido para el DNI.");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al buscar el socio: " + e.getMessage());
-        }
-
-    }//GEN-LAST:event_jbBuscarSocioActionPerformed
-
-    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
-        dispose();
-    }//GEN-LAST:event_jbSalirActionPerformed
-
-    private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
-        limpiarCampos();
-
-    }//GEN-LAST:event_jbLimpiarActionPerformed
-
-    private void jcPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcPasesActionPerformed
-
-        int paseSeleccionado = jcPases.getSelectedIndex();
-        if (paseSeleccionado != -1) {
-            double precio = precios.get(paseSeleccionado);
-            jlCosto.setText(String.valueOf(precio));
-        }
-
-
-    }//GEN-LAST:event_jcPasesActionPerformed
-
-    private void jDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDatePropertyChange
-        if ("date".equals(evt.getPropertyName())) {
-            // Obtener la fecha seleccionada en el JDateChooser
-            java.util.Date selectedDate = jDate.getDate();
-
-            // Calcular la fecha de vencimiento sumando 4 semanas a la fecha seleccionada
-            java.util.Calendar calendar = java.util.Calendar.getInstance();
-            calendar.setTime(selectedDate);
-            calendar.add(java.util.Calendar.WEEK_OF_YEAR, 4);
-
-            // Establecer la fecha de vencimiento en el JLabel jlVencimiento
-            jDateVencimiento.setDate(calendar.getTime());
-
-        }
-
-    }//GEN-LAST:event_jDatePropertyChange
-
-    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-        // validar todos los campos
-
-        try {
-            String dniSocio = jtDNISocio.getText();
-            int indicePase = jcPases.getSelectedIndex();
-            java.util.Date fechaInicio = jDate.getDate();
-            java.util.Date fechaFin = jDateVencimiento.getDate();
-
-            // Validar que se hayan ingresado todos los campos
-            if (dniSocio.isEmpty() || indicePase == -1 || fechaInicio == null || fechaFin == null) {
-                JOptionPane.showMessageDialog(this, "Debe completar todos los campos.");
-                return;
-            }
-
-            // Obtener el socio asociado al DNI
-            Socio socio = socioData.buscarSocioDni(dniSocio);
-            if (socio == null) {
-                JOptionPane.showMessageDialog(this, "No se encontró ningún socio con el DNI proporcionado.");
-                return;
-            }
-
-            // Crear un objeto Membresia con los valores proporcionados
-            Membresia nuevaMembresia = new Membresia();
-            nuevaMembresia.setSocio(socio);
-            nuevaMembresia.setCantPases(indicePase + 1); // +1 porque arranca en 0 la comboBox
-
-            // Convertir las fechas a LocalDate
-            LocalDate fechaInicioLocalDate = fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            LocalDate fechaFinLocalDate = fechaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-
-            nuevaMembresia.setFechaInicio(fechaInicioLocalDate);
-            nuevaMembresia.setFechaFin(fechaFinLocalDate);
-
-            
-            nuevaMembresia.setPrecioMembresia(precios.get(indicePase));
-            nuevaMembresia.setEstado(true);// dejamos activa la membresia.
-            
-            //activamos el socio 
-            socio.setEstado(true);
-
-            // Guardar la membresía en la base de datos
-            membresiaData.guardarMembresia(nuevaMembresia);
-
-            // Limpiar los campos después de guardar la membresía
-            limpiarCampos();
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Ocurrió un error al guardar la membresía: " + ex.getMessage());
-            ex.printStackTrace();
-        }
-
-
-    }//GEN-LAST:event_jbGuardarActionPerformed
     private void cargarPases() {
-        pases = new ArrayList<>();
-        precios = new ArrayList<>();
-
-        pases.add("4 pases [1 por semana]"); //guardamos en la misma posicion i cada precio y cada pase
+        pases.add("4 pases [1 por semana]");
         precios.add(3500.0);
 
         pases.add("12 pases [3 por semana]");
@@ -455,14 +296,70 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
             jcPases.addItem(pase);
         }
     }
+    private void jcPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcPasesActionPerformed
 
-    private void limpiarCampos() {
-        jlNombreApellido.setText("");
-        jtDNISocio.setText("");
-        jlCosto.setText("");
-        // Reiniciar el JComboBox
-        jcPases.setSelectedIndex(-1);
-    }
+        int paseSeleccionado = jcPases.getSelectedIndex();
+        if (paseSeleccionado != -1) {
+            double precio = precios.get(paseSeleccionado);
+            jlCosto.setText(String.valueOf(precio));
+        }
+
+    }//GEN-LAST:event_jcPasesActionPerformed
+
+    private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
+        dispose();
+        Menu menuPrincipal = new Menu();
+        gestionMembresia gm = new gestionMembresia();
+        menuPrincipal.getJdpEscritorio().add(gm);
+        gm.setVisible(true);
+        menuPrincipal.setVisible(true);
+    }//GEN-LAST:event_jbSalirActionPerformed
+
+    private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
+////        try {
+//            int indicePase = jcPases.getSelectedIndex();
+//            java.util.Date fechaInicio = jDate.getDate();
+//            java.util.Date fechaFin = jDateVencimiento.getDate();
+//
+        //    if (indicePase == -1 || fechaInicio == null || fechaFin == null) {
+          //      JOptionPane.showMessageDialog(this, "Debe completar todos los campos.");
+            //    return;
+            //}
+
+           // Membresia membresia = membresiaData.buscarMembresiaPorId(id);
+           
+//            membresia.setCantPases(indicePase + 1);
+//
+//            LocalDate fechaInicioLocalDate = fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//            LocalDate fechaFinLocalDate = fechaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+//
+//            membresia.setFechaInicio(fechaInicioLocalDate);
+//            membresia.setFechaFin(fechaFinLocalDate);
+//            membresia.setPrecioMembresia(precios.get(indicePase));
+//            membresia.setEstado(true);
+//
+//            membresiaData.guardarMembresia(membresia);
+//
+//            JOptionPane.showMessageDialog(this, "Membresía actualizada correctamente.");
+//        } catch (Exception ex) {
+//            JOptionPane.showMessageDialog(this, "Ocurrió un error al actualizar la membresía: " + ex.getMessage());
+//            ex.printStackTrace();
+//        }
+    }//GEN-LAST:event_jbGuardarActionPerformed
+
+    private void jDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDatePropertyChange
+        if ("date".equals(evt.getPropertyName())) {
+
+            java.util.Date selectedDate = jDate.getDate();
+
+            java.util.Calendar calendar = java.util.Calendar.getInstance();
+            calendar.setTime(selectedDate);
+            calendar.add(java.util.Calendar.WEEK_OF_YEAR, 4);
+
+            jDateVencimiento.setDate(calendar.getTime());
+
+        }
+    }//GEN-LAST:event_jDatePropertyChange
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -472,14 +369,11 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JButton jbBuscarSocio;
     private javax.swing.JButton jbGuardar;
-    private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox jcPases;
     private javax.swing.JLabel jlCosto;
