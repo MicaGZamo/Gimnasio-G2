@@ -152,9 +152,7 @@ public class MembresiaData {
     
     
     public void modificarMembresia(Membresia membresia){ //Ramiro   update
-//        String sql = "UPDATE `entrenadores` "
-//                   + "SET `dni`=?,`nombre`=?,`apellido`=?,`especialidad`=?,`estado-en`=? "
-//                   + "WHERE `id-entrenador`=? ";
+
           String sql = "UPDATE `membresias` "
                      + "SET `id-socio`=?,`CantidadPases`=?,`fecha-inicio`=?,`fecha-fin`=?,`costo-membresia`=?,`estado-m`=? "
                      + "WHERE `id-membresia`=?";

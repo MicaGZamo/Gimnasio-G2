@@ -9,7 +9,7 @@ public class Membresia {
     private Socio socio;
     private int cantPases;
     private LocalDate fechaInicio;
-    private LocalDate fechaFin; // 30 días a partir de la fecha de inicio
+    private LocalDate fechaFin; 
     private double precioMembresia;
     private boolean estado;
 
