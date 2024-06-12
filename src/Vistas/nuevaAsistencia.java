@@ -373,7 +373,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
 //                System.out.println("Horario: "+horario);
 //                System.out.println("Hora actual: "+ horaActual);
                 if (capacidad > 0 && (horaActual.equals(horario) || (horaActual.isAfter(horario) && horaActual.isBefore(horario.plusHours(1))))){
-                    System.out.println("capacidad mayor a cero");
+                    //System.out.println("capacidad mayor a cero");
                     jbRegistrar.setEnabled(true); // activa boton registrar
                 }else{
                     JOptionPane.showMessageDialog(null,"Clase sin capacidad o fuera de horario");
