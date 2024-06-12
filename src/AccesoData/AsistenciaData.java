@@ -168,5 +168,43 @@ public class AsistenciaData {
         }
         return lista;
     }
-
+      public List<Asistencia> Listartodas() {
+        List<Asistencia> lista = new ArrayList<>();
+        String sql = "SELECT `id-asistencia`, `id-socio`, clases.nombre, clases.horario, asistencias.`id-clase`, `fecha-asistencia` "
+                + " FROM `asistencias`, clases"
+                + " WHERE asistencias.`id-clase` = clases.`id-clase` ";
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+          
+            ResultSet rs = ps.executeQuery();
+            
+            while (rs.next()){
+                Asistencia asistencia = new Asistencia();
+                Socio socioA = new Socio();
+                Clase claseA = new Clase();
+                
+                asistencia.setIdAsistencia(rs.getInt("id-asistencia"));
+                
+                socioA.setIdSocio(rs.getInt("id-socio"));
+                asistencia.setSocio(socioA);
+                
+                claseA.setNombre(rs.getString("nombre"));
+                
+                claseA.setIdClase(rs.getInt("id-clase"));
+                asistencia.setClase(claseA);
+                
+                asistencia.setFechaAsistencia(rs.getDate("fecha-asistencia").toLocalDate());
+                
+                lista.add(asistencia);
+                        
+            }
+            rs.close();
+            
+           } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Asistencia ");
+            System.out.println("error " + ex.getMessage());
+            ex.printStackTrace();
+        }
+        return lista;
+    }
 }

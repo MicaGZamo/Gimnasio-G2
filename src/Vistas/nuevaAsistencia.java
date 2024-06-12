@@ -1,4 +1,3 @@
-
 package Vistas;
 
 import AccesoData.AsistenciaData;
@@ -32,68 +31,69 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
     private MembresiaData MData;
     private DefaultTableModel modeloMembresia;
     private DefaultTableModel modeloClase;
-    private Socio s=null;
-    private Clase c=null;
-    private Membresia m=null;
+    private Socio s = null;
+    private Clase c = null;
+    private Membresia m = null;
     private ArrayList<LocalTime> listaHorario;
-    
+
     public nuevaAsistencia() {
         initComponents();
         fechahoy();
-        modeloMembresia=new DefaultTableModel();
-        modeloClase=new DefaultTableModel();
-        s=new Socio();
-        c=new Clase();
-        m=new Membresia();
-        SData=new SocioData();
-        CData=new ClaseData();
-        MData=new MembresiaData();
-        AData=new AsistenciaData();
+        modeloMembresia = new DefaultTableModel();
+        modeloClase = new DefaultTableModel();
+        s = new Socio();
+        c = new Clase();
+        m = new Membresia();
+        SData = new SocioData();
+        CData = new ClaseData();
+        MData = new MembresiaData();
+        AData = new AsistenciaData();
         armarCabeceraTablaMembresia();
         armarCabeceraTablaClase();
         horariosDisponibles();
         clasesPorNombre();
     }
-    private void armarCabeceraTablaMembresia(){
+
+    private void armarCabeceraTablaMembresia() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add("Pases");
         filaCabecera.add("Inicio");
         filaCabecera.add("Finaliza");
         filaCabecera.add("Membresia");
-        
+
         for (Object it : filaCabecera) {
             modeloMembresia.addColumn(it);
         }
         jtTablaMembresiaSocio.setModel(modeloMembresia);
     }
-    
-    private void armarCabeceraTablaClase(){
+
+    private void armarCabeceraTablaClase() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add("Clase");
         filaCabecera.add("Entrenador");
         filaCabecera.add("Horario");
         filaCabecera.add("Capacidad");
-        
+
         for (Object it : filaCabecera) {
             modeloClase.addColumn(it);
         }
         jtTablaClase.setModel(modeloClase);
     }
-    
-    private void borrarFilaTablaMembresia(){
-        int indice = modeloMembresia.getRowCount()-1;
+
+    private void borrarFilaTablaMembresia() {
+        int indice = modeloMembresia.getRowCount() - 1;
         for (int i = indice; i >= 0; i--) {
             modeloMembresia.removeRow(i);
         }
     }
-    
-    private void borrarFilaTablaClase(){
-        int indice = modeloClase.getRowCount()-1;
+
+    private void borrarFilaTablaClase() {
+        int indice = modeloClase.getRowCount() - 1;
         for (int i = indice; i >= 0; i--) {
             modeloClase.removeRow(i);
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -133,6 +133,12 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarActionPerformed(evt);
+            }
+        });
+
+        jtfNombreApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jtfNombreApellidoActionPerformed(evt);
             }
         });
 
@@ -330,7 +336,10 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         // TODO add your handling code here:
-        //limpiarCampos();
+        borrarFilaTablaClase();
+        borrarFilaTablaMembresia();
+        jtfDni.setText("");
+        jtfNombreApellido.setText("");
         //entrenadorActual=null;
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
@@ -346,28 +355,40 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
         borrarFilaTablaMembresia();
-        LocalDate hoy=LocalDate.now();
-        String dniSocio =jtfDni.getText();
-        Socio s=SData.buscarSocioDni(dniSocio);
-        jtfNombreApellido.setText(s.getNombre()+" "+s.getApellido());
-        List<Membresia> lista=MData.buscarPorSocio(s);
-        
+        LocalDate hoy = LocalDate.now();
+        String dniSocio = jtfDni.getText();
+        Socio s = SData.buscarSocioDni(dniSocio);
+        jtfNombreApellido.setText(s.getNombre() + " " + s.getApellido());
+        List<Membresia> lista = MData.buscarPorSocio(s);
+
         for (Membresia m : lista) {
-//                if(m.getFechaFin().isAfter(hoy)){
-//                    MData.darBajaMembresia(m);
-//                    modeloMembresia.addRow(new Object[] {m.getCantPases(), m.getFechaInicio(),m.getFechaFin(),m.isEstado()?"Activo" : "Inactivo"} );               
-//                }
-                modeloMembresia.addRow(new Object[] {m.getCantPases(), m.getFechaInicio(),m.getFechaFin(),m.isEstado()?"Activo" : "Inactivo"} );
+            System.out.println("fecha fin " + m.getFechaFin());
+            System.out.println("Fecha hoy " + hoy);
+            System.out.println((m.getFechaFin().isBefore(hoy)));
+            
+            if (m.getFechaFin().isBefore(hoy)) {
+                System.out.println((m.getFechaFin().isBefore(hoy)));
+                m.setEstado(false);
+                MData.darBajaMembresia(m);
+                
+            }
+            modeloMembresia.addRow(new Object[]{
+                m.getCantPases(),
+                m.getFechaInicio(),
+                m.getFechaFin(),
+                m.isEstado()
+            //    m.isEstado() ? "Activo" : "Inactivo"
+            });
         }
-       
-    
+
+
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jcbClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClasesActionPerformed
-          borrarFilaTablaClase();
-          cargarClaseNombre();
-          
-         
+        borrarFilaTablaClase();
+        cargarClaseNombre();
+
+
     }//GEN-LAST:event_jcbClasesActionPerformed
 
     private void jcbHorario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbHorario1ActionPerformed
@@ -378,81 +399,84 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
 
     private void jtTablaMembresiaSocioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMembresiaSocioMouseClicked
         // TODO add your handling code here:
-                String estadoM=(String) jtTablaMembresiaSocio.getValueAt(jtTablaMembresiaSocio.getSelectedRow(),3); // captura estado
-                System.out.println("estadoM: "+estadoM);
-                
-                if(estadoM=="Activo"){
-                    jbRegistrar.setEnabled(true); // activa boton registrar
-                }else{
-                    JOptionPane.showMessageDialog(null,"Membresia vencida");
-                    jbRegistrar.setEnabled(false);// Desactiva boton registrar
-                }
-        
+        String estadoM = (String) jtTablaMembresiaSocio.getValueAt(jtTablaMembresiaSocio.getSelectedRow(), 3); // captura estado
+        System.out.println("estadoM: " + estadoM);
+
+        if (estadoM == "Activo") {
+            jbRegistrar.setEnabled(true); // activa boton registrar
+        } else {
+            JOptionPane.showMessageDialog(null, "Membresia vencida");
+            jbRegistrar.setEnabled(false);// Desactiva boton registrar
+        }
+
     }//GEN-LAST:event_jtTablaMembresiaSocioMouseClicked
 
     private void jtTablaClaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaClaseMouseClicked
         // Verificacion de asistencia
-        
-        int capacidadTotal =(Integer) jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(),3); // captura capacidad
-        int asistencias=0;
+
+        int capacidadTotal = (Integer) jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(), 3); // captura capacidad
+        int asistencias = 0;
         int capacidadCuenta;
-        LocalDate hoy=LocalDate.now();
-        
+        LocalDate hoy = LocalDate.now();
+
         List<Asistencia> lista = AData.ListarPorFecha(hoy);
-        
+
         for (Asistencia a : lista) {
             //cuenta asistencias por clase seleccionada
-            if(a.getClase().getNombre().equals((String)jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(),0))){ 
-                asistencias++;      
+            if (a.getClase().getNombre().equals((String) jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(), 0))) {
+                asistencias++;
             }
         }
         //System.out.println("Asistencia: "+asistencias);
-        capacidadCuenta=capacidadTotal-asistencias;
-        
-        if (capacidadCuenta>0){ //verifica si hay cupo disponible para esa clase
-                    //System.out.println("capacidad mayor a cero");
-                    jbRegistrar.setEnabled(true); // activa boton registrar
-                }else{
-                    JOptionPane.showMessageDialog(null,"Clase sin capacidad");
-                    jbRegistrar.setEnabled(false);// Desactiva boton registrar
-                }
+        capacidadCuenta = capacidadTotal - asistencias;
+
+        if (capacidadCuenta > 0) { //verifica si hay cupo disponible para esa clase
+            //System.out.println("capacidad mayor a cero");
+            jbRegistrar.setEnabled(true); // activa boton registrar
+        } else {
+            JOptionPane.showMessageDialog(null, "Clase sin capacidad");
+            jbRegistrar.setEnabled(false);// Desactiva boton registrar
+        }
     }//GEN-LAST:event_jtTablaClaseMouseClicked
 
     private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
         // TODO add your handling code here:-----------------------------------------------------------
-        LocalDate hoy=LocalDate.now();
-        
-        String dniSocio =jtfDni.getText();
-        Socio s=SData.buscarSocioDni(dniSocio);
-        
+        LocalDate hoy = LocalDate.now();
+
+        String dniSocio = jtfDni.getText();
+        Socio s = SData.buscarSocioDni(dniSocio);
+
         //Lo mejor seria buscar por id
-        Object selectedItem = jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(),2);
+        Object selectedItem = jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(), 2);
         LocalTime horario = (LocalTime) selectedItem;
         Clase c = CData.buscarClasePorHorario(horario);
-        
-        Asistencia as=new Asistencia(s, c, hoy);
-        
+
+        Asistencia as = new Asistencia(s, c, hoy);
+
         AData.guardarAsistencia(as);
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jbRegistrarActionPerformed
-    
-    private void fechahoy(){
-        LocalDate hoy=LocalDate.now();
+
+    private void jtfNombreApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtfNombreApellidoActionPerformed
+
+    private void fechahoy() {
+        LocalDate hoy = LocalDate.now();
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String FechaFormateada = hoy.format(formato);
         jtfFechaHoy.setColumns(10);
         jtfFechaHoy.setText(FechaFormateada);
     }
-    
+
     private void horariosDisponibles() {
         listaHorario = (ArrayList<LocalTime>) CData.listarHorariosClasesActivas();
         for (LocalTime item : listaHorario) {
             jcbHorario1.addItem(item);
         }
     }
+
     private void clasesPorNombre() {
         Set<String> nombresDeClases = new HashSet<>();
         List<Clase> clases = CData.listarTodasClases();
@@ -465,17 +489,17 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
             jcbClases.addItem(nombre);
         }
     }
-    
+
     private void cargarClaseNombre() {
         String claseN = (String) jcbClases.getSelectedItem();
         List<Clase> lista = CData.buscarClase(claseN);
         for (Clase c : lista) {
-            if (c.isEstado()){
-            modeloClase.addRow(new Object[]{c.getNombre(), c.getEntrenador().getNombreE(), c.getHorario(), c.getCapacidad()});
+            if (c.isEstado()) {
+                modeloClase.addRow(new Object[]{c.getNombre(), c.getEntrenador().getNombreE(), c.getHorario(), c.getCapacidad()});
             }
         }
     }
-    
+
     public void cargarClaseHorario() {
         Object selectedItem = jcbHorario1.getSelectedItem();
         LocalTime horario = (LocalTime) selectedItem;
