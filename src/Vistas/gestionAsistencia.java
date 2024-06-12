@@ -38,9 +38,10 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
         initComponents();
         modelo = new DefaultTableModel();
         armarCabeceraTabla();
-        cargarTodas();
         clasesPorNombre();
-        //cargarAsistenciaHorario();
+        horariosClases();
+        cargarTodas();
+       
        
     }
 
@@ -150,7 +151,7 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
             }
         });
 
-        jbBuscarfecha.setText("jButton1");
+        jbBuscarfecha.setText("Buscar por Fecha");
         jbBuscarfecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbBuscarfechaActionPerformed(evt);
@@ -192,19 +193,15 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel3)
                                 .addGap(98, 98, 98)
                                 .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addComponent(jLabel2)
+                        .addGap(43, 43, 43)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGap(168, 168, 168)
-                                .addComponent(jbBuscarPorDni)
-                                .addGap(86, 86, 86))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2)
-                                .addGap(43, 43, 43)
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jbBuscarfecha, javax.swing.GroupLayout.DEFAULT_SIZE, 123, Short.MAX_VALUE)
-                                    .addComponent(jcbClase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(85, 85, 85))))
+                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jbBuscarfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jcbClase, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jbBuscarPorDni, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(85, 85, 85))
                     .addComponent(jScrollPane1))
                 .addContainerGap())
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
@@ -230,24 +227,19 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
                             .addComponent(jdcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbBuscarfecha)))
                     .addComponent(jLabel4))
+                .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jcbClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(132, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jbSalir)
-                            .addComponent(jbLimpiar))
-                        .addGap(19, 19, 19))))
+                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jcbClase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbSalir)
+                    .addComponent(jbLimpiar)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -277,6 +269,8 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         borrarFilaTabla();
+        jtDni.setText("");
+        
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBuscarPorDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPorDniActionPerformed
@@ -313,15 +307,15 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcbHorarioMouseClicked
 
     private void jdcFechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdcFechaMouseClicked
-//        borrarFilaTabla();
-//        Date fechaSeleccionada = jdcFecha.getDate();
-//        LocalDate localDate = fechaSeleccionada.toInstant()
-//                .atZone(ZoneId.systemDefault())
-//                .toLocalDate();
-//        List<Asistencia> lista = aD.ListarPorFecha(localDate);
-//        for (Asistencia a : lista) {
-//            modelo.addRow(new Object[]{a.getIdAsistencia(), a.getSocio().getApellido(), a.getClase().getNombre(), a.getFechaAsistencia(), a.getClase().getHorario()});
-//        }
+        borrarFilaTabla();
+        Date fechaSeleccionada = jdcFecha.getDate();
+        LocalDate localDate = fechaSeleccionada.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+        List<Asistencia> lista = aD.ListarPorFecha(localDate);
+        for (Asistencia a : lista) {
+            modelo.addRow(new Object[]{a.getIdAsistencia(), a.getSocio().getApellido(), a.getClase().getNombre(), a.getFechaAsistencia(), a.getClase().getHorario()});
+        }
     }//GEN-LAST:event_jdcFechaMouseClicked
 
     private void jbBuscarfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarfechaActionPerformed
@@ -388,7 +382,7 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
 
     }
     public void cargarTodas(){
-       
+        borrarFilaTabla();
         System.out.println(clase);
         List<Asistencia> lista = aD.Listartodas();
         for (Asistencia a : lista) {

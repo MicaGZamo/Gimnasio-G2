@@ -369,7 +369,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
             if (m.getFechaFin().isBefore(hoy)) {
                 System.out.println((m.getFechaFin().isBefore(hoy)));
                 m.setEstado(false);
-                MData.darBajaMembresia(m);
+                MData.darBajaMembresia(m.getIdMembresia());
                 
             }
             modeloMembresia.addRow(new Object[]{

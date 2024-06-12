@@ -86,8 +86,6 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
         });
 
         jcPases.setBackground(new java.awt.Color(204, 204, 204));
-        jcPases.setForeground(new java.awt.Color(0, 0, 0));
-        jcPases.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcPases.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jcPasesActionPerformed(evt);
@@ -262,17 +260,18 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 private void cargarDatosSocio() {
-        jtDNISocio.setText(socio.getDniSocio());
-        jlNombreApellido.setText(socio.getNombre() + " " + socio.getApellido());
+    
     }
 
     private void cargarDatosMembresia(int id) {
         Membresia membresia = membresiaData.buscarMembresiaPorId(id);
         if (membresia != null) {
-            jcPases.setSelectedIndex(membresia.getCantPases() - 1);
+            //jcPases.setSelectedIndex(membresia.getCantPases() - 1);
             jlCosto.setText(String.valueOf(membresia.getPrecioMembresia()));
             jDate.setDate(java.util.Date.from(membresia.getFechaInicio().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             jDateVencimiento.setDate(java.util.Date.from(membresia.getFechaFin().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            jtDNISocio.setText(membresia.getSocio().getDniSocio());
+            jlNombreApellido.setText(membresia.getSocio().getNombre() + " " + membresia.getSocio().getApellido());
         }
     }
     private void jtDNISocioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtDNISocioActionPerformed

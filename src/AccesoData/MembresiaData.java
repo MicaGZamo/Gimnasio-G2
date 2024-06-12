@@ -86,8 +86,11 @@ public class MembresiaData {
 
     public Membresia buscarMembresiaPorId(int idMembresia) {
         Membresia membresia = null;
-        String sql = "SELECT * FROM `membresias` WHERE `id-membresia`=?";
-
+        String sql = //"SELECT * FROM `membresias` WHERE `id-membresia`=?";
+                "SELECT membresias.*, socios.`id-socio`, socios.dni, socios.nombre, socios.apellido "
+                + "FROM `membresias`, `socios` "
+                + "WHERE `id-membresia`=? "
+                + "AND membresias.`id-socio`= socios.`id-socio`";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idMembresia);
@@ -97,6 +100,9 @@ public class MembresiaData {
                 membresia = new Membresia();
                 membresia.setIdMembresia(rs.getInt("id-membresia"));
                 Socio socio = new Socio();
+                socio.setDniSocio(rs.getString("dni"));
+                socio.setNombre(rs.getNString("nombre"));
+                socio.setApellido(rs.getNString("apellido"));
                 socio.setIdSocio(rs.getInt("id-socio"));
                 membresia.setSocio(socio);
                 membresia.setCantPases(rs.getInt("CantidadPases"));
