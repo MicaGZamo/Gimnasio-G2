@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,12 +32,8 @@ public class gestionClase extends javax.swing.JInternalFrame {
     public gestionClase() {
         initComponents();
         clasesLista = (ArrayList<Clase>) cD.listarTodasClases();
-        modelo = new DefaultTableModel() {
-            @Override
-            public boolean isCellEditable(int row, int column) {
-                return column != 0;
-            }
-        };
+        modelo = new DefaultTableModel();
+
         armarCabeceraTabla();
         cargarClases();
         clasesPorNombre();
@@ -91,6 +88,12 @@ public class gestionClase extends javax.swing.JInternalFrame {
 
     private void cargarClasesPorEntrenador() {
         String selec = jtBuscarDni.getText();
+        String regularDni = "\\d+";
+        if (!selec.matches(regularDni)) {
+            JOptionPane.showMessageDialog(this, "El DNI debe tener 8 dígitos numéricos.");
+            return;
+        }
+
         Entrenador ent = eD.buscarPorDni(selec);
         List<Clase> lista = cD.buscarClasePorEntrenador(ent.getNombreE(), ent.getApellidoE());
         for (Clase c : lista) {
@@ -307,7 +310,8 @@ public class gestionClase extends javax.swing.JInternalFrame {
                                 .addGap(29, 29, 29))
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addGap(126, 126, 126)
-                                .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(29, 29, 29))
         );
         jDesktopPane1Layout.setVerticalGroup(
@@ -327,7 +331,7 @@ public class gestionClase extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3)
                             .addComponent(jcbClases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jcbHorario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
@@ -428,7 +432,7 @@ public class gestionClase extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jcbHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbHorarioActionPerformed
-         borrarFilaTabla();
+        borrarFilaTabla();
         cargarClaseHorario();
     }//GEN-LAST:event_jcbHorarioActionPerformed
 

@@ -53,12 +53,13 @@ public class AsistenciaData {
 
     }
 
-    public List<Asistencia> buscarPorSocio(Socio socio) { // o ver si por nombre y apellido // nadia
+    public List<Asistencia> buscarPorSocio(Socio socio) { // nadia
         List<Asistencia> lista = new ArrayList<>();
       
-        String sql = "SELECT `id-asistencia`, `id-socio`, `id-clase`, `fecha-asistencia` "
-                + " FROM `asistencias`"
-                + " WHERE `id-socio` = ?";
+        String sql = "SELECT `id-asistencia`, `id-socio`, clases.nombre, clases.horario, asistencias.`id-clase`, `fecha-asistencia` "
+                + " FROM `asistencias`, clases"
+                + " WHERE `id-socio` = ?"
+                + " AND asistencias.`id-clase` = clases.`id-clase` ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, socio.getIdSocio());
@@ -70,6 +71,8 @@ public class AsistenciaData {
                 socio.setIdSocio(rs.getInt("id-socio"));
                 asistencia.setSocio(socio);
                 clase.setIdClase(rs.getInt("id-clase"));
+                clase.setNombre(rs.getString("nombre"));
+                clase.setHorario(rs.getTime("horario").toLocalTime());
                 asistencia.setClase(clase);
                 asistencia.setFechaAsistencia( rs.getDate("fecha-asistencia").toLocalDate());
                 lista.add(asistencia);
@@ -87,9 +90,11 @@ public class AsistenciaData {
     public List<Asistencia> buscarPorClase(Clase clase) { // mica
         List<Asistencia> lista = new ArrayList<>();
            
-        String sql = "SELECT `id-asistencia`, `id-socio`, `id-clase`, `fecha-asistencia` "
-                + "FROM `asistencias`"
-                + " WHERE `id-clase`= ? ";
+        String sql =  "SELECT `id-asistencia`, asistencias.`id-socio`, socios.apellido, `id-clase`, `fecha-asistencia` "
+                  + "FROM `asistencias`, socios "
+                   + " WHERE `id-clase`= ?"
+                  + " AND asistencias.`id-socio`= socios.`id-socio` ";
+              
         
         try{
             PreparedStatement ps = con.prepareStatement(sql);
@@ -103,6 +108,7 @@ public class AsistenciaData {
                     
             asistencia.setIdAsistencia(rs.getInt("id-asistencia")); //Guardamos el id de la tabla
             socio.setIdSocio(rs.getInt("id-socio"));
+            socio.setApellido(rs.getString("apellido"));
             asistencia.setSocio(socio); //seteamos el socio con el id obetenido del rs en asistencia
             clase.setIdClase(rs.getInt("id-clase"));
             asistencia.setFechaAsistencia(rs.getDate("fecha-asistencia").toLocalDate());
