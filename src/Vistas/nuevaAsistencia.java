@@ -5,6 +5,7 @@ import AccesoData.AsistenciaData;
 import AccesoData.ClaseData;
 import AccesoData.MembresiaData;
 import AccesoData.SocioData;
+import Entidades.Asistencia;
 import Entidades.Clase;
 import Entidades.Membresia;
 import Entidades.Socio;
@@ -47,6 +48,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         SData=new SocioData();
         CData=new ClaseData();
         MData=new MembresiaData();
+        AData=new AsistenciaData();
         armarCabeceraTablaMembresia();
         armarCabeceraTablaClase();
         horariosDisponibles();
@@ -153,6 +155,11 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaClase.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTablaClaseMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jtTablaClase);
 
         jLabel4.setText("Fecha:");
@@ -165,6 +172,11 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         });
 
         jbRegistrar.setText("Registrar");
+        jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbRegistrarActionPerformed(evt);
+            }
+        });
 
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -181,6 +193,11 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtTablaMembresiaSocio.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jtTablaMembresiaSocioMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(jtTablaMembresiaSocio);
 
         jcbHorario1.addActionListener(new java.awt.event.ActionListener() {
@@ -329,61 +346,28 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
         // TODO add your handling code here:
         borrarFilaTablaMembresia();
+        LocalDate hoy=LocalDate.now();
         String dniSocio =jtfDni.getText();
         Socio s=SData.buscarSocioDni(dniSocio);
         jtfNombreApellido.setText(s.getNombre()+" "+s.getApellido());
         List<Membresia> lista=MData.buscarPorSocio(s);
+        
         for (Membresia m : lista) {
+//                if(m.getFechaFin().isAfter(hoy)){
+//                    MData.darBajaMembresia(m);
+//                    modeloMembresia.addRow(new Object[] {m.getCantPases(), m.getFechaInicio(),m.getFechaFin(),m.isEstado()?"Activo" : "Inactivo"} );               
+//                }
                 modeloMembresia.addRow(new Object[] {m.getCantPases(), m.getFechaInicio(),m.getFechaFin(),m.isEstado()?"Activo" : "Inactivo"} );
         }
        
-        //---------------------------Bloque: pregunta primero si hay un fila seleccionada en la tabla-------------------------------
-        //Luego captura es fila y consulta sobre su estado
-        jtTablaMembresiaSocio.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-        public void valueChanged(ListSelectionEvent event) {
-            if (!event.getValueIsAdjusting() && jtTablaMembresiaSocio.getSelectedRow() != -1) { // Pregunta si se ha seleccionado una fila
-                String estadoM=(String) jtTablaMembresiaSocio.getValueAt(jtTablaMembresiaSocio.getSelectedRow(),3); // captura estado
-                System.out.println("estadoM: "+estadoM);
-                if(estadoM=="Activo"){
-                    jbRegistrar.setEnabled(true); // activa boton registrar
-                }else{
-                    JOptionPane.showMessageDialog(null,"Membresia vencida");
-                    jbRegistrar.setEnabled(false);// Desactiva boton registrar
-                }
-            }
-            }
-        }); 
-        //--------------------------------------------------------------------------------------------------------------
-        
+    
     }//GEN-LAST:event_jbBuscarActionPerformed
 
     private void jcbClasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbClasesActionPerformed
           borrarFilaTablaClase();
           cargarClaseNombre();
           
-          //---------------------------Bloque: pregunta primero si hay un fila seleccionada en la tabla-------------------------------
-        //Luego captura es fila y consulta sobre su estado
-        jtTablaClase.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-        public void valueChanged(ListSelectionEvent event) {
-            if (!event.getValueIsAdjusting() && jtTablaClase.getSelectedRow() != -1) { // Pregunta si se ha seleccionado una fila
-                int capacidad =(Integer) jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(),3); // captura capacidad
-                LocalTime horario=(LocalTime) jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(),2); // captura horario
-                LocalTime horaActual = LocalTime.now();
-//                System.out.println("Capacidad: "+capacidad);
-//                System.out.println("Horario: "+horario);
-//                System.out.println("Hora actual: "+ horaActual);
-                if (capacidad > 0 && (horaActual.equals(horario) || (horaActual.isAfter(horario) && horaActual.isBefore(horario.plusHours(1))))){
-                    //System.out.println("capacidad mayor a cero");
-                    jbRegistrar.setEnabled(true); // activa boton registrar
-                }else{
-                    JOptionPane.showMessageDialog(null,"Clase sin capacidad o fuera de horario");
-                    jbRegistrar.setEnabled(false);// Desactiva boton registrar
-                }
-            }
-            }
-        }); 
-        //--------------------------------------------------------------------------------------------------------------
-          
+         
     }//GEN-LAST:event_jcbClasesActionPerformed
 
     private void jcbHorario1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbHorario1ActionPerformed
@@ -391,6 +375,69 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         borrarFilaTablaClase();
         cargarClaseHorario();
     }//GEN-LAST:event_jcbHorario1ActionPerformed
+
+    private void jtTablaMembresiaSocioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaMembresiaSocioMouseClicked
+        // TODO add your handling code here:
+                String estadoM=(String) jtTablaMembresiaSocio.getValueAt(jtTablaMembresiaSocio.getSelectedRow(),3); // captura estado
+                System.out.println("estadoM: "+estadoM);
+                
+                if(estadoM=="Activo"){
+                    jbRegistrar.setEnabled(true); // activa boton registrar
+                }else{
+                    JOptionPane.showMessageDialog(null,"Membresia vencida");
+                    jbRegistrar.setEnabled(false);// Desactiva boton registrar
+                }
+        
+    }//GEN-LAST:event_jtTablaMembresiaSocioMouseClicked
+
+    private void jtTablaClaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtTablaClaseMouseClicked
+        // Verificacion de asistencia
+        
+        int capacidadTotal =(Integer) jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(),3); // captura capacidad
+        int asistencias=0;
+        int capacidadCuenta;
+        LocalDate hoy=LocalDate.now();
+        
+        List<Asistencia> lista = AData.ListarPorFecha(hoy);
+        
+        for (Asistencia a : lista) {
+            //cuenta asistencias por clase seleccionada
+            if(a.getClase().getNombre().equals((String)jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(),0))){ 
+                asistencias++;      
+            }
+        }
+        //System.out.println("Asistencia: "+asistencias);
+        capacidadCuenta=capacidadTotal-asistencias;
+        
+        if (capacidadCuenta>0){ //verifica si hay cupo disponible para esa clase
+                    //System.out.println("capacidad mayor a cero");
+                    jbRegistrar.setEnabled(true); // activa boton registrar
+                }else{
+                    JOptionPane.showMessageDialog(null,"Clase sin capacidad");
+                    jbRegistrar.setEnabled(false);// Desactiva boton registrar
+                }
+    }//GEN-LAST:event_jtTablaClaseMouseClicked
+
+    private void jbRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRegistrarActionPerformed
+        // TODO add your handling code here:-----------------------------------------------------------
+        LocalDate hoy=LocalDate.now();
+        
+        String dniSocio =jtfDni.getText();
+        Socio s=SData.buscarSocioDni(dniSocio);
+        
+        //Lo mejor seria buscar por id
+        Object selectedItem = jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(),2);
+        LocalTime horario = (LocalTime) selectedItem;
+        Clase c = CData.buscarClasePorHorario(horario);
+        
+        Asistencia as=new Asistencia(s, c, hoy);
+        
+        AData.guardarAsistencia(as);
+        
+        
+        
+        
+    }//GEN-LAST:event_jbRegistrarActionPerformed
     
     private void fechahoy(){
         LocalDate hoy=LocalDate.now();
@@ -423,8 +470,9 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         String claseN = (String) jcbClases.getSelectedItem();
         List<Clase> lista = CData.buscarClase(claseN);
         for (Clase c : lista) {
+            if (c.isEstado()){
             modeloClase.addRow(new Object[]{c.getNombre(), c.getEntrenador().getNombreE(), c.getHorario(), c.getCapacidad()});
-
+            }
         }
     }
     
