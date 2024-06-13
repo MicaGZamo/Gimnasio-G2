@@ -79,6 +79,8 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
         jbLimpiar = new javax.swing.JButton();
         jbSalir = new javax.swing.JButton();
         jbBuscarfecha = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jtcantidadAsistencias = new javax.swing.JTextField();
 
         jtAsistencia.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -158,6 +160,8 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setText("Cantidad de asistencias");
+
         jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtDni, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -171,6 +175,8 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jbLimpiar, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbBuscarfecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jtcantidadAsistencias, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -205,11 +211,17 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1))
                 .addContainerGap())
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(14, 14, 14)
                 .addComponent(jbLimpiar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jbSalir)
-                .addGap(31, 31, 31))
+                .addGap(23, 23, 23))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jLabel5)
+                .addGap(54, 54, 54)
+                .addComponent(jtcantidadAsistencias, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,10 +248,18 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbSalir)
-                    .addComponent(jbLimpiar)))
+                    .addComponent(jLabel5)
+                    .addComponent(jtcantidadAsistencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jbLimpiar)
+                        .addGap(14, 14, 14))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                        .addComponent(jbSalir)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -270,11 +290,13 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
         borrarFilaTabla();
         jtDni.setText("");
-        
+        jtcantidadAsistencias.setText(" ");
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void jbBuscarPorDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarPorDniActionPerformed
         borrarFilaTabla();
+        jtcantidadAsistencias.setText(" ");
+        int contador=0;
         String dni = jtDni.getText();
         String regularDni = "\\d+";
         if (!dni.matches(regularDni)) {
@@ -285,12 +307,16 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
         List<Asistencia> lista = aD.buscarPorSocio(socio);
         for (Asistencia a : lista) {
             modelo.addRow(new Object[]{a.getIdAsistencia(), a.getSocio().getApellido(), a.getClase().getNombre(), a.getFechaAsistencia(), a.getClase().getHorario()});
+        contador++;
         }
+        jtcantidadAsistencias.setText(String.valueOf(contador));
     }//GEN-LAST:event_jbBuscarPorDniActionPerformed
 
     private void jcbHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbHorarioActionPerformed
+        jtcantidadAsistencias.setText(" ");
         borrarFilaTabla();
         cargarAsistenciaHorario();
+       
     }//GEN-LAST:event_jcbHorarioActionPerformed
 
     private void jbSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSalirActionPerformed
@@ -307,19 +333,24 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jcbHorarioMouseClicked
 
     private void jdcFechaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jdcFechaMouseClicked
-        borrarFilaTabla();
-        Date fechaSeleccionada = jdcFecha.getDate();
-        LocalDate localDate = fechaSeleccionada.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
-        List<Asistencia> lista = aD.ListarPorFecha(localDate);
-        for (Asistencia a : lista) {
-            modelo.addRow(new Object[]{a.getIdAsistencia(), a.getSocio().getApellido(), a.getClase().getNombre(), a.getFechaAsistencia(), a.getClase().getHorario()});
-        }
+//        borrarFilaTabla();
+//        jtcantidadAsistencias.setText(" ");
+//        int contador=0;
+//        Date fechaSeleccionada = jdcFecha.getDate();
+//        LocalDate localDate = fechaSeleccionada.toInstant()
+//                .atZone(ZoneId.systemDefault())
+//                .toLocalDate();
+//        List<Asistencia> lista = aD.ListarPorFecha(localDate);
+//        for (Asistencia a : lista) {
+//            modelo.addRow(new Object[]{a.getIdAsistencia(), a.getSocio().getApellido(), a.getClase().getNombre(), a.getFechaAsistencia(), a.getClase().getHorario()});
+//        contador++;
+//        }
+//        jtcantidadAsistencias.setText(String.valueOf(contador));
     }//GEN-LAST:event_jdcFechaMouseClicked
 
     private void jbBuscarfechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarfechaActionPerformed
         borrarFilaTabla();
+        int contador=0;
         Date fechaSeleccionada = jdcFecha.getDate();
         LocalDate localDate = fechaSeleccionada.toInstant()
                     .atZone(ZoneId.systemDefault())
@@ -327,7 +358,9 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
       List<Asistencia> lista =  aD.ListarPorFecha(localDate);
         for (Asistencia a : lista) {
             modelo.addRow(new Object[]{a.getIdAsistencia(), a.getSocio().getApellido(), a.getClase().getNombre(), a.getFechaAsistencia(), a.getClase().getHorario()});
+        contador++;
         }
+         jtcantidadAsistencias.setText(String.valueOf(contador));
     }//GEN-LAST:event_jbBuscarfechaActionPerformed
 
     private void borrarFilaTabla() {
@@ -359,18 +392,22 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
     }
 
     public void buscarPorClase() {
+        int contador=0 ;
         String claseN = (String) jcbClase.getSelectedItem();
        List<Clase>  clase = cD.buscarClase(claseN);
          for (Clase c : clase) {
         List<Asistencia> lista = aD.buscarPorClase(c);
 
-        for (Asistencia a : lista) {
+         for (Asistencia a : lista) {
             modelo.addRow(new Object[]{a.getIdAsistencia(), a.getSocio().getApellido(), a.getClase().getNombre(), a.getFechaAsistencia(), a.getClase().getHorario()});
+        contador++;
         }
+         jtcantidadAsistencias.setText(String.valueOf(contador));
          }
     }
 
     public void cargarAsistenciaHorario() {
+        int contador=0;
         Object selectedItem = jcbHorario.getSelectedItem();
         LocalTime horario = (LocalTime) selectedItem;
         clase = cD.buscarClasePorHorario(horario);
@@ -378,7 +415,10 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
         List<Asistencia> lista = aD.buscarPorClase(clase);
         for (Asistencia a : lista) {
             modelo.addRow(new Object[]{a.getIdAsistencia(), a.getSocio().getApellido(), a.getClase().getNombre(), a.getFechaAsistencia(), a.getClase().getHorario()});
+        contador++;
         }
+         jtcantidadAsistencias.setText(String.valueOf(contador));
+         
 
     }
     public void cargarTodas(){
@@ -396,6 +436,7 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbBuscarPorDni;
     private javax.swing.JButton jbBuscarfecha;
@@ -406,5 +447,6 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser jdcFecha;
     private javax.swing.JTable jtAsistencia;
     private javax.swing.JTextField jtDni;
+    private javax.swing.JTextField jtcantidadAsistencias;
     // End of variables declaration//GEN-END:variables
 }
