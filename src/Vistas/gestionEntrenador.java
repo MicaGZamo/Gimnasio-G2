@@ -66,7 +66,6 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jDesktopPane1 = new javax.swing.JDesktopPane();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -83,27 +82,49 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         jbSalir = new javax.swing.JButton();
         jrbTodos = new javax.swing.JRadioButton();
         jbDarAlta = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        jLabel1.setText("BUSCAR ENTRENADOR");
-
+        jLabel2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("Por nombre");
 
+        jLabel3.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Por apellido");
 
+        jLabel4.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Por especialidad");
 
+        jtNombre.setBackground(new java.awt.Color(204, 204, 204));
+        jtNombre.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jtNombre.setForeground(new java.awt.Color(51, 51, 51));
+        jtNombre.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtNombreActionPerformed(evt);
             }
         });
 
+        jtApellido.setBackground(new java.awt.Color(204, 204, 204));
+        jtApellido.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jtApellido.setForeground(new java.awt.Color(51, 51, 51));
+        jtApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jtApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtApellidoActionPerformed(evt);
             }
         });
 
+        jtEspecialidad.setBackground(new java.awt.Color(204, 204, 204));
+        jtEspecialidad.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jtEspecialidad.setForeground(new java.awt.Color(51, 51, 51));
+        jtEspecialidad.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jbBuscar.setBackground(new java.awt.Color(51, 51, 51));
+        jbBuscar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbBuscar.setForeground(new java.awt.Color(204, 204, 204));
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +132,8 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jrbActivos.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jrbActivos.setForeground(new java.awt.Color(204, 204, 204));
         jrbActivos.setText("Activos");
         jrbActivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +141,8 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jrbInactivos.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jrbInactivos.setForeground(new java.awt.Color(204, 204, 204));
         jrbInactivos.setText("Inactivos");
         jrbInactivos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,6 +163,9 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jtTablaEntrenadores);
 
+        jbDarBaja.setBackground(new java.awt.Color(171, 49, 49));
+        jbDarBaja.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbDarBaja.setForeground(new java.awt.Color(204, 204, 204));
         jbDarBaja.setText("Dar Baja");
         jbDarBaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -145,6 +173,9 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jbModificar.setBackground(new java.awt.Color(51, 51, 51));
+        jbModificar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbModificar.setForeground(new java.awt.Color(204, 204, 204));
         jbModificar.setText("Modificar Datos");
         jbModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -152,6 +183,9 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jbSalir.setBackground(new java.awt.Color(51, 51, 51));
+        jbSalir.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbSalir.setForeground(new java.awt.Color(255, 255, 255));
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,6 +193,8 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jrbTodos.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jrbTodos.setForeground(new java.awt.Color(204, 204, 204));
         jrbTodos.setText("Todos");
         jrbTodos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,6 +202,9 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
+        jbDarAlta.setBackground(new java.awt.Color(75, 139, 53));
+        jbDarAlta.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbDarAlta.setForeground(new java.awt.Color(204, 204, 204));
         jbDarAlta.setText("Dar Alta");
         jbDarAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,7 +212,13 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
             }
         });
 
-        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLabel1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Buscar Entrenador");
+
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -189,58 +234,66 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jbSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jrbTodos, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jbDarAlta, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                .addGap(0, 31, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGap(80, 80, 80)
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel4))
-                                .addGap(51, 51, 51)
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jtNombre)
-                                    .addComponent(jtApellido)
-                                    .addComponent(jtEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
-                                .addGap(67, 67, 67)
-                                .addComponent(jbBuscar))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGap(213, 213, 213)
-                                .addComponent(jLabel1))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGap(116, 116, 116)
-                                .addComponent(jrbActivos)
-                                .addGap(52, 52, 52)
-                                .addComponent(jrbInactivos)
-                                .addGap(43, 43, 43)
-                                .addComponent(jrbTodos)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(51, 51, 51)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtNombre)
+                            .addComponent(jtApellido)
+                            .addComponent(jtEspecialidad, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
+                        .addGap(42, 42, 42)
+                        .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(164, 164, 164)
+                        .addComponent(jrbActivos)
+                        .addGap(50, 50, 50)
+                        .addComponent(jrbTodos)
+                        .addGap(58, 58, 58)
+                        .addComponent(jrbInactivos)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(235, 235, 235)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jbDarBaja)
-                        .addGap(36, 36, 36)
-                        .addComponent(jbDarAlta)
-                        .addGap(81, 81, 81)
-                        .addComponent(jbModificar)
+                        .addGap(45, 45, 45)
+                        .addComponent(jbDarBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jbSalir)
-                        .addGap(28, 28, 28))))
+                        .addComponent(jbDarAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(53, 53, 53)
+                        .addComponent(jbModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(99, 99, 99)
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addContainerGap(23, Short.MAX_VALUE)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 583, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(0, 38, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(7, 7, 7)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -248,7 +301,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscar))
+                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
@@ -259,30 +312,28 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
                     .addComponent(jrbInactivos)
                     .addComponent(jrbTodos))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbDarBaja)
-                    .addComponent(jbModificar)
-                    .addComponent(jbSalir)
-                    .addComponent(jbDarAlta))
-                .addGap(24, 24, 24))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jbDarBaja, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                    .addComponent(jbDarAlta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbModificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbSalir, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jDesktopPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jDesktopPane1))
+            .addComponent(jDesktopPane1)
         );
 
-        pack();
+        setBounds(130, 15, 685, 481);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jrbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrbTodosActionPerformed
@@ -436,6 +487,7 @@ public class gestionEntrenador extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbDarAlta;
     private javax.swing.JButton jbDarBaja;
