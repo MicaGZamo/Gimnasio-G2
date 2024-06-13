@@ -55,7 +55,7 @@ public class gestionClase extends javax.swing.JInternalFrame {
         filaCabecera.add("Nombre");
         filaCabecera.add("Entrenador");
         filaCabecera.add("Horario");
-        filaCabecera.add("Capasidad");
+        filaCabecera.add("Capacidad");
         filaCabecera.add("Estado");
         for (Object it : filaCabecera) {
             modelo.addColumn(it);
