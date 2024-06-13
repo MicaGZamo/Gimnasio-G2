@@ -16,19 +16,19 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
     private MembresiaData membresiaData;
     private SocioData socioData;
     private Socio socio;
-    private List<String> pases;
+    private List<Integer> pases;
     private List<Double> precios;
+    private List<String> membresias;
     private int id;
 
     public ActualizarMembresia(int id) {
         initComponents();
-        this.id=id;
+        this.id = id;
         this.membresiaData = new MembresiaData();
         this.socioData = new SocioData();
         this.pases = new ArrayList<>();
         this.precios = new ArrayList<>();
         cargarPases();
-        cargarDatosSocio();
         cargarDatosMembresia(id);
     }
 
@@ -54,6 +54,9 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
         jDateVencimiento = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jtFechaVencimientoAnt = new javax.swing.JTextField();
+        jlTipo = new javax.swing.JLabel();
+
+        setFocusable(false);
 
         jDesktopPane1.setBackground(new java.awt.Color(75, 102, 113));
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -72,11 +75,11 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
 
         jLabel5.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel5.setText("Fecha Inscripción");
+        jLabel5.setText("Nueva Inscripción");
 
         jLabel6.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel6.setText("Fecha Vencimiento");
+        jLabel6.setText("Nuevo Vencimiento");
 
         jtDNISocio.setBackground(new java.awt.Color(204, 204, 204));
         jtDNISocio.setForeground(new java.awt.Color(51, 51, 51));
@@ -146,7 +149,24 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
 
         jDateVencimiento.setBackground(new java.awt.Color(145, 19, 19));
 
-        jLabel4.setText("Fecha de vencimiento anterior");
+        jLabel4.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(51, 51, 51));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel4.setText("Vencimiento");
+
+        jtFechaVencimientoAnt.setEditable(false);
+        jtFechaVencimientoAnt.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        jtFechaVencimientoAnt.setForeground(new java.awt.Color(178, 17, 17));
+        jtFechaVencimientoAnt.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtFechaVencimientoAnt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
+        jtFechaVencimientoAnt.setEnabled(false);
+        jtFechaVencimientoAnt.setFocusable(false);
+        jtFechaVencimientoAnt.setOpaque(false);
+
+        jlTipo.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        jlTipo.setForeground(new java.awt.Color(204, 204, 204));
+        jlTipo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlTipo.setEnabled(false);
 
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -165,6 +185,7 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jDateVencimiento, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtFechaVencimientoAnt, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jlTipo, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -177,44 +198,49 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
                         .addGap(180, 180, 180)
                         .addComponent(jLabel1))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(56, 56, 56)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(139, 139, 139)
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(46, 46, 46)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addComponent(jLabel2)
-                                .addGap(35, 35, 35)
-                                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jtDNISocio, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(44, 44, 44)
+                                .addComponent(jtDNISocio, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jDesktopPane1Layout.createSequentialGroup()
+                                    .addGap(99, 99, 99)
+                                    .addComponent(jLabel4)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jtFechaVencimientoAnt)
+                                    .addGap(27, 27, 27))
+                                .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(27, 27, 27)
+                                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(54, 54, 54)
+                                .addComponent(jcPases, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addComponent(jLabel7)
                                 .addGap(128, 128, 128)
-                                .addComponent(jlCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(66, 66, 66)
-                                .addComponent(jtFechaVencimientoAnt))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(34, 34, 34)
-                                .addComponent(jcPases, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jlCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addGap(179, 179, 179)
-                                .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(121, Short.MAX_VALUE))
+                        .addGap(109, 109, 109)
+                        .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(135, 135, 135)
+                        .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(19, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(150, 150, 150))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -229,36 +255,41 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGap(18, 24, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jcPases, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jcPases, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jtFechaVencimientoAnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(15, 15, 15)
+                    .addComponent(jtFechaVencimientoAnt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4))
+                .addGap(36, 36, 36)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDate, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(10, 10, 10)))
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(jLabel6)))
-                .addGap(18, 18, 18)
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel5)))
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(jDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6)
+                        .addGap(39, 39, 39)))
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -276,17 +307,12 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-private void cargarDatosSocio() {
-    
-    }
 
     private void cargarDatosMembresia(int id) {
         Membresia membresia = membresiaData.buscarMembresiaPorId(id);
         if (membresia != null) {
             String fechaFinStr = membresia.getFechaFin().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             jtFechaVencimientoAnt.setText(fechaFinStr);
-          
-//jcPases.setSelect   jtCantidadPases.setText(String.valueOf(membresia.getCantPases()));edIndex(membresia.getCantPases() - 1);
             jlCosto.setText(String.valueOf(membresia.getPrecioMembresia()));
             jDate.setDate(java.util.Date.from(membresia.getFechaInicio().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             jDateVencimiento.setDate(java.util.Date.from(membresia.getFechaFin().atStartOfDay(ZoneId.systemDefault()).toInstant()));
@@ -298,20 +324,26 @@ private void cargarDatosSocio() {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtDNISocioActionPerformed
     private void cargarPases() {
-        pases.add("4 pases [1 por semana]");
+        pases = new ArrayList<>();
+        pases.add(4);
+        pases.add(12);
+        pases.add(20);
+        pases.add(28);
+
+        precios = new ArrayList<>();
         precios.add(3500.0);
+        precios.add(6800.0);
+        precios.add(9000.0);
+        precios.add(11400.0);
 
-        pases.add("12 pases [3 por semana]");
-        precios.add(6000.0);
-
-        pases.add("20 pases [5 por semana]");
-        precios.add(8500.0);
-
-        pases.add("28 pases [7 veces por semana]");
-        precios.add(11300.0);
+        membresias = new ArrayList<>();
+        membresias.add("[1 vez por semana]");
+        membresias.add("[3 veces por semana]");
+        membresias.add("[5 veces por semana]");
+        membresias.add("[7 veces por semana]");
 
         jcPases.removeAllItems();
-        for (String pase : pases) {
+        for (Integer pase : pases) {
             jcPases.addItem(pase);
         }
     }
@@ -321,7 +353,11 @@ private void cargarDatosSocio() {
         if (paseSeleccionado != -1) {
             double precio = precios.get(paseSeleccionado);
             jlCosto.setText(String.valueOf(precio));
+            
+            String mem = membresias.get(paseSeleccionado);
+            jlTipo.setText(mem);
         }
+
 
     }//GEN-LAST:event_jcPasesActionPerformed
 
@@ -335,7 +371,7 @@ private void cargarDatosSocio() {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-       try {
+        try {
             int indicePase = jcPases.getSelectedIndex();
             java.util.Date fechaInicio = jDate.getDate();
             java.util.Date fechaFin = jDateVencimiento.getDate();
@@ -346,7 +382,7 @@ private void cargarDatosSocio() {
             }
 
             Membresia membresia = membresiaData.buscarMembresiaPorId(id);
-           
+
             membresia.setCantPases(indicePase + 1);
 
             LocalDate fechaInicioLocalDate = fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -398,6 +434,7 @@ private void cargarDatosSocio() {
     private javax.swing.JComboBox jcPases;
     private javax.swing.JLabel jlCosto;
     private javax.swing.JLabel jlNombreApellido;
+    private javax.swing.JLabel jlTipo;
     private javax.swing.JTextField jtDNISocio;
     private javax.swing.JTextField jtFechaVencimientoAnt;
     // End of variables declaration//GEN-END:variables
