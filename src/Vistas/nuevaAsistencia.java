@@ -60,6 +60,8 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         filaCabecera.add("Inicio");
         filaCabecera.add("Finaliza");
         filaCabecera.add("Membresia");
+        filaCabecera.add("idMembresia");
+        
 
         for (Object it : filaCabecera) {
             modeloMembresia.addColumn(it);
@@ -366,7 +368,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
             System.out.println("Fecha hoy " + hoy);
             System.out.println((m.getFechaFin().isBefore(hoy)));
             
-            if (m.getFechaFin().isBefore(hoy)) {
+            if ((m.getFechaFin().isBefore(hoy)|| m.getCantPases()<=0 )) {
                 System.out.println((m.getFechaFin().isBefore(hoy)));
                 m.setEstado(false);
                 MData.darBajaMembresia(m.getIdMembresia());
@@ -377,7 +379,8 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
                 m.getFechaInicio(),
                 m.getFechaFin(),
                 //m.isEstado()
-                m.isEstado() ? "Activo" : "Inactivo"
+                m.isEstado() ? "Activo" : "Inactivo",
+                m.getIdMembresia()
             });
         }
 
@@ -452,10 +455,16 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         Clase c = CData.buscarClasePorHorario(horario);
 
         Asistencia as = new Asistencia(s, c, hoy);
-
         AData.guardarAsistencia(as);
-
-
+        
+        int idmemSel = (Integer) jtTablaMembresiaSocio.getValueAt(jtTablaMembresiaSocio.getSelectedRow(), 4);
+        //System.out.println("idmemSel: "+idmemSel);
+        Membresia m=MData.buscarMembresiaPorId(idmemSel);
+        //System.out.println(""+m);
+        int pasesNuevos =m.getCantPases()-1;
+        Membresia mActualizar = new Membresia(m.getIdMembresia(),m.getSocio(), pasesNuevos, m.getFechaInicio(), m.getFechaFin(), (int) m.getPrecioMembresia(),m.isEstado());
+        //System.out.println(""+mActualizar);
+        MData.modificarMembresia(mActualizar);
     }//GEN-LAST:event_jbRegistrarActionPerformed
 
     private void jtfNombreApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreApellidoActionPerformed
