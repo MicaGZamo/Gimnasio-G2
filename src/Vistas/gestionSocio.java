@@ -151,7 +151,7 @@ public class gestionSocio extends javax.swing.JInternalFrame {
             }
         });
 
-        jbDarbaja.setBackground(new java.awt.Color(51, 51, 51));
+        jbDarbaja.setBackground(new java.awt.Color(162, 17, 17));
         jbDarbaja.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jbDarbaja.setForeground(new java.awt.Color(204, 204, 204));
         jbDarbaja.setText("Dar Baja");
@@ -187,7 +187,7 @@ public class gestionSocio extends javax.swing.JInternalFrame {
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
-        jbDaralta.setBackground(new java.awt.Color(51, 51, 51));
+        jbDaralta.setBackground(new java.awt.Color(21, 103, 21));
         jbDaralta.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
         jbDaralta.setForeground(new java.awt.Color(204, 204, 204));
         jbDaralta.setText("Dar Alta");
