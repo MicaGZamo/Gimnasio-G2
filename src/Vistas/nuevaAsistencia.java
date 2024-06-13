@@ -376,8 +376,8 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
                 m.getCantPases(),
                 m.getFechaInicio(),
                 m.getFechaFin(),
-                m.isEstado()
-            //    m.isEstado() ? "Activo" : "Inactivo"
+                //m.isEstado()
+                m.isEstado() ? "Activo" : "Inactivo"
             });
         }
 
