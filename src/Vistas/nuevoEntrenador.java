@@ -237,23 +237,7 @@ public class nuevoEntrenador extends javax.swing.JInternalFrame {
             if( dni.isEmpty() || nombre.isEmpty()||apellido.isEmpty()||especialidad.isEmpty()){
                 JOptionPane.showMessageDialog(this, "No puede haber campos vacios.");
                 return;}
-            
-            // Validación de DNI con expresión regular
-            String regularDni = "\\d+"; // "\\d:" Representa cualquier dígito numérico (0 al 9) y el "+" Indica que debe haber al menos un dígito, pero puede haber más.
-            if(!dni.matches(regularDni)) {
-                JOptionPane.showMessageDialog(this, "El DNI debe tener 8 dígitos numéricos.");
-            return;}
-            
-            // Validación de Nombre y Apellido para que solo contengan letras y espacios
-            String regexNombreApellido = "[a-zA-Z\\s]+";
-            if(!nombre.matches(regexNombreApellido) || !apellido.matches(regexNombreApellido)) {
-                JOptionPane.showMessageDialog(this, "El nombre y apellido solo deben contener letras y espacios.");
-            return;}
-            
-            // Validación de Especialidad
-            if(especialidad.length() < 3) {
-                JOptionPane.showMessageDialog(this, "La especialidad debe tener al menos 3 caracteres.");
-            return;}
+                                   
             
             //boolean estado = jcbEstado.isSelected();
             entrenadorActual = new Entrenador(dni,nombre,apellido,especialidad,true);
