@@ -201,6 +201,11 @@ public class Menu extends javax.swing.JFrame {
                 jmSalirMouseClicked(evt);
             }
         });
+        jmSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmSalirActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jmSalir);
 
         setJMenuBar(jMenuBar1);
@@ -247,9 +252,9 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jmiBuscarListarEntrenadorActionPerformed
 
     private void jmSalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmSalirMouseClicked
-        // TODO add your handling code here:
+        
         System.out.println("Cerrando ventana...");
-        dispose(); // o System.exit(0);
+        dispose();
     }//GEN-LAST:event_jmSalirMouseClicked
 
     private void jmNuevaMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNuevaMemActionPerformed
@@ -320,6 +325,10 @@ public class Menu extends javax.swing.JFrame {
     private void jMenu5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu5ActionPerformed
+
+    private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmSalirActionPerformed
 
 
     public static void main(String args[]) {

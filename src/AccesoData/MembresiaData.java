@@ -330,4 +330,25 @@ public class MembresiaData {
         e.printStackTrace();
     }
     }
+    public void eliminarMembresiaPorId(int idMembresia) {
+    try {
+        String sql = "DELETE FROM `membresias` WHERE `id-membresia` = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, idMembresia);
+
+        int fila = ps.executeUpdate();
+
+        if (fila > 0) {
+            JOptionPane.showMessageDialog(null, "Se eliminó la membresía con ID: " + idMembresia);
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo eliminar la membresía con ID: " + idMembresia);
+        }
+        ps.close();
+
+    } catch (SQLException e) {
+        JOptionPane.showMessageDialog(null, "Error al eliminar la membresía.");
+        System.out.println("Error: " + e.getMessage());
+        e.printStackTrace();
+    }
+}
 }

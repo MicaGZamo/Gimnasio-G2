@@ -353,7 +353,7 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
         if (paseSeleccionado != -1) {
             double precio = precios.get(paseSeleccionado);
             jlCosto.setText(String.valueOf(precio));
-            
+
             String mem = membresias.get(paseSeleccionado);
             jlTipo.setText(mem);
         }
@@ -381,9 +381,10 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
                 return;
             }
 
+            int cantidadPases = (int) jcPases.getSelectedItem();
             Membresia membresia = membresiaData.buscarMembresiaPorId(id);
 
-            membresia.setCantPases(indicePase + 1);
+            membresia.setCantPases(cantidadPases);
 
             LocalDate fechaInicioLocalDate = fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             LocalDate fechaFinLocalDate = fechaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

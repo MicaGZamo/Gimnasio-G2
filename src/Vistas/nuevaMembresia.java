@@ -421,7 +421,9 @@ public class nuevaMembresia extends javax.swing.JInternalFrame {
             // Crear un objeto Membresia con los valores proporcionados
             Membresia nuevaMembresia = new Membresia();
             nuevaMembresia.setSocio(socio);
-            nuevaMembresia.setCantPases(indicePase + 1); // +1 porque arranca en 0 la comboBox
+            
+             int cantidadPases = (int) jcPases.getSelectedItem();
+            nuevaMembresia.setCantPases(cantidadPases);
 
             // Convertir las fechas a LocalDate
             LocalDate fechaInicioLocalDate = fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();

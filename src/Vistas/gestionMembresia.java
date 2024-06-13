@@ -46,6 +46,7 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
         jbDarbaja = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
+        eliminar = new javax.swing.JButton();
 
         jEscritorio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
 
@@ -143,6 +144,16 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jSeparator1.setForeground(new java.awt.Color(204, 204, 204));
 
+        eliminar.setBackground(new java.awt.Color(227, 31, 31));
+        eliminar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        eliminar.setForeground(new java.awt.Color(255, 255, 255));
+        eliminar.setText("Eliminar");
+        eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eliminarActionPerformed(evt);
+            }
+        });
+
         jEscritorio.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jEscritorio.setLayer(jtDni, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jEscritorio.setLayer(jbBuscar, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -155,6 +166,7 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
         jEscritorio.setLayer(jbDarbaja, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jEscritorio.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jEscritorio.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jEscritorio.setLayer(eliminar, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jEscritorioLayout = new javax.swing.GroupLayout(jEscritorio);
         jEscritorio.setLayout(jEscritorioLayout);
@@ -165,11 +177,13 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane2)
                 .addContainerGap())
             .addGroup(jEscritorioLayout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addGap(67, 67, 67)
                 .addComponent(jbDarbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(107, 107, 107)
+                .addGap(79, 79, 79)
                 .addComponent(jbRenovar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
             .addGroup(jEscritorioLayout.createSequentialGroup()
@@ -180,7 +194,7 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
                     .addGroup(jEscritorioLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jEscritorioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -201,7 +215,7 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
         jEscritorioLayout.setVerticalGroup(
             jEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jEscritorioLayout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
+                .addContainerGap(45, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGroup(jEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jEscritorioLayout.createSequentialGroup()
@@ -209,8 +223,8 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
                         .addGroup(jEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jbRenovar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jbDarbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36))
+                            .addComponent(jbDarbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jEscritorioLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -228,24 +242,24 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
                             .addComponent(jrbTodas)
                             .addComponent(jrbActivas))
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28))))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(36, 36, 36))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jEscritorio)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jEscritorio))
         );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jEscritorio)
+        );
 
-        setBounds(120, 0, 733, 588);
+        setBounds(120, 0, 733, 530);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -337,19 +351,34 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
                 return;
             }
 
+            Membresia membresia = membresiaData.buscarMembresiaPorId(idMem);
+            if (membresia == null) {
+                JOptionPane.showMessageDialog(rootPane, "No se encontró la membresía seleccionada en la base de datos.");
+                return;
+            }
+
+            if (!membresia.isEstado()) {
+                JOptionPane.showMessageDialog(rootPane, "La membresía seleccionada ya está inactiva.");
+                return;
+            }
+
             membresiaData.darBajaMembresia(idMem);
 
-            // Suponiendo que 'socioData.darDeBajaSocio' y los métodos de actualizar la tabla también deben ser llamados
-            Membresia membresia = membresiaData.buscarMembresiaPorId(idMem);
-            if (membresia != null) {
+            // Dar de baja al socio asociado si existe
+            if (membresia.getSocio() != null && membresia.getSocio().isEstado()) {
                 socioData.darDeBajaSocio(membresia.getSocio().getIdSocio());
             }
 
+            // Actualizar la tabla y limpiar campos
             borrarFilaTabla();
             cargarMembresias();
+            limpiarCampos();
 
         } catch (ArrayIndexOutOfBoundsException e) {
             JOptionPane.showMessageDialog(this, "Seleccione una línea válida en la tabla.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al dar de baja la membresía: " + e.getMessage());
+            e.printStackTrace();
         }
         limpiarCampos();
     }//GEN-LAST:event_jbDarbajaActionPerformed
@@ -367,6 +396,37 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
         jEscritorio.add(actSocio);
 
     }//GEN-LAST:event_jbRenovarActionPerformed
+
+    private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
+
+        int filaSeleccionada = jtablaMem.getSelectedRow();
+
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(this, "Por favor, seleccione una fila.");
+            return;
+        }
+
+        int idMembresia = (int) jtablaMem.getValueAt(filaSeleccionada, 0);
+        String[] opciones = {"Aceptar", "Cancelar"};
+
+        int opcion = JOptionPane.showOptionDialog(
+                this,
+                "¿Está seguro de eliminar la membresía seleccionada?",
+                "Confirmar eliminación",
+                JOptionPane.OK_CANCEL_OPTION,
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                opciones, //ponemos las etiquetas
+                opciones[0] 
+        );
+
+        if (opcion == JOptionPane.OK_OPTION) {
+
+            membresiaData.eliminarMembresiaPorId(idMembresia);
+
+            cargarMembresias();
+        }
+    }//GEN-LAST:event_eliminarActionPerformed
 
     private void armarCabeceraTabla() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
@@ -472,6 +532,7 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton eliminar;
     private javax.swing.JDesktopPane jEscritorio;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
