@@ -26,7 +26,7 @@ public class nuevaClase extends javax.swing.JInternalFrame {
 
     public nuevaClase() {
         initComponents();
-        listaHorario = (ArrayList<LocalTime>) cD.listarHorariosDisponibles();
+        
         horariosDisponibles();
     }
 
@@ -226,7 +226,11 @@ public class nuevaClase extends javax.swing.JInternalFrame {
         try {
             String nombre = jtNombreClase.getText();
             LocalTime horario = (LocalTime) jcbHorariosDisponibles.getSelectedItem();
-
+            String capacidadTexto = jtCapasidad.getText();
+          
+            if( nombre.isEmpty() || capacidadTexto.isEmpty()){
+                JOptionPane.showMessageDialog(this, "No puede haber campos vacios.");
+                return;}
             int capacidad = Integer.parseInt(jtCapasidad.getText());
             clase.setNombre(nombre);
             clase.setEntrenador(entrenadorActual);
@@ -234,9 +238,13 @@ public class nuevaClase extends javax.swing.JInternalFrame {
             clase.setCapacidad(capacidad);
             clase.setEstado(true);
             cD.guardarClase(clase);
+           
+            limpiarCampos();
+            horariosDisponibles();
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número válido.");
         }
+        
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
@@ -275,10 +283,18 @@ public class nuevaClase extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jbLimpiarActionPerformed
 
     private void horariosDisponibles() {
+       listaHorario = (ArrayList<LocalTime>) cD.listarHorariosDisponibles();
         for (LocalTime item : listaHorario) {
             jcbHorariosDisponibles.addItem(item);
 
         }
+    }
+    public void limpiarCampos(){
+        jtNombreClase.setText("");
+        jtDniEntrenador.setText("");
+        jtNombreApellidoEntrenador.setText("");
+        jtCapasidad.setText("");
+        jcbHorariosDisponibles.removeAllItems();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;

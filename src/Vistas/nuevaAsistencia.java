@@ -465,6 +465,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         Membresia mActualizar = new Membresia(m.getIdMembresia(),m.getSocio(), pasesNuevos, m.getFechaInicio(), m.getFechaFin(), (int) m.getPrecioMembresia(),m.isEstado());
         //System.out.println(""+mActualizar);
         MData.modificarMembresia(mActualizar);
+       
     }//GEN-LAST:event_jbRegistrarActionPerformed
 
     private void jtfNombreApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreApellidoActionPerformed

@@ -54,8 +54,6 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
         jDateVencimiento = new com.toedter.calendar.JDateChooser();
         jLabel4 = new javax.swing.JLabel();
         jtFechaVencimientoAnt = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jtCantidadPases = new javax.swing.JTextField();
 
         jDesktopPane1.setBackground(new java.awt.Color(75, 102, 113));
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -150,14 +148,6 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Fecha de vencimiento anterior");
 
-        jLabel8.setText("Cantidad de pases anterior");
-
-        jtCantidadPases.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtCantidadPasesActionPerformed(evt);
-            }
-        });
-
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -175,8 +165,6 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jDateVencimiento, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jtFechaVencimientoAnt, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel8, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jtCantidadPases, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
@@ -218,11 +206,7 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
                             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(34, 34, 34)
-                                .addComponent(jcPases, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel8)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtCantidadPases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jcPases, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addGap(128, 128, 128)
                         .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -245,11 +229,7 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jtCantidadPases, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
@@ -269,7 +249,6 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
                         .addGap(10, 10, 10)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDateVencimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jDesktopPane1Layout.createSequentialGroup()
@@ -306,8 +285,8 @@ private void cargarDatosSocio() {
         if (membresia != null) {
             String fechaFinStr = membresia.getFechaFin().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             jtFechaVencimientoAnt.setText(fechaFinStr);
-            jtCantidadPases.setText(String.valueOf(membresia.getCantPases()));
-//jcPases.setSelectedIndex(membresia.getCantPases() - 1);
+          
+//jcPases.setSelect   jtCantidadPases.setText(String.valueOf(membresia.getCantPases()));edIndex(membresia.getCantPases() - 1);
             jlCosto.setText(String.valueOf(membresia.getPrecioMembresia()));
             jDate.setDate(java.util.Date.from(membresia.getFechaInicio().atStartOfDay(ZoneId.systemDefault()).toInstant()));
             jDateVencimiento.setDate(java.util.Date.from(membresia.getFechaFin().atStartOfDay(ZoneId.systemDefault()).toInstant()));
@@ -401,10 +380,6 @@ private void cargarDatosSocio() {
         }
     }//GEN-LAST:event_jDatePropertyChange
 
-    private void jtCantidadPasesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtCantidadPasesActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtCantidadPasesActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser jDate;
@@ -417,14 +392,12 @@ private void cargarDatosSocio() {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JButton jbSalir;
     private javax.swing.JComboBox jcPases;
     private javax.swing.JLabel jlCosto;
     private javax.swing.JLabel jlNombreApellido;
-    private javax.swing.JTextField jtCantidadPases;
     private javax.swing.JTextField jtDNISocio;
     private javax.swing.JTextField jtFechaVencimientoAnt;
     // End of variables declaration//GEN-END:variables

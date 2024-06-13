@@ -19,10 +19,10 @@ import javax.swing.JOptionPane;
  */
 public class ActualizarClase extends javax.swing.JInternalFrame {
 
-    Entrenador entrenadorActual = null;
-    EntrenadorData eD = new EntrenadorData();
-    ClaseData cD = new ClaseData();
-    Clase clase = new Clase();
+    private Entrenador entrenadorActual = null;
+    private EntrenadorData eD = new EntrenadorData();
+    private ClaseData cD = new ClaseData();
+    private Clase clase = new Clase();
     private ArrayList<LocalTime> listaHorario;
 
     public ActualizarClase() {
@@ -279,11 +279,21 @@ public class ActualizarClase extends javax.swing.JInternalFrame {
 
             int capacidad = Integer.parseInt(jtCapacidad.getText());
             clase.setNombre(nombre);
-            clase.setEntrenador(entrenadorActual);
+            if (entrenadorActual == null) {
+                clase.setEntrenador(eD.buscarPorDni(jtfDniActual.getText()));
+            } else {
+                clase.setEntrenador(entrenadorActual);
+            }
             clase.setHorario(horario);
             clase.setCapacidad(capacidad);
             clase.setEstado(true);
             cD.modificarClase(clase);
+            dispose();
+            Menu menuPrincipal = new Menu();
+            gestionClase gest = new gestionClase();
+            menuPrincipal.getJdpEscritorio().add(gest);
+            gest.setVisible(true);
+            menuPrincipal.setVisible(true);
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número válido.");

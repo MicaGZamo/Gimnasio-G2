@@ -35,9 +35,10 @@ public class gestionClase extends javax.swing.JInternalFrame {
         modelo = new DefaultTableModel();
 
         armarCabeceraTabla();
-        cargarClases();
+       
         clasesPorNombre();
         horariosDisponibles();
+         cargarClases();
     }
 
     private void borrarFilaTabla() {

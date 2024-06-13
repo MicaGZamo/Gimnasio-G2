@@ -125,7 +125,8 @@ public class ClaseData {
         Clase clase = null;
         String sql = "SELECT clases.*, entrenadores.nombre as nombre_entrenador "
                       + " FROM `clases`, entrenadores "
-                      + "WHERE horario=? ";
+                      + "WHERE horario=? "
+                      + "AND clases.`id-entrenador` = entrenadores.`id-entrenador` ";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -354,7 +355,7 @@ public class ClaseData {
         List<LocalTime> listaHorarios = new ArrayList<>();
         String sql = "SELECT horario "
                    + "FROM `clases` "
-                   + "WHERE `estado-clase`=1";
+                   + "WHERE `estado-clase`=1 ORDER BY horario";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
