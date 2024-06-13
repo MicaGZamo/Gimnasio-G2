@@ -54,7 +54,6 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
         jLabel4.setText("DNI Socio");
 
         jtDni.setBackground(new java.awt.Color(204, 204, 204));
-        jtDni.setForeground(new java.awt.Color(0, 0, 0));
         jtDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jbBuscar.setBackground(new java.awt.Color(51, 51, 51));
@@ -181,7 +180,7 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
                     .addGroup(jEscritorioLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 663, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jEscritorioLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,7 +201,7 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
         jEscritorioLayout.setVerticalGroup(
             jEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jEscritorioLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
+                .addContainerGap(73, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addGroup(jEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jEscritorioLayout.createSequentialGroup()
@@ -246,7 +245,7 @@ public class gestionMembresia extends javax.swing.JInternalFrame {
                 .addComponent(jEscritorio))
         );
 
-        setBounds(120, 0, 714, 512);
+        setBounds(120, 0, 733, 588);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbBuscarActionPerformed
