@@ -61,7 +61,6 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         filaCabecera.add("Finaliza");
         filaCabecera.add("Membresia");
         filaCabecera.add("idMembresia");
-        
 
         for (Object it : filaCabecera) {
             modeloMembresia.addColumn(it);
@@ -124,13 +123,27 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         jtTablaMembresiaSocio = new javax.swing.JTable();
         jcbHorario1 = new javax.swing.JComboBox<>();
         jcbClases = new javax.swing.JComboBox<>();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        jLabel1.setText("Control asistencia");
+        jLabel1.setFont(new java.awt.Font("Ebrima", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Control Asistencia");
 
+        jLabel2.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setText("DNI Socio");
 
+        jLabel3.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
         jLabel3.setText("Clase");
 
+        jtfDni.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jtfDni.setForeground(new java.awt.Color(204, 204, 204));
+        jtfDni.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jbBuscar.setBackground(new java.awt.Color(51, 51, 51));
+        jbBuscar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbBuscar.setForeground(new java.awt.Color(204, 204, 204));
         jbBuscar.setText("Buscar");
         jbBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -138,14 +151,23 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
             }
         });
 
+        jtfNombreApellido.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jtfNombreApellido.setForeground(new java.awt.Color(204, 204, 204));
+        jtfNombreApellido.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jtfNombreApellido.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jtfNombreApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfNombreApellidoActionPerformed(evt);
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(204, 204, 204));
         jLabel5.setText("Horario");
 
+        jtfFechaHoy.setFont(new java.awt.Font("Ebrima", 1, 12)); // NOI18N
+        jtfFechaHoy.setForeground(new java.awt.Color(51, 51, 51));
+        jtfFechaHoy.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jtfFechaHoy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jtfFechaHoyActionPerformed(evt);
@@ -170,8 +192,13 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jtTablaClase);
 
+        jLabel4.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Fecha:");
 
+        jbLimpiar.setBackground(new java.awt.Color(51, 51, 51));
+        jbLimpiar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbLimpiar.setForeground(new java.awt.Color(204, 204, 204));
         jbLimpiar.setText("Limpiar");
         jbLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +206,9 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
             }
         });
 
+        jbRegistrar.setBackground(new java.awt.Color(52, 123, 52));
+        jbRegistrar.setFont(new java.awt.Font("Ebrima", 1, 14)); // NOI18N
+        jbRegistrar.setForeground(new java.awt.Color(204, 204, 204));
         jbRegistrar.setText("Registrar");
         jbRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -186,6 +216,8 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
             }
         });
 
+        jbSalir.setBackground(new java.awt.Color(144, 47, 47));
+        jbSalir.setForeground(new java.awt.Color(204, 204, 204));
         jbSalir.setText("Salir");
         jbSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,6 +252,9 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
+        jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+
         jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -236,73 +271,79 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         jDesktopPane1.setLayer(jScrollPane3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jcbHorario1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jDesktopPane1.setLayer(jcbClases, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jDesktopPane1.setLayer(jSeparator1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(32, 32, 32)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(34, 34, 34)
+                .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
                         .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jtfFechaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
-                        .addContainerGap(21, Short.MAX_VALUE)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 453, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                    .addComponent(jbLimpiar)
-                                    .addGap(108, 108, 108)
-                                    .addComponent(jbRegistrar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jbSalir))))))
+                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addComponent(jLabel3)
+                .addGap(28, 28, 28)
+                .addComponent(jcbClases, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(106, 106, 106)
+                .addComponent(jLabel5)
+                .addGap(18, 18, 18)
+                .addComponent(jcbHorario1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(57, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(114, 114, 114)
+                .addComponent(jtfNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbClases, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jcbHorario1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(62, 62, 62)
-                                .addComponent(jbBuscar))
-                            .addComponent(jtfNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                            .addComponent(jbLimpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(118, 118, 118)
+                            .addComponent(jbRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(jtfFechaHoy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(19, 19, 19)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbBuscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jtfNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 68, Short.MAX_VALUE)
-                .addGap(34, 34, 34)
+                    .addComponent(jbBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jtfDni, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfNombreApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
@@ -312,9 +353,9 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbLimpiar)
-                    .addComponent(jbRegistrar)
-                    .addComponent(jbSalir))
+                    .addComponent(jbRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbLimpiar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -367,12 +408,12 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
             System.out.println("fecha fin " + m.getFechaFin());
             System.out.println("Fecha hoy " + hoy);
             System.out.println((m.getFechaFin().isBefore(hoy)));
-            
-            if ((m.getFechaFin().isBefore(hoy)|| m.getCantPases()<=0 )) {
+
+            if ((m.getFechaFin().isBefore(hoy) || m.getCantPases() <= 0)) {
                 System.out.println((m.getFechaFin().isBefore(hoy)));
                 m.setEstado(false);
                 MData.darBajaMembresia(m.getIdMembresia());
-                
+
             }
             modeloMembresia.addRow(new Object[]{
                 m.getCantPases(),
@@ -449,23 +490,51 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         String dniSocio = jtfDni.getText();
         Socio s = SData.buscarSocioDni(dniSocio);
 
-        //Lo mejor seria buscar por id
+     try {
+        // Buscar el socio por DNI
+        s = SData.buscarSocioDni(dniSocio);
+    } catch (ArrayIndexOutOfBoundsException e) {
+        JOptionPane.showMessageDialog(this, "Seleccione una fila válida en la tabla.");
+        return; // Salir del método si no se seleccionó un socio válido
+    }
+
+    try {
+        // Verificar si se ha seleccionado una fila en la tabla de membresías de socio
+        if (jtTablaMembresiaSocio.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una membresía del socio de la tabla.");
+            return;
+        }
+
+        // Obtener el horario seleccionado de la tabla de clases
+        if (jtTablaClase.getSelectedRow() == -1) {
+            JOptionPane.showMessageDialog(this, "Seleccione una clase de la tabla.");
+            return;
+        }
         Object selectedItem = jtTablaClase.getValueAt(jtTablaClase.getSelectedRow(), 2);
         LocalTime horario = (LocalTime) selectedItem;
-        Clase c = CData.buscarClasePorHorario(horario);
 
+        // Buscar la clase por horario
+        c = CData.buscarClasePorHorario(horario);
+
+        // Crear y guardar la asistencia
         Asistencia as = new Asistencia(s, c, hoy);
         AData.guardarAsistencia(as);
-        
+
+        // Obtener el ID de la membresía seleccionada
         int idmemSel = (Integer) jtTablaMembresiaSocio.getValueAt(jtTablaMembresiaSocio.getSelectedRow(), 4);
-        //System.out.println("idmemSel: "+idmemSel);
-        Membresia m=MData.buscarMembresiaPorId(idmemSel);
-        //System.out.println(""+m);
-        int pasesNuevos =m.getCantPases()-1;
-        Membresia mActualizar = new Membresia(m.getIdMembresia(),m.getSocio(), pasesNuevos, m.getFechaInicio(), m.getFechaFin(), (int) m.getPrecioMembresia(),m.isEstado());
-        //System.out.println(""+mActualizar);
+        Membresia m = MData.buscarMembresiaPorId(idmemSel);
+
+        // Actualizar la cantidad de pases en la membresía
+        int pasesNuevos = m.getCantPases() - 1;
+        Membresia mActualizar = new Membresia(m.getIdMembresia(), m.getSocio(), pasesNuevos, m.getFechaInicio(), m.getFechaFin(), (int) m.getPrecioMembresia(), m.isEstado());
         MData.modificarMembresia(mActualizar);
-       
+
+    } catch (ArrayIndexOutOfBoundsException e) {
+        JOptionPane.showMessageDialog(this, "Seleccione una fila válida en la tabla.");
+        } catch (Exception e) {
+        JOptionPane.showMessageDialog(this, "Ocurrió un error: " + e.getMessage());
+        e.printStackTrace(); // Imprimir el stack trace para debugging
+    }
     }//GEN-LAST:event_jbRegistrarActionPerformed
 
     private void jtfNombreApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfNombreApellidoActionPerformed
@@ -528,6 +597,7 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbBuscar;
     private javax.swing.JButton jbLimpiar;
     private javax.swing.JButton jbRegistrar;
