@@ -18,9 +18,11 @@ public class ActualizarMembresia extends javax.swing.JInternalFrame {
     private Socio socio;
     private List<String> pases;
     private List<Double> precios;
+    private int id;
 
     public ActualizarMembresia(int id) {
         initComponents();
+        this.id=id;
         this.membresiaData = new MembresiaData();
         this.socioData = new SocioData();
         this.pases = new ArrayList<>();
@@ -354,35 +356,35 @@ private void cargarDatosSocio() {
     }//GEN-LAST:event_jbSalirActionPerformed
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
-////        try {
-//            int indicePase = jcPases.getSelectedIndex();
-//            java.util.Date fechaInicio = jDate.getDate();
-//            java.util.Date fechaFin = jDateVencimiento.getDate();
-//
-        //    if (indicePase == -1 || fechaInicio == null || fechaFin == null) {
-          //      JOptionPane.showMessageDialog(this, "Debe completar todos los campos.");
-            //    return;
-            //}
+       try {
+            int indicePase = jcPases.getSelectedIndex();
+            java.util.Date fechaInicio = jDate.getDate();
+            java.util.Date fechaFin = jDateVencimiento.getDate();
 
-           // Membresia membresia = membresiaData.buscarMembresiaPorId(id);
+            if (indicePase == -1 || fechaInicio == null || fechaFin == null) {
+                JOptionPane.showMessageDialog(this, "Debe completar todos los campos.");
+                return;
+            }
+
+            Membresia membresia = membresiaData.buscarMembresiaPorId(id);
            
-//            membresia.setCantPases(indicePase + 1);
-//
-//            LocalDate fechaInicioLocalDate = fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//            LocalDate fechaFinLocalDate = fechaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-//
-//            membresia.setFechaInicio(fechaInicioLocalDate);
-//            membresia.setFechaFin(fechaFinLocalDate);
-//            membresia.setPrecioMembresia(precios.get(indicePase));
-//            membresia.setEstado(true);
-//
-//            membresiaData.guardarMembresia(membresia);
-//
-//            JOptionPane.showMessageDialog(this, "Membresía actualizada correctamente.");
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(this, "Ocurrió un error al actualizar la membresía: " + ex.getMessage());
-//            ex.printStackTrace();
-//        }
+            membresia.setCantPases(indicePase + 1);
+
+            LocalDate fechaInicioLocalDate = fechaInicio.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+            LocalDate fechaFinLocalDate = fechaFin.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            membresia.setFechaInicio(fechaInicioLocalDate);
+            membresia.setFechaFin(fechaFinLocalDate);
+            membresia.setPrecioMembresia(precios.get(indicePase));
+            membresia.setEstado(true);
+
+            membresiaData.guardarMembresia(membresia);
+
+            JOptionPane.showMessageDialog(this, "Membresía actualizada correctamente.");
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Ocurrió un error al actualizar la membresía: " + ex.getMessage());
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jbGuardarActionPerformed
 
     private void jDatePropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDatePropertyChange

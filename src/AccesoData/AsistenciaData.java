@@ -170,9 +170,10 @@ public class AsistenciaData {
     }
       public List<Asistencia> Listartodas() {
         List<Asistencia> lista = new ArrayList<>();
-        String sql = "SELECT `id-asistencia`, `id-socio`, clases.nombre, clases.horario, asistencias.`id-clase`, `fecha-asistencia` "
-                + " FROM `asistencias`, clases"
-                + " WHERE asistencias.`id-clase` = clases.`id-clase` ";
+        String sql = "SELECT `id-asistencia`, asistencias.`id-socio`, socios.apellido, clases.nombre, clases.horario, asistencias.`id-clase`, `fecha-asistencia` "
+                + " FROM `asistencias`, clases, socios"
+                + " WHERE asistencias.`id-clase` = clases.`id-clase` "
+                + " AND asistencias.`id-socio` = socios.`id-socio`";
         try{
             PreparedStatement ps = con.prepareStatement(sql);
           
@@ -184,15 +185,14 @@ public class AsistenciaData {
                 Clase claseA = new Clase();
                 
                 asistencia.setIdAsistencia(rs.getInt("id-asistencia"));
-                
+                socioA.setApellido(rs.getString("apellido"));
                 socioA.setIdSocio(rs.getInt("id-socio"));
                 asistencia.setSocio(socioA);
-                
+                claseA.setHorario(rs.getTime("horario").toLocalTime());
                 claseA.setNombre(rs.getString("nombre"));
-                
                 claseA.setIdClase(rs.getInt("id-clase"));
-                asistencia.setClase(claseA);
                 
+                asistencia.setClase(claseA);
                 asistencia.setFechaAsistencia(rs.getDate("fecha-asistencia").toLocalDate());
                 
                 lista.add(asistencia);
