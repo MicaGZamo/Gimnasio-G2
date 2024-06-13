@@ -528,6 +528,10 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         int pasesNuevos = m.getCantPases() - 1;
         Membresia mActualizar = new Membresia(m.getIdMembresia(), m.getSocio(), pasesNuevos, m.getFechaInicio(), m.getFechaFin(), (int) m.getPrecioMembresia(), m.isEstado());
         MData.modificarMembresia(mActualizar);
+        
+        borrarFilaTablaMembresia();
+        cargarTablaSocioDni();
+        
 
     } catch (ArrayIndexOutOfBoundsException e) {
         JOptionPane.showMessageDialog(this, "Seleccione una fila válida en la tabla.");
@@ -587,7 +591,36 @@ public class nuevaAsistencia extends javax.swing.JInternalFrame {
         modeloClase.addRow(new Object[]{c.getNombre(), c.getEntrenador().getNombreE(), c.getHorario(), c.getCapacidad()});
 
     }
+    
+    public void cargarTablaSocioDni(){
+        LocalDate hoy = LocalDate.now();
+        String dniSocio = jtfDni.getText();
+        Socio s = SData.buscarSocioDni(dniSocio);
+        jtfNombreApellido.setText(s.getNombre() + " " + s.getApellido());
+        List<Membresia> lista = MData.buscarPorSocio(s);
 
+        for (Membresia m : lista) {
+            System.out.println("fecha fin " + m.getFechaFin());
+            System.out.println("Fecha hoy " + hoy);
+            System.out.println((m.getFechaFin().isBefore(hoy)));
+
+            if ((m.getFechaFin().isBefore(hoy) || m.getCantPases() <= 0)) {
+                System.out.println((m.getFechaFin().isBefore(hoy)));
+                m.setEstado(false);
+                MData.darBajaMembresia(m.getIdMembresia());
+
+            }
+            modeloMembresia.addRow(new Object[]{
+                m.getCantPases(),
+                m.getFechaInicio(),
+                m.getFechaFin(),
+                //m.isEstado()
+                m.isEstado() ? "Activo" : "Inactivo",
+                m.getIdMembresia()
+            });
+    }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JLabel jLabel1;
