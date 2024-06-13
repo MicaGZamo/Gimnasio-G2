@@ -348,12 +348,17 @@ public class gestionAsistencia extends javax.swing.JInternalFrame {
         jtcantidadAsistencias.setText(" ");
         int contador = 0;
         String dni = jtDni.getText();
+       
         String regularDni = "\\d+";
         if (!dni.matches(regularDni)) {
             JOptionPane.showMessageDialog(this, "El DNI debe tener 8 dígitos numéricos.");
             return;
         }
         socio = sD.buscarSocioDni(dni);
+        if(socio==null){
+           JOptionPane.showMessageDialog(this, "No existe un socio con el DNI ingresado");
+            return; 
+        }
         List<Asistencia> lista = aD.buscarPorSocio(socio);
         for (Asistencia a : lista) {
             modelo.addRow(new Object[]{a.getIdAsistencia(), a.getSocio().getApellido(), a.getClase().getNombre(), a.getFechaAsistencia(), a.getClase().getHorario()});

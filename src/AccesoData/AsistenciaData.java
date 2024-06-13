@@ -130,10 +130,11 @@ public class AsistenciaData {
 
     public List<Asistencia> ListarPorFecha(LocalDate fecha) { // Ramiro
         List<Asistencia> lista = new ArrayList<>();
-        String sql = "SELECT `id-asistencia`, `id-socio`, clases.nombre, clases.horario, asistencias.`id-clase`, `fecha-asistencia` "
-                + " FROM `asistencias`, clases"
+        String sql =  "SELECT `id-asistencia`, asistencias.`id-socio`, socios.apellido,  clases.nombre, clases.horario, asistencias.`id-clase`, `fecha-asistencia` "
+                + " FROM `asistencias`, clases, socios"
                 + " WHERE `fecha-asistencia` = ?"
-                + " AND asistencias.`id-clase` = clases.`id-clase` ";
+                + " AND asistencias.`id-clase` = clases.`id-clase` "
+                + " AND asistencias.`id-socio`= socios.`id-socio` ";
         try{
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setDate(1, Date.valueOf(fecha));
@@ -145,12 +146,12 @@ public class AsistenciaData {
                 Clase claseA = new Clase();
                 
                 asistencia.setIdAsistencia(rs.getInt("id-asistencia"));
-                
+                socioA.setApellido(rs.getString("apellido"));
                 socioA.setIdSocio(rs.getInt("id-socio"));
                 asistencia.setSocio(socioA);
                 
                 claseA.setNombre(rs.getString("nombre"));
-                
+                claseA.setHorario(rs.getTime("horario").toLocalTime());
                 claseA.setIdClase(rs.getInt("id-clase"));
                 asistencia.setClase(claseA);
                 
